@@ -911,26 +911,4 @@ if (sideToggle) {
 }
 setSidebarCollapsed(localStorage.getItem("side-collapsed") === "1");
 
-function initPacking() {
-  const root = document.getElementById("pack-list");
-  if (!root) return;
-  const saved = new Set(JSON.parse(localStorage.getItem("jp-pack") || "[]"));
-  root.querySelectorAll("[data-pack]").forEach((btn) => {
-    const on = saved.has(btn.dataset.pack);
-    btn.classList.toggle("is-on", on);
-    btn.setAttribute("aria-pressed", on ? "true" : "false");
-  });
-  root.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-pack]");
-    if (!btn) return;
-    const id = btn.dataset.pack;
-    if (saved.has(id)) saved.delete(id);
-    else saved.add(id);
-    btn.classList.toggle("is-on", saved.has(id));
-    btn.setAttribute("aria-pressed", saved.has(id) ? "true" : "false");
-    localStorage.setItem("jp-pack", JSON.stringify([...saved]));
-  });
-}
-initPacking();
-
 showPanel(currentPanel(), false);
