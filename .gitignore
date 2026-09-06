@@ -1,4 +1,9 @@
 Thumbs.db
 .DS_Store
 desktop.ini
-img/
+img/_*.jpg
+img/_*.bin
+img/_*.webp
+img/spots/_*.jpg
+img/spots/_*.webp
+img/spots/*probe*

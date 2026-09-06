@@ -312,6 +312,10 @@ input {
   margin-bottom: 36px;
 }
 
+.section-head.solo {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .section-head > :first-child {
   min-width: 0;
 }
@@ -353,6 +357,34 @@ input {
   border-color: var(--ink);
 }
 
+.spot-board {
+  display: grid;
+  gap: 48px;
+}
+
+.spot-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.spot-group-head h3 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.4vw, 26px);
+  margin: 0;
+  font-weight: 600;
+}
+
+.spot-group-head span {
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
 .spot-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -376,6 +408,38 @@ input {
 
 .spot-card.wide {
   grid-column: span 8;
+}
+
+.card-photos {
+  display: grid;
+  gap: 3px;
+  background: var(--paper-2);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.card-photos.n-1 {
+  grid-template-columns: 1fr;
+}
+
+.card-photos.n-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.card-photos.n-3 {
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.card-photos.n-3 img:first-child {
+  grid-row: 1 / span 2;
+}
+
+.card-photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .spot-card .thumb {
@@ -452,6 +516,12 @@ input {
   font-size: 24px;
   margin: 0;
   font-weight: 600;
+}
+
+.spot-body p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
 }
 
 .en {
@@ -1670,21 +1740,18 @@ input {
   }
 }
 
-.pin-key.asakusa,
-.atlas-item.asakusa .n { background: var(--clay); }
-.pin-key.shibuya,
-.atlas-item.shibuya .n { background: #c45c2a; }
-.pin-key.center,
-.atlas-item.center .n { background: var(--moss); }
-.pin-key.shinjuku,
-.atlas-item.shinjuku .n { background: #4a3f6b; }
-.pin-key.disney,
-.atlas-item.disney .n { background: #2f6b4f; }
+.pin-key.tokyo,
+.atlas-item.tokyo .n { background: var(--clay); }
+.pin-key.maihama,
+.atlas-item.maihama .n { background: #2f6b4f; }
+.pin-key.fuji,
+.atlas-item.fuji .n { background: #4a3f6b; }
+.pin-key.izu,
+.atlas-item.izu .n { background: #2a6a8a; }
 
-.photo-pin.map.shibuya.is-on img { box-shadow: 0 0 0 3px #c45c2a, 0 6px 14px rgba(26, 21, 18, 0.28); }
-.photo-pin.map.center.is-on img { box-shadow: 0 0 0 3px var(--moss), 0 6px 14px rgba(26, 21, 18, 0.28); }
-.photo-pin.map.shinjuku.is-on img { box-shadow: 0 0 0 3px #4a3f6b, 0 6px 14px rgba(26, 21, 18, 0.28); }
-.photo-pin.map.disney.is-on img { box-shadow: 0 0 0 3px #2f6b4f, 0 6px 14px rgba(26, 21, 18, 0.28); }
+.photo-pin.map.maihama.is-on img { box-shadow: 0 0 0 3px #2f6b4f, 0 6px 14px rgba(26, 21, 18, 0.28); }
+.photo-pin.map.fuji.is-on img { box-shadow: 0 0 0 3px #4a3f6b, 0 6px 14px rgba(26, 21, 18, 0.28); }
+.photo-pin.map.izu.is-on img { box-shadow: 0 0 0 3px #2a6a8a, 0 6px 14px rgba(26, 21, 18, 0.28); }
 
 .prep-timeline {
   margin: 0 0 18px;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>东京五日行程</title>
+  <title>日本之行</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -14,10 +14,10 @@
   <div class="app">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
-        <strong>东京之行</strong>
+        <strong>日本之行</strong>
       </div>
       <nav class="side-nav">
-        <a href="#plan" data-panel="plan"><span class="idx">01</span><span class="nav-label">五日行程</span></a>
+        <a href="#plan" data-panel="plan"><span class="idx">01</span><span class="nav-label">六日行程</span></a>
         <a href="#spots" data-panel="spots"><span class="idx">02</span><span class="nav-label">打卡点</span></a>
         <a href="#atlas" data-panel="atlas"><span class="idx">03</span><span class="nav-label">地图</span></a>
         <a href="#notes" data-panel="notes"><span class="idx">04</span><span class="nav-label">注意事项</span></a>
@@ -30,15 +30,15 @@
         <div class="wrap">
           <div class="section-head">
             <div>
-              <h2>五日行程</h2>
-              <p>两人、第一次去日本、只跑东京。点表格里的一行，下面会出现白话说明。通勤会高亮路线，景点和吃饭在地图上是照片。花销按一人估算，不含机票和酒店。</p>
+              <h2>六日行程</h2>
+              <p>两人、第一次去日本。主线是东京 + 一天河口湖拍富士。点表格里的一行，下面会出现白话说明。花销按一人估算，不含机票和酒店。</p>
             </div>
             <div class="filters" id="day-tabs"></div>
           </div>
           <div class="trip-dates">
             <span>10/06 出发入住</span>
-            <span>10/07–11 游玩五天</span>
-            <span>10/12 返程</span>
+            <span>10/07–12 六天</span>
+            <span>10/12 上午收尾、返程</span>
             <span>新宿住 6 晚</span>
             <span>2 人</span>
           </div>
@@ -55,35 +55,32 @@
 
       <section class="panel" id="spots">
         <div class="wrap">
-          <div class="section-head">
+          <div class="section-head solo">
             <div>
               <h2>打卡点</h2>
-              <p>五天能走到的点。封面是实地风景，点开卡片可左右翻看多张照片。</p>
+              <p>按时间和城市排好。卡片上直接出图，点开还能看说明和小红书。后面几组是备选，不要硬塞进同一周。</p>
             </div>
-            <div class="filters" id="filters"></div>
           </div>
-          <div class="spot-grid" id="spot-grid"></div>
+          <div class="spot-board" id="spot-board"></div>
         </div>
       </section>
 
       <section class="panel" id="atlas">
         <div class="wrap">
-          <div class="section-head">
+          <div class="section-head solo">
             <div>
               <h2>打卡点地图</h2>
-              <p>按片区看。迪士尼在舞浜，和市区离得远，点右侧名单或地图上的照片会放大。</p>
+              <p>东京、舞浜、河口湖、伊豆都在这一张图上。大阪环球影城太远，标上去整张图会缩成日本全图，东京会挤成一团，所以只放在打卡点里。点右侧名单可以放大。</p>
             </div>
-            <div class="filters" id="map-city-filters"></div>
           </div>
           <div class="atlas-panel">
             <div class="atlas-map" id="leaflet-map" role="img" aria-label="景点位置地图"></div>
             <div class="atlas-side">
               <div class="atlas-legend">
-                <span><i class="pin-key asakusa"></i>浅草</span>
-                <span><i class="pin-key shibuya"></i>涩谷原宿</span>
-                <span><i class="pin-key center"></i>都心</span>
-                <span><i class="pin-key shinjuku"></i>新宿</span>
-                <span><i class="pin-key disney"></i>舞浜</span>
+                <span><i class="pin-key tokyo"></i>东京</span>
+                <span><i class="pin-key maihama"></i>舞浜</span>
+                <span><i class="pin-key fuji"></i>河口湖</span>
+                <span><i class="pin-key izu"></i>伊豆</span>
               </div>
               <div class="atlas-list" id="atlas-list"></div>
             </div>
@@ -116,30 +113,41 @@
           <div class="guide">
             <article class="guide-card" id="note-when">
               <h3>这次怎么排</h3>
-              <p class="prep-lead"><strong>先定这三件事：</strong>两个人、玩五天、10 月 6–12 日前后出门。行程按 10 月 6 日（周二）去、12 日（周一）回、中间五天整日游玩来写。</p>
+              <p class="prep-lead"><strong>先定这三件事：</strong>两个人、玩六天、10 月 6–12 日前后出门。6 号入住、12 号返程。完整的游玩日是 10/07–11，第 6 天（12 号）只能上午轻逛再去机场。</p>
               <ul>
-                <li><strong>10/06 周二：</strong>北京飞东京，当天只做一件事——入境、去酒店、便利店吃饭睡觉。不要排景点。</li>
-                <li><strong>10/07 周三：</strong>浅草寺、仲见世、晴空塔。用来熟悉地铁和西瓜卡。</li>
-                <li><strong>10/08 周四：</strong>东京迪士尼乐园。放在平日，比周末好排；10 月还有万圣节装饰。</li>
-                <li><strong>10/09 周五：</strong>明治神宫、原宿、涩谷、SHIBUYA SKY。</li>
-                <li><strong>10/10 周六：</strong>筑地早饭、银座、皇居、东京站。</li>
-                <li><strong>10/11 周日：</strong>新宿御苑、买手信、都厅免费夜景、回忆横丁。</li>
-                <li><strong>10/12 周一：</strong>退房去机场。御苑周一休园，所以花园放在周日。</li>
+                <li><strong>10/06 周二：</strong>北京飞东京。当天只做入境、去新宿酒店、便利店吃饭睡觉。不要排景点。</li>
+                <li><strong>10/07 周三 · DAY 01：</strong>浅草寺、仲见世、晴空塔、秋叶原夜景。熟悉地铁和西瓜卡。</li>
+                <li><strong>10/08 周四 · DAY 02：</strong>明治神宫、原宿、涩谷十字路口、东京塔亮灯。这一天点很多，拍得慢就丢掉竹下通。</li>
+                <li><strong>10/09 周五 · DAY 03：</strong>东京迪士尼海洋一整天。放在平日，比周末好排；地中海港湾比乐园更好拍。</li>
+                <li><strong>10/10 周六 · DAY 04：</strong>筑地早饭、银座、皇居、东京站，顺路拍新干线车头。</li>
+                <li><strong>10/11 周日 · DAY 05：</strong>新宿高速巴士去河口湖拍富士。看预报，云挡住就改拍湖，不要空等。</li>
+                <li><strong>10/12 周一 · DAY 06：</strong>退房、都厅或药妆，再去机场。新宿御苑周一休园，这天别去。伊豆更去不成。</li>
               </ul>
-              <h4>为什么只去东京</h4>
+              <h4>为什么没全部塞进这 6 天</h4>
               <ul>
-                <li>五天再加京都、大阪，大部分时间会耗在新干线和行李上。第一次去，把地铁、付钱、点餐练熟，比赶景点更重要。</li>
-                <li>住一个地方（新宿）六晚，不用中途换酒店、不用拖箱子赶车。</li>
-                <li>机票往返都走东京，不用买日本国内机票。</li>
+                <li><strong>大阪环球影城：</strong>在大阪。新干线单程约 2.5 小时，去了就要砍掉河口湖或海洋。第一次来、又爱拍照，先把东京和富士拍好。USJ 留到下次专门跑关西。</li>
+                <li><strong>两个迪士尼：</strong>乐园和海洋各要一整天，门票不能通用。主线留海洋（港湾、火山更好拍）。想逛城堡就和对调，不要两天都去。</li>
+                <li><strong>河口湖 vs 伊豆：</strong>富士在山梨，大室山和城ヶ崎海岸在伊豆，方向相反，各要一整天。主线去河口湖。想看海、想坐一段新干线，就把第 5 天改成伊豆（东京站新干线到热海，再伊豆急行）。</li>
+                <li><strong>城崎海岸：</strong>兵库县的城崎温泉很远，要过夜。你要的如果是海边拍照，对应的是伊豆的<strong>城ヶ崎海岸</strong>，和大室山同一天。页面按伊豆来写。</li>
+                <li><strong>新干线：</strong>主线不去大阪，所以只在东京站拍车头。真要坐车看风景，用伊豆那天。</li>
+                <li>住新宿 6 晚，不换酒店、不拖箱子赶车。机票往返都走东京。</li>
+              </ul>
+              <h4>爱拍照的话，这几天怎么取景</h4>
+              <ul>
+                <li>浅草尽量上午去，人少、侧光干净。雷门灯笼、五重塔、仲见世是一套。</li>
+                <li>涩谷路口从高处或人行道中间回头拍人潮；晚上中心街霓虹更好看。</li>
+                <li>东京塔经典机位是增上寺山门框住塔身，尽量赶上亮灯（10 月大约 17:10）。</li>
+                <li>迪士尼海洋把地中海港湾、火山、夜晚水上秀留够时间，别只顾排项目。</li>
+                <li>河口湖北岸、大石公园倒影更稳。新仓山五重塔要爬台阶，天气不好就别硬爬。</li>
               </ul>
               <h4>出发前按周倒推</h4>
               <ol class="prep-timeline">
                 <li><strong>出发前 6–8 周</strong>准备签证材料、订往返机票、订新宿酒店。没有酒店和机票预订单，签证很难递。</li>
                 <li><strong>出发前 4–6 周</strong>把签证交到指定旅行社。单次旅游签常要 5–10 个工作日，旺季更慢，不要卡着出发日。</li>
-                <li><strong>出发前 2 个月当天</strong>迪士尼门票开售，设闹钟买 10/08 乐园票。SHIBUYA SKY、晴空塔也可开始盯。</li>
-                <li><strong>出发前 2 周</strong>买 eSIM 或开通漫游；换一部分日元现金；确认信用卡能在境外刷。</li>
-                <li><strong>出发前 7 天</strong>下载地图、地铁 App、钱包西瓜卡；把护照、签证页拍照备份到网盘。</li>
-                <li><strong>出发前 1 天</strong>填 Visit Japan Web；查航班值机；充电宝、转换头、药品装进随身包。</li>
+                <li><strong>出发前 2 个月当天</strong>迪士尼门票开售，设闹钟买 <strong>10/09 东京迪士尼海洋</strong>票。晴空塔也可开始盯。</li>
+                <li><strong>出发前 1–2 周</strong>买新宿 ↔ 河口湖高速巴士（周日容易满）；买 eSIM 或开通漫游；换一部分日元现金；确认信用卡能在境外刷。</li>
+                <li><strong>出发前 7 天</strong>下载地图、地铁 App、钱包西瓜卡、迪士尼官方 App；把护照、签证页拍照备份到网盘。</li>
+                <li><strong>出发前 1 天</strong>填 Visit Japan Web；查航班值机；充电宝、转换头、药品装进随身包。看一眼富士山能见度趋势。</li>
                 <li><strong>出发当天</strong>护照、签证、身份证、手机、耳机、外套手拿。托运前再看一遍液体和充电宝。</li>
               </ol>
             </article>
@@ -159,7 +167,7 @@
                 <li>个人<strong>不能</strong>直接把材料送到日本大使馆。必须通过大使馆公布的<strong>指定旅行社</strong>代办。</li>
                 <li>名录以日本驻华大使馆官网为准，不要找非指定中介。携程、中青旅、众信等常见，选前先核对官网名单。</li>
                 <li>户籍或居住证要在该领区。北京领区大致包括北京、天津、河北、山西、内蒙古、河南、湖北、湖南、新疆、青海、甘肃、宁夏等，以官网管辖表为准。人在外地、证在北京，问清楚能不能递。</li>
-                <li>这次玩 5–7 天，办<strong>单次旅游签证</strong>即可。有效期常见 3 个月、停留 15 天，以贴纸为准。</li>
+                <li>这次玩大约 6 天，办<strong>单次旅游签证</strong>即可。有效期常见 3 个月、停留 15 天，以贴纸为准。</li>
               </ul>
               <h4>两人各自准备的材料（代办会再给清单）</h4>
               <table class="guide-table">
@@ -247,7 +255,7 @@
                 <li><strong>安卓：</strong>中国大陆大多数手机加不了官方西瓜卡。落地在成田/羽田/JR 客服买 Welcome Suica 或普通西瓜卡，现金买、现金充。</li>
                 <li>先充 <strong>3000–5000 日元/人</strong>。地铁、便利店、部分自动贩卖机都能拍。</li>
                 <li>进闸拍一下，出闸再拍一下。没拍出闸会关不了闸，去补票机或找站员。</li>
-                <li>这次只在东京，<strong>不要买全国 JR Pass</strong>，几天用不回本。</li>
+                <li>这次主线在东京和河口湖，<strong>不要买全国 JR Pass</strong>，几天用不回本。伊豆备选那天再单买东京到热海的新干线票即可。</li>
                 <li>导航只用 <strong>Google 地图</strong>。输入中文店名通常能出来。选「地铁」方案，看几号出口。</li>
                 <li>新宿、涩谷、东京站都极大。跟着色条和汉字：山手线是黄绿、中央线是橙红。走错车在下一站下车再反方向，别慌。</li>
                 <li>电车里把手机声音关掉，电话不要打。背包在拥挤车厢转到身前。</li>
@@ -273,12 +281,12 @@
                 <li>不够了去 7-Eleven 的国际 ATM，用银联或信用卡取，会有手续费。</li>
                 <li>不要跟街上的人换钱。</li>
               </ul>
-              <h4>两人五天口袋钱（不含机票酒店）</h4>
+              <h4>两人六天口袋钱（不含机票酒店）</h4>
               <ul>
-                <li>交通（含机场巴士）：大约 1.2–1.8 万日元。</li>
-                <li>门票（迪士尼 + 晴空塔 + 天空 + 御苑）：大约 3 万日元。</li>
-                <li>吃饭：按一人一天 4000–6000 日元，五天两人大约 4–6 万日元。</li>
-                <li>合计玩乐吃饭大约 <strong>8–12 万日元 / 两人</strong>。购物另算。带卡，现金当备份。</li>
+                <li>交通（含机场巴士 + 河口湖往返巴士）：大约 1.6–2.4 万日元 / 人。</li>
+                <li>门票（迪士尼海洋 + 晴空塔）：大约 1.2 万日元 / 人。上东京塔、去御苑再另加。</li>
+                <li>吃饭：按一人一天 4000–6000 日元，六天两人大约 5–7 万日元。</li>
+                <li>合计玩乐吃饭大约 <strong>10–15 万日元 / 两人</strong>。购物另算。带卡，现金当备份。</li>
                 <li>页面里的花销是一人估算，标了「/ 车」的是两人分摊前的整车价。</li>
               </ul>
             </article>
@@ -287,7 +295,7 @@
               <h3>住宿</h3>
               <p class="prep-lead"><strong>出发前要准备：</strong>订新宿 10/06 入住、10/12 退房，共 6 晚；订单姓名和护照一致；带能转日本两脚扁插的转换头。</p>
               <ul>
-                <li>住<strong>新宿</strong>：JR、地铁、夜车都多，24 小时吃饭方便，去迪士尼、浅草、涩谷都不用换酒店。</li>
+                <li>住<strong>新宿</strong>：JR、地铁、夜车都多，24 小时吃饭方便，去迪士尼、浅草、涩谷、河口湖巴士都不用换酒店。</li>
                 <li>选新宿站步行 8 分钟内。西口商务酒店安静一些，东口热闹、靠歌舞伎町。</li>
                 <li>10 月两人一间，看准含税价。商务酒店常见 8 万–15 万日元 / 6 晚，位置和早餐差很多。</li>
                 <li>入住约 15:00，退房约 11:00。10/06 早到可先寄行李再出门买东西。10/12 退房后行李自己带去机场。</li>
@@ -310,8 +318,8 @@
               </ul>
               <h4>10 月东京天气</h4>
               <ul>
-                <li>白天大约 18–24°C，早晚 14–18°C。一件短袖 + 薄外套或衬衫就够，迪士尼和天空再加一件。</li>
-                <li>可能下雨，也可能赶上台风尾巴。看预报，8 号接近的台风会停部分交通，那天改室内（百货、都厅、迪士尼是否开园看公告）。</li>
+                <li>白天大约 18–24°C，早晚 14–18°C。一件短袖 + 薄外套或衬衫就够。迪士尼海洋、河口湖湖边再加一件，湖边比东京凉。</li>
+                <li>可能下雨，也可能赶上台风尾巴。看预报。若影响迪士尼开园或河口湖巴士，改去百货、都厅，或把河口湖改到天气更好的一天。</li>
                 <li>10 月是迪士尼万圣节季，园内好玩，也更要提前买票。</li>
                 <li>日均走路 1.5–2 万步，只穿运动鞋，不要新鞋第一次穿。</li>
               </ul>
@@ -398,7 +406,7 @@
                   <button class="check" type="button" data-pack="layer"><i></i><span>短袖 + 薄外套 / 衬衫</span></button>
                   <button class="check" type="button" data-pack="rain"><i></i><span>折叠伞、帽子</span></button>
                   <button class="check" type="button" data-pack="night"><i></i><span>睡衣、够换洗的内衣袜</span></button>
-                  <button class="check" type="button" data-pack="disneywear"><i></i><span>迪士尼当天舒服的衣服</span></button>
+                  <button class="check" type="button" data-pack="disneywear"><i></i><span>迪士尼海洋当天舒服的衣服</span></button>
                 </div>
                 <div>
                   <h4>日用品和药</h4>

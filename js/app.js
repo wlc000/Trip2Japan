@@ -1,40 +1,14 @@
-const FILTERS = [
-  { id: "asakusa", name: "浅草" },
-  { id: "shibuya", name: "涩谷原宿" },
-  { id: "center", name: "都心" },
-  { id: "shinjuku", name: "新宿" },
-  { id: "disney", name: "舞浜" }
-];
-const AREA_LABEL = {
-  asakusa: "浅草",
-  shibuya: "涩谷原宿",
-  center: "都心",
-  shinjuku: "新宿",
-  disney: "舞浜"
-};
 const CURRENCY = "日元";
 
-const grid = document.getElementById("spot-grid");
-const filtersEl = document.getElementById("filters");
+const board = document.getElementById("spot-board");
 const dayTabsEl = document.getElementById("day-tabs");
 const planTableEl = document.getElementById("plan-table");
 const modal = document.getElementById("modal");
 
-let filter = "asakusa";
 const liked = new Set(JSON.parse(localStorage.getItem("liked-spots") || "[]"));
 
 function stars(n) {
   return "●".repeat(n) + "○".repeat(5 - n);
-}
-
-function matches(spot) {
-  return spot.city === filter;
-}
-
-function renderFilters() {
-  filtersEl.innerHTML = FILTERS.map(
-    (f) => `<button class="chip${f.id === filter ? " is-on" : ""}" data-filter="${f.id}">${f.name}</button>`
-  ).join("");
 }
 
 function xhsUrl(keyword) {
@@ -91,10 +65,10 @@ function photoSrc(item, width, index) {
   return sizedPhoto(photoList(item)[index || 0], width);
 }
 
-function wikiUrl(item) {
+function baikeUrl(item) {
   const source = photoItem(item);
-  if (!source || !source.photo) return "https://zh.wikipedia.org/";
-  return `https://zh.wikipedia.org/wiki/${encodeURIComponent(source.photo)}`;
+  if (!source || !source.photo) return "https://baike.baidu.com/";
+  return `https://baike.baidu.com/item/${encodeURIComponent(source.photo)}`;
 }
 
 function galleryHtml(item, name) {
@@ -111,7 +85,7 @@ function galleryHtml(item, name) {
       <span class="gal-count" data-gallery-count>1 / ${urls.length}</span>`
           : ""
       }
-      <a class="photo-credit" href="${wikiUrl(item)}" target="_blank" rel="noreferrer">图：维基共享</a>
+      <a class="photo-credit" href="${baikeUrl(item)}" target="_blank" rel="noreferrer">图：百度百科</a>
     </div>
     ${
       many
@@ -163,28 +137,66 @@ function bindGallery(root) {
   box._galleryIndex = () => i;
 }
 
+function groupedSpots() {
+  const groups = [];
+  const index = new Map();
+  TRIP.spots.forEach((spot) => {
+    const key = spot.group || spot.area || "其他";
+    if (!index.has(key)) {
+      index.set(key, groups.length);
+      groups.push({
+        title: key,
+        day: spot.day || 99,
+        optional: !!spot.optional,
+        spots: []
+      });
+    }
+    groups[index.get(key)].spots.push(spot);
+  });
+  groups.sort((a, b) => {
+    if (a.optional !== b.optional) return a.optional ? 1 : -1;
+    return a.day - b.day;
+  });
+  return groups;
+}
+
+function cardPhotos(spot) {
+  const urls = photoList(spot).slice(0, 3);
+  if (!urls.length) return `<div class="card-photos n-0"></div>`;
+  return `<div class="card-photos n-${urls.length}">${urls
+    .map(
+      (url, i) =>
+        `<img src="${sizedPhoto(url, i === 0 ? 900 : 480)}" alt="${i === 0 ? spot.name : ""}" loading="lazy" />`
+    )
+    .join("")}</div>`;
+}
+
 function renderSpots() {
-  const spots = TRIP.spots.filter(matches);
-  grid.innerHTML = spots
-    .map((spot) => {
-      const src = photoSrc(spot, 720);
-      const n = photoList(spot).length;
+  if (!board) return;
+  board.innerHTML = groupedSpots()
+    .map((group) => {
       return `
-        <button class="spot-card" data-id="${spot.id}">
-          <div class="thumb">
-            ${src ? `<img src="${src}" alt="${spot.name}" loading="lazy" referrerpolicy="no-referrer" />` : ""}
-            <div class="badge-row">
-              <span class="badge">${AREA_LABEL[spot.city] || spot.city}</span>
-              <span class="badge gold">${spot.area}</span>
-            </div>
-            ${n > 1 ? `<span class="pic-count">${n} 张实地照片</span>` : ""}
+        <section class="spot-group">
+          <div class="spot-group-head">
+            <h3>${group.title}</h3>
+            <span>${group.spots.length} 处</span>
           </div>
-          <div class="spot-body">
-            <div class="en">${spot.en}</div>
-            <h3>${spot.name}</h3>
-            <p style="margin:0;color:var(--ink-soft);font-size:14px;">建议停留 ${spot.duration}</p>
+          <div class="spot-grid">
+            ${group.spots
+              .map(
+                (spot) => `
+              <button class="spot-card" data-id="${spot.id}" type="button">
+                ${cardPhotos(spot)}
+                <div class="spot-body">
+                  <div class="en">${spot.en}</div>
+                  <h3>${spot.name}</h3>
+                  <p>${spot.area} · 建议停留 ${spot.duration}</p>
+                </div>
+              </button>`
+              )
+              .join("")}
           </div>
-        </button>`;
+        </section>`;
     })
     .join("");
 }
@@ -564,7 +576,7 @@ function openSpot(id) {
       ${galleryHtml(spot, spot.name)}
       <div class="sheet-body">
         <button class="close" type="button" data-close>×</button>
-        <div class="en">Tokyo · ${AREA_LABEL[spot.city] || ""} · ${spot.area}</div>
+        <div class="en">${spot.group || ""} · ${spot.area}</div>
         <h2>${spot.name}</h2>
         <p style="margin:0;color:var(--muted);">${spot.en}</p>
         <dl>
@@ -635,21 +647,12 @@ function openBeatSheet(beat) {
   bindGallery(modal);
 }
 
-filtersEl.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-filter]");
-  if (!btn) return;
-  filter = btn.dataset.filter;
-  mapCity = filter;
-  renderFilters();
-  renderSpots();
-  renderMapCityFilters();
-  renderMap();
-});
-
-grid.addEventListener("click", (e) => {
-  const card = e.target.closest("[data-id]");
-  if (card) openSpot(card.dataset.id);
-});
+if (board) {
+  board.addEventListener("click", (e) => {
+    const card = e.target.closest("[data-id]");
+    if (card) openSpot(card.dataset.id);
+  });
+}
 
 modal.addEventListener("click", (e) => {
   if (e.target === modal || e.target.dataset.close !== undefined) closeModal();
@@ -671,52 +674,44 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") box._galleryShow(box._galleryIndex() - 1);
 });
 
-const mapCityFiltersEl = document.getElementById("map-city-filters");
 const atlasList = document.getElementById("atlas-list");
-let mapCity = "asakusa";
 let leafletMap = null;
 let markerLayer = null;
 let markersById = {};
 let activeMapId = "";
 
-function citySpots() {
-  return TRIP.spots.filter((spot) => spot.city === mapCity);
+function mapSpots() {
+  return TRIP.spots.filter((spot) => spot.lat != null && spot.lng != null && spot.onMap !== false);
 }
 
 function pinIcon(spot, on) {
   const src = photoSrc(spot, 240);
   return L.divIcon({
     className: "",
-    html: `<div class="photo-pin map spot ${spot.city}${on ? " is-on" : ""}">${
-      src ? `<img src="${src}" alt="${spot.name}" referrerpolicy="no-referrer" />` : ""
+    html: `<div class="photo-pin map spot ${spot.region || ""}${on ? " is-on" : ""}">${
+      src ? `<img src="${src}" alt="${spot.name}" />` : ""
     }<span class="tag">${spot.name}</span></div>`,
     iconSize: [56, 66],
     iconAnchor: [28, 62]
   });
 }
 
-function renderMapCityFilters() {
-  mapCityFiltersEl.innerHTML = FILTERS.map(
-    (f) =>
-      `<button class="chip${f.id === mapCity ? " is-on" : ""}" data-map-city="${f.id}">${f.name}</button>`
-  ).join("");
-}
-
 function renderAtlasList(spots) {
+  if (!atlasList) return;
   if (!spots.length) {
-    atlasList.innerHTML = `<p style="margin:12px 8px;color:var(--muted);font-size:14px;">这一片暂时没有打卡点，换一个区域看看。</p>`;
+    atlasList.innerHTML = `<p style="margin:12px 8px;color:var(--muted);font-size:14px;">暂时没有可标在图上的点。</p>`;
     return;
   }
   atlasList.innerHTML = spots
     .map(
       (spot, i) => `
-      <button class="atlas-item ${spot.city}${spot.id === activeMapId ? " is-on" : ""}" data-map-id="${spot.id}">
-        <span class="n">${photoList(spot).length ? `<img src="${photoSrc(spot, 200)}" alt="" referrerpolicy="no-referrer" />` : i + 1}</span>
+      <button class="atlas-item ${spot.region || ""}${spot.id === activeMapId ? " is-on" : ""}" data-map-id="${spot.id}">
+        <span class="n">${photoList(spot).length ? `<img src="${photoSrc(spot, 200)}" alt="" />` : i + 1}</span>
         <span>
           <h3>${spot.name}</h3>
-          <small>${spot.area} · ${spot.en}</small>
+          <small>${spot.group || spot.area}</small>
         </span>
-        <span class="day-tag">${spot.day ? `DAY ${spot.day}` : "可选"}</span>
+        <span class="day-tag">${spot.day ? `DAY ${spot.day}` : "备选"}</span>
       </button>`
     )
     .join("");
@@ -735,12 +730,12 @@ function popupHtml(spot) {
 function fitToSpots(spots) {
   if (!spots.length) return;
   const bounds = L.latLngBounds(spots.map((s) => [s.lat, s.lng]));
-  leafletMap.fitBounds(bounds, { padding: [48, 48], maxZoom: 15 });
+  leafletMap.fitBounds(bounds, { padding: [40, 40], maxZoom: 11 });
 }
 
 function renderMap() {
   if (!leafletMap) return;
-  const spots = citySpots();
+  const spots = mapSpots();
   markerLayer.clearLayers();
   markersById = {};
   spots.forEach((spot) => {
@@ -763,7 +758,7 @@ function renderMap() {
 }
 
 function refreshAtlasIcons() {
-  citySpots().forEach((spot) => {
+  mapSpots().forEach((spot) => {
     const marker = markersById[spot.id];
     if (marker) {
       marker.setIcon(pinIcon(spot, spot.id === activeMapId));
@@ -773,13 +768,13 @@ function refreshAtlasIcons() {
 }
 
 function focusSpot(id) {
-  const spots = citySpots();
+  const spots = mapSpots();
   const spot = spots.find((s) => s.id === id);
   if (!spot || !markersById[id]) return;
   activeMapId = id;
   refreshAtlasIcons();
   renderAtlasList(spots);
-  leafletMap.flyTo([spot.lat, spot.lng], Math.max(leafletMap.getZoom(), 16), { duration: 0.6 });
+  leafletMap.flyTo([spot.lat, spot.lng], Math.max(leafletMap.getZoom(), 14), { duration: 0.6 });
   openSpot(id);
 }
 
@@ -800,18 +795,6 @@ function initMap() {
   leafletMap.on("mouseout", () => leafletMap.scrollWheelZoom.disable());
   renderMap();
 }
-
-mapCityFiltersEl.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-map-city]");
-  if (!btn) return;
-  mapCity = btn.dataset.mapCity;
-  filter = mapCity;
-  activeMapId = "";
-  renderFilters();
-  renderSpots();
-  renderMapCityFilters();
-  renderMap();
-});
 
 atlasList.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-map-id]");
@@ -847,11 +830,9 @@ document.addEventListener("click", (e) => {
   if (open) openSpot(open.dataset.openSpot);
 });
 
-renderFilters();
 renderSpots();
 renderDays();
 renderPrepDays();
-renderMapCityFilters();
 
 const PANELS = ["plan", "spots", "atlas", "notes"];
 const stage = document.querySelector(".stage");

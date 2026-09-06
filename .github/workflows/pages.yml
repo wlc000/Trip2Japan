@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir _site
           cp index.html 404.html _site/
-          cp -r css js _site/
+          cp -r css js img _site/
           touch _site/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
