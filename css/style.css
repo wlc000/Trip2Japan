@@ -212,6 +212,32 @@ input {
   display: block;
 }
 
+.panel.is-on.atlas-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding-bottom: 24px;
+}
+
+.atlas-page .wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.atlas-page .section-head {
+  flex: 0 0 auto;
+  margin-bottom: 18px;
+}
+
+.atlas-page .atlas-panel {
+  flex: 1;
+  min-height: 0;
+}
+
 .hero {
   position: relative;
   min-height: 100%;
@@ -560,8 +586,8 @@ input {
 }
 
 .atlas-map {
-  height: calc(100vh - 220px);
-  min-height: 380px;
+  height: 100%;
+  min-height: 0;
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -573,7 +599,9 @@ input {
 .atlas-side {
   display: flex;
   flex-direction: column;
+  height: 100%;
   min-height: 0;
+  overflow: hidden;
   background: var(--foam);
   border: 1px solid var(--line);
   border-radius: 24px;
@@ -581,6 +609,7 @@ input {
 }
 
 .atlas-legend {
+  flex: 0 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 10px 14px;
@@ -612,8 +641,11 @@ input {
 }
 
 .atlas-list {
+  flex: 1;
+  min-height: 0;
   overflow: auto;
   display: grid;
+  align-content: start;
   gap: 4px;
   padding-top: 8px;
 }
@@ -1701,8 +1733,14 @@ input {
     grid-template-columns: 1fr 1fr;
   }
 
+  .atlas-page {
+    overflow: auto;
+    height: auto;
+  }
+
   .atlas-map {
     height: 380px;
+    min-height: 380px;
   }
 
   .plan-map,
@@ -1712,6 +1750,7 @@ input {
   }
 
   .atlas-side {
+    height: 320px;
     max-height: 320px;
   }
 
