@@ -1763,8 +1763,9 @@ input {
 
 .prep-timeline li {
   display: grid;
-  grid-template-columns: 128px 1fr;
-  gap: 12px;
+  grid-template-columns: minmax(9.5em, max-content) minmax(0, 1fr);
+  gap: 12px 16px;
+  align-items: start;
   padding: 12px 14px;
   background: var(--foam);
   border: 1px solid var(--line);
@@ -1773,9 +1774,15 @@ input {
   color: var(--ink-soft);
 }
 
-.prep-timeline strong {
+.prep-timeline li > strong {
   color: var(--clay-deep);
   font-size: 13px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.prep-timeline li > span {
+  min-width: 0;
 }
 
 .pack-grid {
