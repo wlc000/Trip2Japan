@@ -267,7 +267,7 @@ function renderDayTabs() {
   dayTabsEl.innerHTML = TRIP.days
     .map(
       (day) =>
-        `<button class="chip${day.id === planDay ? " is-on" : ""}" data-plan-day="${day.id}">DAY ${String(day.id).padStart(2, "0")} · ${day.date ? day.date + " · " : ""}${day.title}</button>`
+        `<button class="chip${day.id === planDay ? " is-on" : ""}" data-plan-day="${day.id}">DAY ${String(day.id).padStart(2, "0")} · ${day.title}</button>`
     )
     .join("");
 }

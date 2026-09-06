@@ -306,10 +306,14 @@ input {
 
 .section-head {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 20px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px 24px;
   align-items: end;
   margin-bottom: 36px;
+}
+
+.section-head > :first-child {
+  min-width: 0;
 }
 
 .section-head h2 {
@@ -329,6 +333,8 @@ input {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  min-width: 0;
+  justify-content: flex-end;
 }
 
 .chip {
@@ -1615,6 +1621,10 @@ input {
   .checklist,
   .section-head {
     grid-template-columns: 1fr;
+  }
+
+  .filters {
+    justify-content: flex-start;
   }
 
   .day-nodes {
