@@ -21,6 +21,7 @@
         <a href="#spots" data-panel="spots"><span class="idx">02</span><span class="nav-label">打卡点</span></a>
         <a href="#atlas" data-panel="atlas"><span class="idx">03</span><span class="nav-label">地图</span></a>
         <a href="#notes" data-panel="notes"><span class="idx">04</span><span class="nav-label">注意事项</span></a>
+        <a href="#geo" data-panel="geo"><span class="idx">05</span><span class="nav-label">日本地理</span></a>
       </nav>
       <button class="side-toggle" type="button" aria-controls="sidebar" aria-expanded="true" title="折叠侧栏">‹</button>
     </aside>
@@ -58,7 +59,7 @@
           <div class="section-head solo">
             <div>
               <h2>打卡点</h2>
-              <p>按时间和城市排好。卡片上直接出图，点开还能看说明和小红书。后面几组是备选，不要硬塞进同一周。</p>
+              <p>按第几天分组。卡片上直接出图，点开还能看说明和小红书。最后一组是备选，不要硬塞进同一周。</p>
             </div>
           </div>
           <div class="spot-board" id="spot-board"></div>
@@ -320,6 +321,51 @@
               </div>
               <div class="prep-days" id="prep-days"></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="geo">
+        <div class="wrap">
+          <div class="section-head solo">
+            <div>
+              <h2>日本地理</h2>
+              <p>先分清大区、都道府县和政令市，后面看行程、天气预报、车站名会好懂很多。</p>
+            </div>
+          </div>
+          <div class="guide">
+            <article class="guide-card">
+              <h3>民间地理大区</h3>
+              <figure class="geo-figure">
+                <img src="img/geo/regions.png" alt="日本民间地理大区示意：北海道、东北、关东、中部、近畿、中国、四国、九州" />
+              </figure>
+              <p class="prep-lead">图中的 1–8 是地理上的片区划分，类似中国的华北、华东、华南，不是行政省。</p>
+              <ul>
+                <li>四国、北海道、九州三个大岛本身各算一个大区。</li>
+                <li>最大的本州岛被切成：东北、关东、中部、近畿（关西）、中国地方。</li>
+              </ul>
+            </article>
+            <article class="guide-card">
+              <h3>日本行政区划</h3>
+              <h4>一级：都道府县</h4>
+              <p><strong>1 都、1 道、2 府、43 县</strong>，一共 47 个一级地方自治体，相当于咱们的省级。看天气预报、车站名、酒店地址时，最先碰到的就是这一层。</p>
+              <ul>
+                <li><strong>东京都</strong>：唯一的「都」。下面的市区叫<strong>特别区</strong>（新宿区、涩谷区等），地位接近市。</li>
+                <li><strong>北海道</strong>：唯一的「道」。</li>
+                <li><strong>京都府、大阪府</strong>：两个「府」。</li>
+                <li><strong>43 个县</strong>：比如神奈川县、千叶县、静冈县、山梨县、广岛县。</li>
+              </ul>
+              <h4>二级：市町村</h4>
+              <p>都道府县下面再分<strong>市、町、村</strong>，合称「市町村」，相当于咱们的市、县、乡镇，是景点门票和酒店地址上最常见的一层。</p>
+              <ul>
+                <li><strong>市</strong>：规模较大，如横滨市、札幌市、福冈市、奈良市。</li>
+                <li><strong>町</strong>（读「まち」或「ちょう」）：介于市和村之间，如箱根町、轻井泽町。</li>
+                <li><strong>村</strong>（读「むら」或「そん」）：规模最小，如以合掌造闻名的白川村。</li>
+              </ul>
+              <h4>政令指定都市（简称「政令市」）</h4>
+              <p>日本特有的行政区划：横滨、大阪、名古屋、京都、神户等规模很大的市，权力比普通市更大，下面还会再分「区」。例如大阪市北区、中央区。</p>
+              <p>既有「大阪府」，又有「大阪市」。大阪市是大阪府的中心城市，同时也是政令指定都市——看地址时别把府和市搞混。</p>
+            </article>
           </div>
         </div>
       </section>

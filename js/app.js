@@ -138,26 +138,27 @@ function bindGallery(root) {
 }
 
 function groupedSpots() {
-  const groups = [];
-  const index = new Map();
+  const dayMeta = new Map((TRIP.days || []).map((d) => [d.id, d]));
+  const buckets = new Map();
   TRIP.spots.forEach((spot) => {
-    const key = spot.group || spot.area || "其他";
-    if (!index.has(key)) {
-      index.set(key, groups.length);
-      groups.push({
-        title: key,
-        day: spot.day || 99,
-        optional: !!spot.optional,
-        spots: []
-      });
+    const optional = !!spot.optional || !spot.day;
+    const key = optional ? "optional" : String(spot.day);
+    if (!buckets.has(key)) {
+      if (optional) {
+        buckets.set(key, { title: "备选", day: 99, optional: true, spots: [] });
+      } else {
+        const meta = dayMeta.get(spot.day);
+        const n = String(spot.day).padStart(2, "0");
+        const title = meta ? `DAY ${n} · ${meta.title}` : `DAY ${n}`;
+        buckets.set(key, { title, day: spot.day, optional: false, spots: [] });
+      }
     }
-    groups[index.get(key)].spots.push(spot);
+    buckets.get(key).spots.push(spot);
   });
-  groups.sort((a, b) => {
+  return [...buckets.values()].sort((a, b) => {
     if (a.optional !== b.optional) return a.optional ? 1 : -1;
     return a.day - b.day;
   });
-  return groups;
 }
 
 function cardPhotos(spot) {
@@ -834,7 +835,7 @@ renderSpots();
 renderDays();
 renderPrepDays();
 
-const PANELS = ["plan", "spots", "atlas", "notes"];
+const PANELS = ["plan", "spots", "atlas", "notes", "geo"];
 const stage = document.querySelector(".stage");
 
 function currentPanel() {

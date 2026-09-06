@@ -385,7 +385,7 @@ input {
 
 .spot-board {
   display: grid;
-  gap: 48px;
+  gap: 28px;
 }
 
 .spot-group-head {
@@ -393,14 +393,14 @@ input {
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 16px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--line);
 }
 
 .spot-group-head h3 {
   font-family: var(--serif);
-  font-size: clamp(20px, 2.4vw, 26px);
+  font-size: clamp(17px, 2vw, 22px);
   margin: 0;
   font-weight: 600;
 }
@@ -414,11 +414,11 @@ input {
 .spot-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 22px;
+  gap: 12px;
 }
 
 .spot-card {
-  grid-column: span 4;
+  grid-column: span 3;
   background: var(--foam);
   border-radius: var(--radius);
   overflow: hidden;
@@ -438,9 +438,9 @@ input {
 
 .card-photos {
   display: grid;
-  gap: 3px;
+  gap: 2px;
   background: var(--paper-2);
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 11;
   overflow: hidden;
 }
 
@@ -530,16 +530,16 @@ input {
 }
 
 .spot-body {
-  padding: 18px 18px 20px;
+  padding: 10px 12px 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   flex: 1;
 }
 
 .spot-body h3 {
   font-family: var(--serif);
-  font-size: 24px;
+  font-size: 16px;
   margin: 0;
   font-weight: 600;
 }
@@ -547,7 +547,7 @@ input {
 .spot-body p {
   margin: 0;
   color: var(--ink-soft);
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .en {
@@ -555,6 +555,23 @@ input {
   letter-spacing: 0.08em;
   color: var(--muted);
   text-transform: uppercase;
+}
+
+.spot-body .en {
+  font-size: 10px;
+}
+
+.geo-figure {
+  margin: 0 0 16px;
+}
+
+.geo-figure img {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--line);
 }
 
 .tags {
