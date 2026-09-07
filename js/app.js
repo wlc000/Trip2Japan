@@ -1,5 +1,3 @@
-const CURRENCY = "日元";
-
 const board = document.getElementById("spot-board");
 const dayTabsEl = document.getElementById("day-tabs");
 const planTableEl = document.getElementById("plan-table");
@@ -285,22 +283,70 @@ function renderDayTabs() {
     .join("");
 }
 
+function budget() {
+  return TRIP.budget || { jpyToCny: 0.048, hotelNights: 6, hotelRoomJpy: 20000 };
+}
+
+function toRmb(yen) {
+  return Math.round((Number(yen) || 0) * budget().jpyToCny);
+}
+
+function hotelRoomYen(beat) {
+  if (!beat || beat.type !== "hotel" || beat.checkout) return 0;
+  if (beat.cost != null) return beat.cost;
+  return budget().hotelRoomJpy || 0;
+}
+
 function beatCostEach(beat) {
+  if (beat.type === "hotel") return hotelRoomYen(beat) / 2;
   if (beat.cost == null) return 0;
   if (beat.share) return beat.cost / 2;
   return beat.cost;
 }
 
+function formatRmb(yen, suffix) {
+  if (yen == null) return "—";
+  if (yen === 0) return "免费";
+  return suffix ? `约 ${toRmb(yen)} 元${suffix}` : `约 ${toRmb(yen)} 元`;
+}
+
 function formatCost(beat) {
+  if (beat.type === "hotel") {
+    const room = hotelRoomYen(beat);
+    return room ? formatRmb(room, " / 间") : "退房";
+  }
   if (beat.cost == null) return "—";
   if (beat.cost === 0) return "免费";
-  if (beat.share) return `约 ${beat.cost} / 车`;
-  return `约 ${beat.cost}`;
+  if (beat.share) return formatRmb(beat.cost, " / 车");
+  return formatRmb(beat.cost);
 }
 
 function dayCost(day) {
-  const per = Math.round(day.beats.reduce((sum, b) => sum + beatCostEach(b), 0));
-  return { per, two: per * 2 };
+  const perYen = day.beats.reduce((sum, b) => sum + beatCostEach(b), 0);
+  const hotelYen = day.beats.reduce((sum, b) => sum + (b.type === "hotel" ? hotelRoomYen(b) : 0), 0);
+  return {
+    per: toRmb(perYen),
+    two: toRmb(perYen * 2),
+    hasHotel: hotelYen > 0
+  };
+}
+
+function tripCost() {
+  const cfg = budget();
+  const playYen = TRIP.days.reduce((sum, day) => {
+    return sum + day.beats.reduce((s, b) => s + (b.type === "hotel" ? 0 : beatCostEach(b)), 0);
+  }, 0);
+  const hotelYen = (cfg.hotelNights || 0) * (cfg.hotelRoomJpy || 0);
+  return {
+    playPer: toRmb(playYen),
+    playTwo: toRmb(playYen * 2),
+    hotel: toRmb(hotelYen),
+    room: toRmb(cfg.hotelRoomJpy),
+    nights: cfg.hotelNights,
+    per: toRmb(playYen + hotelYen / 2),
+    two: toRmb(playYen * 2 + hotelYen),
+    rate: cfg.jpyToCny
+  };
 }
 
 function beatDetailText(beat) {
@@ -310,6 +356,11 @@ function beatDetailText(beat) {
     if (spot) return `${spot.enter}建议停留 ${spot.duration}。${spot.note}`;
   }
   return "点这一行，右侧地图会标出大概位置。";
+}
+
+function spotGuideBlock(spot) {
+  if (!spot || !spot.guide) return "";
+  return `<div class="spot-guide"><h4>导游说</h4><p>${spot.guide}</p></div>`;
 }
 
 function renderBeatDetail() {
@@ -323,11 +374,18 @@ function renderBeatDetail() {
   }
   const xhs = beatXhs(beat);
   const mode = beat.mode ? ` · ${beat.mode}` : "";
+  const linked = beat.spotId ? TRIP.spots.find((s) => s.id === beat.spotId) : null;
   el.innerHTML = `
     <div class="k">${beat.time} · ${TYPE_LABEL[beat.type] || ""}${mode}</div>
     <h3>${beat.name}</h3>
-    <p class="beat-cost">基础花销：${formatCost(beat)}${beat.cost ? " " + CURRENCY : ""}</p>
+    <p class="beat-cost">基础花销：${formatCost(beat)}</p>
+    ${spotGuideBlock(linked)}
     <p>${beatDetailText(beat)}</p>
+    ${
+      linked
+        ? `<p><button class="guide-open" type="button" data-open-spot="${linked.id}">打开图文介绍</button></p>`
+        : ""
+    }
     ${
       xhs
         ? `<p><a class="xhs-inline" href="${xhsUrl(xhs)}" target="_blank" rel="noreferrer" data-xhs>小红书上看看</a></p>`
@@ -347,7 +405,7 @@ function renderDayOverview() {
       <div class="day-node"><span class="k">从哪出发</span><strong>${day.from || "—"}</strong></div>
       <div class="day-node"><span class="k">当天去哪</span><strong>${day.where || "—"}</strong></div>
       <div class="day-node"><span class="k">晚上住哪</span><strong>${day.stay || "—"}</strong></div>
-      <div class="day-node day-node-cost"><span class="k">当日花销预估</span><strong>人均约 ${cost.per}</strong><small>两人约 ${cost.two} ${CURRENCY}，不含酒店</small></div>
+      <div class="day-node day-node-cost"><span class="k">当日花销预估</span><strong>人均约 ${cost.per} 元</strong><small>两人约 ${cost.two} 元${cost.hasHotel ? "，含今晚标间" : "，不含酒店"}</small></div>
     </div>
     <p class="day-path">${day.path || ""}</p>
     ${
@@ -403,7 +461,7 @@ function renderPlanTable() {
   const day = currentDay();
   planTableEl.innerHTML = `
     <thead>
-      <tr><th>时间</th><th>类型</th><th>内容</th><th>花销（日元）</th></tr>
+      <tr><th>时间</th><th>类型</th><th>内容</th><th>花销（元）</th></tr>
     </thead>
     <tbody>
       ${day.beats
@@ -525,12 +583,32 @@ function focusBeat(id, scroll) {
   }
 }
 
+function renderTripBudget() {
+  const el = document.getElementById("trip-budget");
+  if (!el) return;
+  const cost = tripCost();
+  const rateText = (cost.rate * 100).toFixed(1).replace(/\.0$/, "");
+  el.innerHTML = `
+    <div class="trip-budget-main">
+      <span class="k">全程花销预估</span>
+      <strong>人均约 ${cost.per} 元</strong>
+      <small>两人约 ${cost.two} 元 · 不含机票</small>
+    </div>
+    <ul>
+      <li>玩乐、吃饭、交通：人均约 <strong>${cost.playPer}</strong> 元（两人约 ${cost.playTwo} 元）</li>
+      <li>新宿标间 ${cost.nights} 晚：人均约 <strong>${Math.round(cost.hotel / 2)}</strong> 元（${cost.hotel} 元 / 间，一晚约 ${cost.room} 元）</li>
+    </ul>
+    <p>按 100 日元 ≈ ${rateText} 元估算。标间按商务酒店双床一晚约 2 万日元；旺季或更近车站会更高。全程含 10/06 入住当晚，10/12 退房不再计房费。</p>
+  `;
+}
+
 function renderDays() {
   const day = currentDay();
   if (!activeBeatId || !day.beats.some((b) => b.id === activeBeatId)) {
     activeBeatId = day.beats[0].id;
   }
   renderDayTabs();
+  renderTripBudget();
   renderDayOverview();
   renderBeatDetail();
   renderPlanTable();
@@ -580,6 +658,7 @@ function openSpot(id) {
         <div class="en">${spot.group || ""} · ${spot.area}</div>
         <h2>${spot.name}</h2>
         <p style="margin:0;color:var(--muted);">${spot.en}</p>
+        ${spotGuideBlock(spot)}
         <dl>
           <dt>进入</dt><dd>${spot.enter}</dd>
           <dt>时长</dt><dd>${spot.duration}</dd>
@@ -631,7 +710,7 @@ function openBeatSheet(beat) {
         <button class="close" type="button" data-close>×</button>
         <div class="en">${TYPE_LABEL[beat.type] || ""} · ${beat.time}${beat.mode ? " · " + beat.mode : ""}</div>
         <h2>${beat.name}</h2>
-        <p class="beat-cost">基础花销：${formatCost(beat)}${beat.cost ? " " + CURRENCY : ""}</p>
+        <p class="beat-cost">基础花销：${formatCost(beat)}</p>
         <p>${beatDetailText(beat)}</p>
         ${
           xhs
@@ -682,16 +761,32 @@ let markersById = {};
 let activeMapId = "";
 
 function mapSpots() {
-  return TRIP.spots.filter((spot) => spot.lat != null && spot.lng != null && spot.onMap !== false);
+  return TRIP.spots
+    .filter((spot) => spot.lat != null && spot.lng != null && spot.onMap !== false)
+    .slice()
+    .sort((a, b) => {
+      const da = a.optional || !a.day ? 99 : a.day;
+      const db = b.optional || !b.day ? 99 : b.day;
+      return da - db;
+    });
+}
+
+function spotDayKey(spot) {
+  return spot.optional || !spot.day ? "opt" : "d" + spot.day;
+}
+
+function spotDayLabel(spot) {
+  return spot.optional || !spot.day ? "备选" : "D" + spot.day;
 }
 
 function pinIcon(spot, on) {
   const src = photoSrc(spot, 240);
+  const day = spotDayKey(spot);
   return L.divIcon({
     className: "",
-    html: `<div class="photo-pin map spot ${spot.region || ""}${on ? " is-on" : ""}">${
+    html: `<div class="photo-pin map spot day-${day}${on ? " is-on" : ""}">${
       src ? `<img src="${src}" alt="${spot.name}" />` : ""
-    }<span class="tag">${spot.name}</span></div>`,
+    }<span class="day-mark">${spotDayLabel(spot)}</span><span class="tag">${spot.name}</span></div>`,
     iconSize: [56, 66],
     iconAnchor: [28, 62]
   });
@@ -706,23 +801,24 @@ function renderAtlasList(spots) {
   atlasList.innerHTML = spots
     .map(
       (spot, i) => `
-      <button class="atlas-item ${spot.region || ""}${spot.id === activeMapId ? " is-on" : ""}" data-map-id="${spot.id}">
+      <button class="atlas-item day-${spotDayKey(spot)}${spot.id === activeMapId ? " is-on" : ""}" data-map-id="${spot.id}">
         <span class="n">${photoList(spot).length ? `<img src="${photoSrc(spot, 200)}" alt="" />` : i + 1}</span>
         <span>
           <h3>${spot.name}</h3>
-          <small>${spot.group || spot.area}</small>
+          <small>${spot.area || ""}</small>
         </span>
-        <span class="day-tag">${spot.day ? `DAY ${spot.day}` : "备选"}</span>
+        <span class="day-tag">${spot.optional || !spot.day ? "备选" : "DAY " + String(spot.day).padStart(2, "0")}</span>
       </button>`
     )
     .join("");
 }
 
 function popupHtml(spot) {
+  const when = spot.optional || !spot.day ? "备选" : "DAY " + String(spot.day).padStart(2, "0");
   return `
     <div class="map-pop">
       <strong>${spot.name}</strong>
-      <em>${spot.en} · ${spot.area}</em>
+      <em>${when} · ${spot.en} · ${spot.area}</em>
       <span>建议 ${spot.duration}</span>
       <button type="button" data-open-spot="${spot.id}">查看详情</button>
     </div>`;
@@ -835,7 +931,7 @@ renderSpots();
 renderDays();
 renderPrepDays();
 
-const PANELS = ["plan", "spots", "atlas", "notes", "geo"];
+const PANELS = ["plan", "spots", "atlas", "notes", "geo", "posts"];
 const stage = document.querySelector(".stage");
 
 function currentPanel() {

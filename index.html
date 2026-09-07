@@ -22,6 +22,7 @@
         <a href="#atlas" data-panel="atlas"><span class="idx">03</span><span class="nav-label">地图</span></a>
         <a href="#notes" data-panel="notes"><span class="idx">04</span><span class="nav-label">注意事项</span></a>
         <a href="#geo" data-panel="geo"><span class="idx">05</span><span class="nav-label">日本地理</span></a>
+        <a href="#posts" data-panel="posts"><span class="idx">06</span><span class="nav-label">经验帖</span></a>
       </nav>
       <button class="side-toggle" type="button" aria-controls="sidebar" aria-expanded="true" title="折叠侧栏">‹</button>
     </aside>
@@ -29,10 +30,10 @@
     <main class="stage">
       <section class="panel is-on" id="plan">
         <div class="wrap">
-          <div class="section-head">
+          <div class="section-head plan-head">
             <div>
               <h2>六日行程</h2>
-              <p>两人、第一次去日本。主线是东京 + 一天河口湖拍富士。点表格里的一行，下面会出现白话说明。花销按一人估算，不含机票和酒店。</p>
+              <div class="trip-budget" id="trip-budget"></div>
             </div>
             <div class="filters" id="day-tabs"></div>
           </div>
@@ -71,17 +72,20 @@
           <div class="section-head solo">
             <div>
               <h2>打卡点地图</h2>
-              <p>东京、舞浜、河口湖、伊豆都在这一张图上。大阪环球影城太远，标上去整张图会缩成日本全图，东京会挤成一团，所以只放在打卡点里。点右侧名单可以放大。</p>
+              <p>东京、舞浜、河口湖、伊豆都在这一张图上。图钉按第几天上色，角上标了 DAY；灰色是备选。大阪环球影城太远不标在这张图上。点右侧名单可以放大。</p>
             </div>
           </div>
           <div class="atlas-panel">
             <div class="atlas-map" id="leaflet-map" role="img" aria-label="景点位置地图"></div>
             <div class="atlas-side">
               <div class="atlas-legend">
-                <span><i class="pin-key tokyo"></i>东京</span>
-                <span><i class="pin-key maihama"></i>舞浜</span>
-                <span><i class="pin-key fuji"></i>河口湖</span>
-                <span><i class="pin-key izu"></i>伊豆</span>
+                <span><i class="pin-key day-d1"></i>DAY 01</span>
+                <span><i class="pin-key day-d2"></i>DAY 02</span>
+                <span><i class="pin-key day-d3"></i>DAY 03</span>
+                <span><i class="pin-key day-d4"></i>DAY 04</span>
+                <span><i class="pin-key day-d5"></i>DAY 05</span>
+                <span><i class="pin-key day-d6"></i>DAY 06</span>
+                <span><i class="pin-key day-opt"></i>备选</span>
               </div>
               <div class="atlas-list" id="atlas-list"></div>
             </div>
@@ -253,7 +257,7 @@
               <ul>
                 <li>内地银行先换 <strong>4–6 万日元</strong>应急。带 1–2 张能境外刷的 Visa / Mastercard，出发前打开境外交易。</li>
                 <li>便利店、药妆能扫支付宝 / 微信；小店、部分拉面只收<strong>现金</strong>。地铁拍西瓜卡。</li>
-                <li>两人六天玩乐吃饭大约 <strong>10–15 万日元</strong>（不含机票酒店）。页面花销按一人估算，「/ 车」是整车价。</li>
+                <li>两人玩乐吃饭交通大约 <strong>4100 元</strong>，新宿标间 6 晚大约 <strong>5760 元 / 间</strong>，两人全程大约 <strong>9900 元</strong>（不含机票）。页面按人民币估算，「/ 间」是整间房价。</li>
               </ul>
             </article>
 
@@ -262,6 +266,7 @@
               <p class="prep-lead"><strong>出发前要准备：</strong>订新宿 10/06 入住、10/12 退房，共 6 晚；订单姓名和护照一致；带能转日本两脚扁插的转换头。</p>
               <ul>
                 <li>住<strong>新宿</strong> 6 晚，站步行 8 分钟内。西口安静，东口热闹。</li>
+                <li>标间按商务酒店<strong>双床</strong>估：一晚大约 2 万日元（约 <strong>960 元 / 间</strong>），6 晚大约 <strong>5760 元 / 间</strong>，两人分摊人均约 2880 元。含税常见这个区间，含早或更近车站会更高。</li>
                 <li>入住约 15:00，退房约 11:00。前台要两本护照。插座是 <strong>A 型两扁脚、100V</strong>，带转换头。</li>
                 <li>10/12 退房后行李自己带去机场。不要把汤倒进马桶。</li>
               </ul>
@@ -365,6 +370,31 @@
               <h4>政令指定都市（简称「政令市」）</h4>
               <p>日本特有的行政区划：横滨、大阪、名古屋、京都、神户等规模很大的市，权力比普通市更大，下面还会再分「区」。例如大阪市北区、中央区。</p>
               <p>既有「大阪府」，又有「大阪市」。大阪市是大阪府的中心城市，同时也是政令指定都市——看地址时别把府和市搞混。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="posts">
+        <div class="wrap">
+          <div class="section-head solo">
+            <div>
+              <h2>经验帖</h2>
+              <p>出发前可以先看这两篇。B 站能直接点开；小红书链接打不开时，用口令在 App 里搜。</p>
+            </div>
+          </div>
+          <div class="guide post-list">
+            <article class="guide-card post-card">
+              <span class="post-src">B 站</span>
+              <h3>日本旅行攻略｜J人｜新手向</h3>
+              <p>行程规划、护照签证、机票酒店、餐厅预约、通讯上网、出入境、电车公交、购物，一条视频按流程讲完。</p>
+              <a class="btn primary" href="https://www.bilibili.com/video/BV1FkEfzeE1J/" target="_blank" rel="noreferrer">打开 B 站视频</a>
+            </article>
+            <article class="guide-card post-card">
+              <span class="post-src">小红书</span>
+              <h3>保姆级吃住行攻略 · 日本旅行说明书</h3>
+              <p>果果队长。网页打不开就打开小红书，搜口令 <code>5WgxFRV5ChvKW8C</code>。</p>
+              <a class="btn primary" href="https://www.xiaohongshu.com/discovery/item/68bfe7c4000000001d0388bc?source=webshare&xhsshare=pc_web&xsec_token=CBcapY4xGghbrLH0pSDV0PLJyd2gecWTVbVbhMC07TBxg=&xsec_source=pc_share" target="_blank" rel="noreferrer">打开小红书笔记</a>
             </article>
           </div>
         </div>
