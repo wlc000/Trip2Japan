@@ -135,6 +135,19 @@ function bindGallery(root) {
   box._galleryIndex = () => i;
 }
 
+function dayHeading(day) {
+  const n = String(day.id).padStart(2, "0");
+  const date = day.date ? ` · ${day.date}` : "";
+  return `DAY ${n}${date} · ${day.title}`;
+}
+
+function spotWhenLabel(spot) {
+  if (spot.optional || !spot.day) return "备选";
+  const meta = (TRIP.days || []).find((d) => d.id === spot.day);
+  const n = String(spot.day).padStart(2, "0");
+  return meta && meta.date ? `DAY ${n} · ${meta.date}` : `DAY ${n}`;
+}
+
 function groupedSpots() {
   const dayMeta = new Map((TRIP.days || []).map((d) => [d.id, d]));
   const buckets = new Map();
@@ -147,7 +160,7 @@ function groupedSpots() {
       } else {
         const meta = dayMeta.get(spot.day);
         const n = String(spot.day).padStart(2, "0");
-        const title = meta ? `DAY ${n} · ${meta.title}` : `DAY ${n}`;
+        const title = meta ? dayHeading(meta) : `DAY ${n}`;
         buckets.set(key, { title, day: spot.day, optional: false, spots: [] });
       }
     }
@@ -278,13 +291,24 @@ function renderDayTabs() {
   dayTabsEl.innerHTML = TRIP.days
     .map(
       (day) =>
-        `<button class="chip${day.id === planDay ? " is-on" : ""}" data-plan-day="${day.id}">DAY ${String(day.id).padStart(2, "0")} · ${day.title}</button>`
+        `<button class="chip${day.id === planDay ? " is-on" : ""}" data-plan-day="${day.id}">${dayHeading(day)}</button>`
     )
     .join("");
 }
 
 function budget() {
-  return TRIP.budget || { jpyToCny: 0.048, hotelNights: 6, hotelRoomJpy: 20000 };
+  const b = TRIP.budget || {};
+  const stays = b.stays && b.stays.length
+    ? b.stays
+    : [{ city: "酒店", nights: b.hotelNights || 6, roomJpy: b.hotelRoomJpy || 20000 }];
+  const nights = stays.reduce((sum, x) => sum + (x.nights || 0), 0);
+  const hotelYen = stays.reduce((sum, x) => sum + (x.nights || 0) * (x.roomJpy || 0), 0);
+  return {
+    jpyToCny: b.jpyToCny || 0.048,
+    stays,
+    nights,
+    hotelYen
+  };
 }
 
 function toRmb(yen) {
@@ -294,7 +318,8 @@ function toRmb(yen) {
 function hotelRoomYen(beat) {
   if (!beat || beat.type !== "hotel" || beat.checkout) return 0;
   if (beat.cost != null) return beat.cost;
-  return budget().hotelRoomJpy || 0;
+  const stays = budget().stays;
+  return (stays[stays.length - 1] && stays[stays.length - 1].roomJpy) || 20000;
 }
 
 function beatCostEach(beat) {
@@ -336,15 +361,14 @@ function tripCost() {
   const playYen = TRIP.days.reduce((sum, day) => {
     return sum + day.beats.reduce((s, b) => s + (b.type === "hotel" ? 0 : beatCostEach(b)), 0);
   }, 0);
-  const hotelYen = (cfg.hotelNights || 0) * (cfg.hotelRoomJpy || 0);
   return {
     playPer: toRmb(playYen),
     playTwo: toRmb(playYen * 2),
-    hotel: toRmb(hotelYen),
-    room: toRmb(cfg.hotelRoomJpy),
-    nights: cfg.hotelNights,
-    per: toRmb(playYen + hotelYen / 2),
-    two: toRmb(playYen * 2 + hotelYen),
+    hotel: toRmb(cfg.hotelYen),
+    nights: cfg.nights,
+    stays: cfg.stays,
+    per: toRmb(playYen + cfg.hotelYen / 2),
+    two: toRmb(playYen * 2 + cfg.hotelYen),
     rate: cfg.jpyToCny
   };
 }
@@ -402,6 +426,7 @@ function renderDayOverview() {
   const cost = dayCost(day);
   el.innerHTML = `
     <div class="day-nodes">
+      <div class="day-node"><span class="k">日期</span><strong>${day.date || "—"}</strong></div>
       <div class="day-node"><span class="k">从哪出发</span><strong>${day.from || "—"}</strong></div>
       <div class="day-node"><span class="k">当天去哪</span><strong>${day.where || "—"}</strong></div>
       <div class="day-node"><span class="k">晚上住哪</span><strong>${day.stay || "—"}</strong></div>
@@ -438,7 +463,7 @@ function renderPrepDays() {
       const prep = day.prep || [];
       return `
         <article class="guide-card">
-          <h3>DAY ${String(day.id).padStart(2, "0")} · ${day.title}</h3>
+          <h3>${dayHeading(day)}</h3>
           <p>住 ${day.stay || "—"}。${day.path || ""}</p>
           <ul>
             ${prep
@@ -588,6 +613,7 @@ function renderTripBudget() {
   if (!el) return;
   const cost = tripCost();
   const rateText = (cost.rate * 100).toFixed(1).replace(/\.0$/, "");
+  const stayText = cost.stays.map((s) => `${s.city} ${s.nights} 晚`).join(" + ");
   el.innerHTML = `
     <div class="trip-budget-main">
       <span class="k">全程花销预估</span>
@@ -595,10 +621,37 @@ function renderTripBudget() {
       <small>两人约 ${cost.two} 元 · 不含机票</small>
     </div>
     <ul>
-      <li>玩乐、吃饭、交通：人均约 <strong>${cost.playPer}</strong> 元（两人约 ${cost.playTwo} 元）</li>
-      <li>新宿标间 ${cost.nights} 晚：人均约 <strong>${Math.round(cost.hotel / 2)}</strong> 元（${cost.hotel} 元 / 间，一晚约 ${cost.room} 元）</li>
+      <li>玩乐、吃饭、交通：人均约 <strong>${cost.playPer}</strong> 元（两人约 ${cost.playTwo} 元，含大阪→东京机票）</li>
+      <li>住宿 ${cost.nights} 晚：人均约 <strong>${Math.round(cost.hotel / 2)}</strong> 元（${cost.hotel} 元 / 两城标间，${stayText}）</li>
     </ul>
-    <p>按 100 日元 ≈ ${rateText} 元估算。标间按商务酒店双床一晚约 2 万日元；旺季或更近车站会更高。全程含 10/06 入住当晚，10/12 退房不再计房费。</p>
+    <p>按 100 日元 ≈ ${rateText} 元估算。大阪难波一晚约 1.8 万日元，东京新宿一晚约 2 万日元。全程含 10/05 入住当晚，10/12 退房不再计房费。不含往返机票。</p>
+  `;
+}
+
+function renderExtraDays() {
+  const el = document.getElementById("extra-days");
+  if (!el) return;
+  const list = TRIP.extraDays || [];
+  if (!list.length) {
+    el.innerHTML = "";
+    return;
+  }
+  el.innerHTML = `
+    <h3>如果能多玩 1 天</h3>
+    <p>主线是 10/05 启程、10/12 返程。下面是机票或酒店能再改时的加一天选项，不要塞进现有七天。</p>
+    <div class="extra-grid">
+      ${list
+        .map(
+          (item) => `
+        <article class="extra-card">
+          <h4>${item.title}</h4>
+          <p class="extra-when">${item.when}</p>
+          <p>${item.why}</p>
+          <small>${item.where} · ${item.cost}</small>
+        </article>`
+        )
+        .join("")}
+    </div>
   `;
 }
 
@@ -609,6 +662,7 @@ function renderDays() {
   }
   renderDayTabs();
   renderTripBudget();
+  renderExtraDays();
   renderDayOverview();
   renderBeatDetail();
   renderPlanTable();
@@ -807,14 +861,14 @@ function renderAtlasList(spots) {
           <h3>${spot.name}</h3>
           <small>${spot.area || ""}</small>
         </span>
-        <span class="day-tag">${spot.optional || !spot.day ? "备选" : "DAY " + String(spot.day).padStart(2, "0")}</span>
+        <span class="day-tag">${spotWhenLabel(spot)}</span>
       </button>`
     )
     .join("");
 }
 
 function popupHtml(spot) {
-  const when = spot.optional || !spot.day ? "备选" : "DAY " + String(spot.day).padStart(2, "0");
+  const when = spotWhenLabel(spot);
   return `
     <div class="map-pop">
       <strong>${spot.name}</strong>

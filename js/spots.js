@@ -1,19 +1,134 @@
 window.TRIP = {
-  title: "日本六日",
+  title: "日本七日",
   subtitle: "10 月 · 两人小白，偏摄影",
-  route: "北京 → 东京新宿住 6 晚 → 一日河口湖拍富士 → 回北京",
+  route: "北京 → 10/05 19:20 关西机场进大阪 → 奈良 → 京都白天 → 晚上伊丹飞羽田 → 10/12 15:05 成田出",
+  flights: {
+    inbound: {
+      date: "10/05 周一",
+      time: "19:20",
+      airport: "关西国际机场（KIX）",
+      note: "出关取行李后坐南海电车或机场巴士去难波，大约 22:00 到酒店。当天不排景点。"
+    },
+    outbound: {
+      date: "10/12 周一",
+      time: "15:05",
+      airport: "成田国际机场（NRT）",
+      note: "国际航班提前 4 小时到场。新宿坐成田特快或利木津，约 09:10 出发。"
+    }
+  },
   budget: {
     jpyToCny: 0.048,
-    hotelNights: 6,
-    hotelRoomJpy: 20000,
-    hotelNote: "新宿商务酒店双床标间，一晚大约 2 万日元"
+    stays: [
+      { city: "大阪难波", nights: 3, roomJpy: 18000 },
+      { city: "东京新宿", nights: 4, roomJpy: 20000 }
+    ]
   },
   spots: [
+    {
+      id: "dotonbori",
+      region: "osaka",
+      area: "难波",
+      group: "DAY 01 · 大阪 · 道顿堀",
+      name: "道顿堀 · 心斋桥",
+      en: "Dotonbori & Shinsaibashi",
+      enter: "地铁御堂筋线难波站或心斋桥站。街道免费。",
+      duration: "2–3 小时（含夜景）",
+      note: "固力果跑人是大阪第一张。人多时侧拍、等红灯空隙。晚上灯全亮再来一遍。不要站在桥中间挡路。",
+      guide: "道顿堀是大阪的脸。运河、巨型招牌、章鱼烧蒸汽，构成关西最吵也最好认的夜景。心斋桥筋是旁边那条商店街。第一次来日本从大阪进，这里比东京涩谷更直白：吃、逛、拍灯，都挤在同一条水边上。",
+      xhs: ["道顿堀固力果", "心斋桥夜景"],
+      photo: "道顿堀",
+      img: "img/spots/dotonbori-1.jpg",
+      imgs: ["img/spots/dotonbori-1.jpg", "img/spots/dotonbori-2.jpg", "img/spots/dotonbori-3.jpg"],
+      map: "Dotonbori Osaka",
+      lat: 34.6687,
+      lng: 135.5013,
+      day: 1
+    },
+    {
+      id: "osaka-castle",
+      region: "osaka",
+      area: "大阪城",
+      group: "DAY 01 · 大阪 · 大阪城",
+      name: "大阪城公园",
+      en: "Osaka Castle Park",
+      enter: "地铁谷町线或中央线「谷町四丁目」「森ノ宮」。公园免费。天守阁上塔另买票，第一次拍外观通常就够。",
+      duration: "1–1.5 小时",
+      note: "10 月公园开始有秋色。天守是重建的，重点拍石垣、护城河和天守同框。周末人多。",
+      guide: "大阪城是丰臣秀吉统一战国时的大本营，今天的天守是昭和重建，但巨大石垣还是当年的。它告诉你关西不是只有吃：这里曾是日本政治的中心之一。公园空旷，适合从东京水泥丛林对照着看另一种尺度。",
+      xhs: ["大阪城公园", "大阪城天守阁外观"],
+      photo: "大阪城",
+      img: "img/spots/osaka-castle-1.jpg",
+      imgs: ["img/spots/osaka-castle-1.jpg", "img/spots/osaka-castle-2.jpg", "img/spots/osaka-castle-3.jpg"],
+      map: "Osaka Castle",
+      lat: 34.6873,
+      lng: 135.5262,
+      day: 1
+    },
+    {
+      id: "fushimi",
+      region: "kyoto",
+      area: "伏见",
+      group: "DAY 03 · 京都 · 伏见稻荷",
+      name: "伏见稻荷大社",
+      en: "Fushimi Inari Taisha",
+      enter: "JR 奈良线稻荷站出站即到。境内免费。千本鸟居不用预约。",
+      duration: "1.5–2 小时",
+      note: "当天晚上要赶伊丹的飞机，不要登顶。主拍千本鸟居走一段再下来。不要挡住通道拍照。早上比下午空。",
+      guide: "伏见稻荷供奉稻荷神，管生意和食物，是全日本分社最多的神社。橙色千本鸟居一座座叠上去，是京都对外最强的视觉符号。它不是「打卡走廊」，而是还在被当地人祈愿的山。第一次来，走进去一段、再走下来，比硬爬到山顶更合适。",
+      xhs: ["伏见稻荷千本鸟居", "伏见稻荷拍照"],
+      photo: "伏见稻荷",
+      img: "img/spots/fushimi-1.jpg",
+      imgs: ["img/spots/fushimi-1.jpg", "img/spots/fushimi-2.jpg", "img/spots/fushimi-3.jpg"],
+      map: "Fushimi Inari Taisha",
+      lat: 34.9671,
+      lng: 135.7727,
+      day: 3
+    },
+    {
+      id: "kiyomizu",
+      region: "kyoto",
+      area: "东山",
+      group: "DAY 03 · 京都 · 清水寺",
+      name: "清水寺 · 二年坂",
+      en: "Kiyomizu-dera & Ninenzaka",
+      enter: "京都市巴士或地铁再换乘。清水寺本堂要门票。二年坂、产宁坂街道免费。",
+      duration: "2 小时",
+      note: "和伏见稻荷同一天，下午必须离开去机场。清水舞台看京都盆地。坡道禁止边走边吃挡路。15:10 前离开。",
+      guide: "清水寺悬在东山崖上，本堂不钉一根钉子的说法流传很广，舞台眺望的是整座京都盆地。下来的二年坂、产宁坂是还活着的门前町。伏见稻荷是山与鸟居，清水寺是木构和城市俯视——一天里把京都的两种「古」都走一遍。",
+      xhs: ["清水寺舞台", "二年坂产宁坂"],
+      photo: "清水寺",
+      img: "img/spots/kiyomizu-1.jpg",
+      imgs: ["img/spots/kiyomizu-1.jpg", "img/spots/kiyomizu-2.jpg", "img/spots/kiyomizu-3.jpg"],
+      map: "Kiyomizu-dera Kyoto",
+      lat: 34.9948,
+      lng: 135.7850,
+      day: 3
+    },
+    {
+      id: "nara",
+      region: "nara",
+      area: "奈良公园",
+      group: "DAY 02 · 奈良 · 奈良公园",
+      name: "奈良公园 · 东大寺",
+      en: "Nara Park & Tōdai-ji",
+      enter: "从大阪难波近铁约 40 分钟到奈良。公园免费。东大寺大佛殿要门票。鹿仙贝现场买。",
+      duration: "一天",
+      note: "鹿会抢纸袋，贵重物品收好。仙贝买完再喂，不要用零食。东大寺大佛殿要门票，公园和鹿免费。",
+      guide: "奈良是日本第一个长期都城，东大寺大佛是奈良时代国家工程的遗物。鹿在神社里被当成神使，公园里到处走。它比京都更疏、更慢。这次不去乐园，DAY 02 用这一天补关西古都：大阪是吃和城，奈良是寺和鹿，隔天京都才是鸟居和坡道。",
+      xhs: ["奈良公园小鹿", "东大寺大佛"],
+      photo: "奈良",
+      img: "img/spots/nara-1.jpg",
+      imgs: ["img/spots/nara-1.jpg", "img/spots/nara-2.jpg", "img/spots/nara-3.jpg"],
+      map: "Todai-ji Nara",
+      lat: 34.6889,
+      lng: 135.8398,
+      day: 2
+    },
     {
       id: "kaminarimon",
       region: "tokyo",
       area: "浅草",
-      group: "DAY 01 · 东京 · 浅草",
+      group: "DAY 04 · 东京 · 浅草",
       name: "雷门",
       en: "Kaminarimon",
       enter: "地铁银座线 / 浅草线「浅草」站步行约 5 分钟。免费，不用预约。",
@@ -27,13 +142,13 @@ window.TRIP = {
       map: "Kaminarimon Asakusa",
       lat: 35.7111,
       lng: 139.7964,
-      day: 1
+      day: 4
     },
     {
       id: "sensoji",
       region: "tokyo",
       area: "浅草",
-      group: "DAY 01 · 东京 · 浅草",
+      group: "DAY 04 · 东京 · 浅草",
       name: "浅草寺",
       en: "Sensō-ji",
       enter: "雷门穿过仲见世即到。寺院免费。正殿大约 6:00–17:00。",
@@ -47,13 +162,13 @@ window.TRIP = {
       map: "Senso-ji Asakusa Tokyo",
       lat: 35.7148,
       lng: 139.7967,
-      day: 1
+      day: 4
     },
     {
       id: "nakamise",
       region: "tokyo",
       area: "浅草",
-      group: "DAY 01 · 东京 · 浅草",
+      group: "DAY 04 · 东京 · 浅草",
       name: "仲见世商店街",
       en: "Nakamise-dōri",
       enter: "雷门到宝藏门之间。公共街道，免费。",
@@ -67,13 +182,13 @@ window.TRIP = {
       map: "Nakamise-dori Asakusa",
       lat: 35.7119,
       lng: 139.7964,
-      day: 1
+      day: 4
     },
     {
       id: "skytree",
       region: "tokyo",
       area: "押上",
-      group: "DAY 01 · 东京 · 浅草",
+      group: "DAY 04 · 东京 · 浅草",
       name: "东京晴空塔",
       en: "Tokyo Skytree",
       enter: "浅草步行约 20 分钟，或地铁到押上。天望甲板建议官网买指定时段。",
@@ -87,13 +202,13 @@ window.TRIP = {
       map: "Tokyo Skytree",
       lat: 35.7101,
       lng: 139.8107,
-      day: 1
+      day: 4
     },
     {
       id: "akihabara",
       region: "tokyo",
       area: "秋叶原",
-      group: "DAY 01 · 东京 · 秋叶原",
+      group: "DAY 04 · 东京 · 秋叶原",
       name: "秋叶原",
       en: "Akihabara",
       enter: "JR 山手线秋叶原站。街道免费。电器店、动漫店晚上灯更亮。",
@@ -107,13 +222,13 @@ window.TRIP = {
       map: "Akihabara Chuo dori",
       lat: 35.6984,
       lng: 139.7731,
-      day: 1
+      day: 4
     },
     {
       id: "meiji",
       region: "tokyo",
       area: "原宿",
-      group: "DAY 02 · 东京 · 原宿涩谷",
+      group: "DAY 05 · 东京 · 原宿涩谷",
       name: "明治神宫",
       en: "Meiji Jingu",
       enter: "JR 原宿站明治神宫口。境内免费。黎明到日落。",
@@ -127,13 +242,13 @@ window.TRIP = {
       map: "Meiji Jingu Shrine",
       lat: 35.6764,
       lng: 139.6993,
-      day: 2
+      day: 5
     },
     {
       id: "takeshita",
       region: "tokyo",
       area: "原宿",
-      group: "DAY 02 · 东京 · 原宿涩谷",
+      group: "DAY 05 · 东京 · 原宿涩谷",
       name: "竹下通",
       en: "Takeshita Street",
       enter: "JR 原宿站竹下口对面。免费。",
@@ -147,13 +262,13 @@ window.TRIP = {
       map: "Takeshita Dori Harajuku",
       lat: 35.6705,
       lng: 139.7061,
-      day: 2
+      day: 5
     },
     {
       id: "omotesando",
       region: "tokyo",
       area: "表参道",
-      group: "DAY 02 · 东京 · 原宿涩谷",
+      group: "DAY 05 · 东京 · 原宿涩谷",
       name: "表参道",
       en: "Omotesandō",
       enter: "竹下通往南，或地铁表参道站。街道免费。",
@@ -167,13 +282,13 @@ window.TRIP = {
       map: "Omotesando Tokyo",
       lat: 35.6654,
       lng: 139.7123,
-      day: 2
+      day: 5
     },
     {
       id: "shibuya",
       region: "tokyo",
       area: "涩谷",
-      group: "DAY 02 · 东京 · 原宿涩谷",
+      group: "DAY 05 · 东京 · 原宿涩谷",
       name: "涩谷十字路口 · 中心街",
       en: "Shibuya Crossing & Center-gai",
       enter: "JR 涩谷站八公口。路口和中心街免费。",
@@ -183,22 +298,42 @@ window.TRIP = {
       xhs: ["涩谷十字路口拍照", "涩谷中心街夜景", "忠犬八公像"],
       photo: "涩谷",
       img: "img/spots/shibuya-2.jpg",
-      imgs: ["img/spots/shibuya-2.jpg", "img/spots/shibuya-1.jpg"],
+      imgs: ["img/spots/shibuya-2.jpg", "img/spots/shibuya-1.jpg", "img/spots/shibuya-3.jpg"],
       map: "Shibuya Crossing Tokyo",
       lat: 35.6595,
       lng: 139.7004,
-      day: 2
+      day: 5
+    },
+    {
+      id: "shibuya-sky",
+      region: "tokyo",
+      area: "涩谷",
+      group: "DAY 05 · 东京 · 原宿涩谷",
+      name: "SHIBUYA SKY 夜景",
+      en: "SHIBUYA SKY",
+      enter: "涩谷 Scramble Square 14 楼买票入场，电梯到 46 楼再上屋顶。必须提前买指定日指定时段票，周六夜很难现场买到。",
+      duration: "1–1.5 小时",
+      note: "10/10 周六，订晚上 19:30–20:30 入场。屋顶无玻璃，风大，带薄外套。不要用脚踩玻璃边框。拍完十字路口再上来，灯全亮更好看。",
+      guide: "SHIBUYA SKY 在涩谷十字路口正上方，是目前看「脚下那团人潮和霓虹」最好的地方。晴空塔看的是远景东京，这里看的是涩谷本身：路口、109、铁路和夜灯叠在一起。第一次来、又偏摄影，这张夜景值得单独买票，不要只在地面拍路口。",
+      xhs: ["SHIBUYA SKY夜景", "涩谷SKY拍照"],
+      photo: "涩谷天空",
+      img: "img/spots/shibuya-sky-1.jpg",
+      imgs: ["img/spots/shibuya-sky-1.jpg", "img/spots/shibuya-sky-2.jpg", "img/spots/shibuya-sky-3.jpg"],
+      map: "SHIBUYA SKY",
+      lat: 35.6584,
+      lng: 139.7022,
+      day: 5
     },
     {
       id: "tokyo-tower",
       region: "tokyo",
       area: "芝公园",
-      group: "DAY 02 · 东京 · 港区",
+      group: "DAY 05 · 东京 · 港区",
       name: "东京塔",
       en: "Tokyo Tower",
       enter: "地铁赤羽桥站或神谷町站。塔下芝公园免费拍外观。上展望台要票，建议官网。",
       duration: "1–1.5 小时",
-      note: "红白塔身白天、晚上都好拍。增上寺门框里套东京塔是经典机位。10 月日落大约 17:10，尽量赶上亮灯。",
+      note: "红白塔身白天、晚上都好拍。增上寺门框里套东京塔是经典机位。10 月日落大约 17:10。今晚还要回涩谷上 SKY，塔下拍亮灯即可，不要上展望台。",
       guide: "东京塔 1958 年建成，造型模仿埃菲尔铁塔，红白涂装是为了航空警示。很长一段时间里，它就是「东京」两个字的视觉符号，比晴空塔更有昭和味道。增上寺山门把塔框进去，等于把江户寺庙和战后铁塔叠在同一张画面里。",
       xhs: ["东京塔增上寺", "东京塔夜景拍照"],
       photo: "东京塔",
@@ -207,19 +342,19 @@ window.TRIP = {
       map: "Tokyo Tower",
       lat: 35.6586,
       lng: 139.7454,
-      day: 2
+      day: 5
     },
     {
       id: "disneysea",
       region: "maihama",
       area: "舞浜",
-      group: "DAY 03 · 千叶 · 舞浜",
+      group: "备选 · 千叶 · 这次不去",
       name: "东京迪士尼海洋",
       en: "Tokyo DisneySea",
       enter: "必须提前买指定日门票。JR 京叶线舞浜，再坐度假区线到海洋。现场不售票。",
       duration: "一整天",
-      note: "地中海港湾、火山、夜晚水上秀比乐园更好拍。10 月平日比周末好排。下载官方 App。",
-      guide: "东京迪士尼海洋是全世界独有的海洋主题迪士尼，七大港口围着地中海港湾，中央是一座假火山。它不是再做一个城堡乐园，而是把航海、冒险和夜景做成一整座舞台。对第一次来、又爱拍照的人，港湾的水和灯往往比设施本身更难忘。",
+      note: "这次不去主题乐园。以后若想看港湾夜景再排，不要和市内摄影日挤在同一周。",
+      guide: "东京迪士尼海洋是全世界独有的海洋主题迪士尼，七大港口围着地中海港湾。这次行程偏城市和古都摄影，乐园整天先不排。",
       xhs: ["迪士尼海洋地中海港湾", "东京迪士尼海洋拍照"],
       photo: "东京迪士尼海洋",
       img: "img/spots/disneysea-1.jpg",
@@ -227,13 +362,15 @@ window.TRIP = {
       map: "Tokyo DisneySea",
       lat: 35.6267,
       lng: 139.8851,
-      day: 3
+      optional: true,
+      day: 0,
+      onMap: false
     },
     {
       id: "tsukiji",
       region: "tokyo",
       area: "筑地",
-      group: "DAY 04 · 东京 · 都心",
+      group: "DAY 06 · 东京 · 都心",
       name: "筑地场外市场",
       en: "Tsukiji Outer Market",
       enter: "日比谷线筑地站。场外免费逛。内市场已迁丰洲，不要跑错。",
@@ -243,17 +380,17 @@ window.TRIP = {
       xhs: ["筑地场外市场寿司", "筑地早饭"],
       photo: "筑地市场",
       img: "img/spots/tsukiji-1.jpg",
-      imgs: ["img/spots/tsukiji-1.jpg"],
+      imgs: ["img/spots/tsukiji-1.jpg", "img/spots/tsukiji-2.jpg", "img/spots/tsukiji-3.jpg"],
       map: "Tsukiji Outer Market",
       lat: 35.6654,
       lng: 139.7707,
-      day: 4
+      day: 6
     },
     {
       id: "ginza",
       region: "tokyo",
       area: "银座",
-      group: "DAY 04 · 东京 · 都心",
+      group: "DAY 06 · 东京 · 都心",
       name: "银座",
       en: "Ginza",
       enter: "筑地步行约 15 分钟。周日白天常有步行者天国。",
@@ -267,13 +404,13 @@ window.TRIP = {
       map: "Ginza Tokyo",
       lat: 35.6712,
       lng: 139.7649,
-      day: 4
+      day: 6
     },
     {
       id: "imperial",
       region: "tokyo",
       area: "千代田",
-      group: "DAY 04 · 东京 · 都心",
+      group: "DAY 06 · 东京 · 都心",
       name: "皇居外苑 · 二重桥",
       en: "Imperial Palace Nijubashi",
       enter: "二重桥前站或樱田门站。外苑免费。",
@@ -287,13 +424,13 @@ window.TRIP = {
       map: "Nijubashi Imperial Palace",
       lat: 35.6802,
       lng: 139.7544,
-      day: 4
+      day: 6
     },
     {
       id: "tokyo-station",
       region: "tokyo",
       area: "丸之内",
-      group: "DAY 04 · 东京 · 都心",
+      group: "DAY 06 · 东京 · 都心",
       name: "东京站丸之内",
       en: "Tokyo Station Marunouchi",
       enter: "JR 东京站丸之内口。外观和 KITTE 屋顶免费。",
@@ -307,19 +444,19 @@ window.TRIP = {
       map: "Tokyo Station Marunouchi",
       lat: 35.6812,
       lng: 139.7671,
-      day: 4
+      day: 6
     },
     {
       id: "shinkansen",
       region: "tokyo",
       area: "东京站",
-      group: "DAY 04 · 东京 · 都心",
+      group: "备选 · 东京 · 新干线外观",
       name: "新干线（东京站拍车头）",
       en: "Shinkansen at Tokyo Station",
       enter: "东京站新干线口。进站台通常要车票或站台票。外观可在丸之内先拍车站。",
       duration: "20–30 分钟",
-      note: "这次主线不去大阪，所以只在东京站看一眼车头，不当交通。真要坐新干线看风景，用伊豆备选那天（东京→热海）。",
-      guide: "新干线 1964 年通车，是日本速度、准点和战后复兴的象征。车头那张「大嘴」照片，对很多人来说等于见过日本的火车。这次不坐去大阪，进站台看一眼就够；真要坐车看风景，留给伊豆备选那天的热海方向。",
+      note: "这次大阪到东京坐飞机，没有坐新干线。还想拍车头，用站台票进东京站新干线口，拍完出站即可。",
+      guide: "新干线 1964 年通车，是日本速度、准点和战后复兴的象征。车头那张「大嘴」照片，对很多人来说等于见过日本的火车。这次城际改成飞机，进站台看一眼就够；真要坐车看风景，留给伊豆备选那天的热海方向。",
       xhs: ["东京站新干线拍照", "N700S车头"],
       photo: "新干线",
       img: "img/spots/shinkansen-1.jpg",
@@ -327,18 +464,19 @@ window.TRIP = {
       map: "Tokyo Station Shinkansen",
       lat: 35.6814,
       lng: 139.7660,
-      day: 4
+      optional: true,
+      day: 0
     },
     {
       id: "kawaguchiko",
       region: "fuji",
       area: "河口湖",
-      group: "DAY 05 · 山梨 · 河口湖",
+      group: "备选 · 山梨 · 这次不去",
       name: "河口湖",
       en: "Lake Kawaguchi",
       enter: "新宿高速巴士约 1 小时 45 分到河口湖站。湖畔免费。",
       duration: "大半天",
-      note: "10 月是拍富士的好季节，但不能保证一定看到山，看天气预报和云。北岸、大石公园倒影更稳。",
+      note: "这次主线是关西进东京出，不去河口湖。以后若从东京出发再排。",
       guide: "河口湖是富士五湖里最容易从东京到达、也最好拍倒影的一座。湖、小镇、富士山，构成关东人最熟悉的「出城看山」线路。10 月空气相对干净，山是否露脸全看云。来这里不只是打卡富士，也是离开水泥东京一天，把节奏放慢。",
       xhs: ["河口湖拍富士山", "大石公园富士山"],
       photo: "河口湖",
@@ -347,18 +485,20 @@ window.TRIP = {
       map: "Lake Kawaguchi",
       lat: 35.5170,
       lng: 138.7519,
-      day: 5
+      optional: true,
+      day: 0,
+      onMap: false
     },
     {
       id: "fuji",
       region: "fuji",
       area: "河口湖",
-      group: "DAY 05 · 山梨 · 河口湖",
+      group: "备选 · 山梨 · 这次不去",
       name: "富士山观景",
       en: "Mount Fuji View",
       enter: "河口湖一带多个观景点。新仓山浅间公园要爬台阶，天气好时塔和富士同框。",
       duration: "1–2 小时",
-      note: "经典机位是五重塔 + 富士。周末人很多。云挡住就改拍湖和枫叶，不要死等。",
+      note: "这次行程删掉富士山相关安排。经典机位在新仓山，不要塞进大阪–东京这 6 天。",
       guide: "富士山是日本最高峰，也是浮世绘和课本里的国家象征。河口湖这边最经典的构图在新仓山浅间公园：五重塔、树木，远处是雪顶。山在文化里很神圣，天气不好时不必死等——云本身也是富士的一部分。",
       xhs: ["新仓山浅间公园", "河口湖五重塔富士山"],
       photo: "富士山",
@@ -367,7 +507,9 @@ window.TRIP = {
       map: "Arakurayama Sengen Park",
       lat: 35.5013,
       lng: 138.8016,
-      day: 5
+      optional: true,
+      day: 0,
+      onMap: false
     },
     {
       id: "gyoen",
@@ -378,7 +520,7 @@ window.TRIP = {
       en: "Shinjuku Gyoen",
       enter: "新宿站东南口步行约 10 分钟。成人 500 日元。周一休园。",
       duration: "1–1.5 小时",
-      note: "10/12 返程是周一，御苑休园，所以没排进第 6 天。想去就插到第 2 天或第 4 天的空档，不要和迪士尼、河口湖抢整天。",
+      note: "10/12 返程是周一，御苑休园。想去就插到东京市内某天空档，不要单独再排一整天。",
       guide: "新宿御苑曾是江户大名宅邸，后来变成皇室花园，再向公众开放。日式、英式、法式庭园挨在一起，是新宿水泥森林里少有的大片绿地。周一休园，所以没排进返程那天。想去就插在市内某天的空档，慢慢走比赶点合适。",
       xhs: ["新宿御苑拍照", "新宿御苑周一休园"],
       photo: "新宿御苑",
@@ -394,12 +536,12 @@ window.TRIP = {
       id: "tmg",
       region: "tokyo",
       area: "西新宿",
-      group: "DAY 06 · 东京 · 新宿",
+      group: "备选 · 东京 · 新宿",
       name: "都厅展望室",
       en: "Tokyo Metropolitan Government Building",
       enter: "新宿西口步行约 10 分钟。免费，不用预约。",
       duration: "40 分钟",
-      note: "免费夜景。看当天开南塔还是北塔。适合退房前或返程前的轻松收尾。",
+      note: "10/12 成田 15:05 起飞，当天早上去机场，来不及上都厅。想去就插到东京市内某天空档。",
       guide: "东京都厅是东京都政府办公楼，丹下健三设计，两座塔楼像哥特教堂。顶楼展望室免费，能看西边的富士和脚下的新宿。它代表「行政东京」：不是寺庙也不是商店街，而是这座超大城市如何被管理。退房后行李还在身上时，这是最省力的收尾。",
       xhs: ["都厅展望台夜景", "新宿都厅免费"],
       photo: "东京都厅",
@@ -408,19 +550,20 @@ window.TRIP = {
       map: "Tokyo Metropolitan Government Building",
       lat: 35.6896,
       lng: 139.6917,
-      day: 6
+      day: 0,
+      optional: true
     },
     {
       id: "disneyland",
       region: "maihama",
       area: "舞浜",
-      group: "备选 · 千叶 · 迪士尼乐园",
+      group: "备选 · 千叶 · 这次不去",
       name: "东京迪士尼乐园",
       en: "Tokyo Disneyland",
-      enter: "和海洋是两个园，门票不能通用。可与第 3 天海洋对调，不要两天都排。",
+      enter: "和海洋是两个园，门票不能通用。JR 京叶线舞浜。",
       duration: "一整天",
-      note: "城堡夜景好看。第一次去、又爱拍建筑和海景，主线选海洋；更想逛经典城堡就换乐园。",
-      guide: "东京迪士尼乐园是亚洲第一座迪士尼，城堡、游行、万圣节都更「经典迪士尼」。和海洋是两个完全不同的园，票不能混用。主线选海洋是因为港湾更好拍；更想要城堡和童年符号，可以对调，但不要两天都排。",
+      note: "这次不去主题乐园。城堡和游行留给以后单独排一天。",
+      guide: "东京迪士尼乐园是亚洲第一座迪士尼。和海洋是两个园，票不能混用。这次主线不排任何乐园。",
       xhs: ["东京迪士尼城堡", "东京迪士尼万圣节"],
       photo: "东京迪士尼乐园",
       img: "img/spots/disneyland-1.jpg",
@@ -429,7 +572,8 @@ window.TRIP = {
       lat: 35.6329,
       lng: 139.8804,
       day: 0,
-      optional: true
+      optional: true,
+      onMap: false
     },
     {
       id: "omuroyama",
@@ -438,7 +582,7 @@ window.TRIP = {
       group: "备选 · 静冈 · 伊豆",
       name: "大室山",
       en: "Mount Ōmuro",
-      enter: "新干线东京→热海，再伊豆急行到伊豆高原。上山坐缆车。可与河口湖对调，不要两天都去。",
+      enter: "新干线东京→热海，再伊豆急行到伊豆高原。上山坐缆车。这次主线不去；若以后从东京出发再排，不要和市内摄影日冲突。",
       duration: "半天（含交通则一整天）",
       note: "草山像绿帽子，山顶一圈能看海。10 月天气好时出片。和城ヶ崎海岸同一天。",
       guide: "大室山是伊豆的一座死火山，山顶像扣着的绿草帽，一圈步道能同时看山和海。它没有寺庙那么有名，意义在于：离开关东平原，日本还有火山列岛这一层地质故事。适合和城ヶ崎海岸放在同一天，当作河口湖的备选海边版。",
@@ -450,6 +594,7 @@ window.TRIP = {
       lat: 34.9065,
       lng: 139.0967,
       day: 0,
+      onMap: false,
       optional: true
     },
     {
@@ -471,6 +616,7 @@ window.TRIP = {
       lat: 34.8780,
       lng: 139.1160,
       day: 0,
+      onMap: false,
       optional: true
     },
     {
@@ -519,13 +665,13 @@ window.TRIP = {
       id: "usj",
       region: "osaka",
       area: "大阪",
-      group: "备选 · 大阪 · 下次再去",
+      group: "备选 · 大阪 · 这次不去",
       name: "大阪环球影城",
       en: "Universal Studios Japan",
-      enter: "在大阪。新干线东京→新大阪约 2.5 小时，再换乘。这次六天主线不去。",
-      duration: "一整天 + 来回交通",
-      note: "哈利波特园区很好拍，但和东京、富士、迪士尼抢同一周。放进这 6 天就要砍掉河口湖或海洋。建议下次专门跑关西。",
-      guide: "大阪环球影城是关西最强的主题乐园，哈利波特园区几乎是为拍照设计的。它不在东京，去了就要用掉一天再加新干线。这次六天主线是关东和富士，把它留到下次关西行，比硬塞进来更合理。",
+      enter: "JR 梦洲站或环球城站。必须提前买指定日门票。从难波约 20–30 分钟。",
+      duration: "一整天",
+      note: "这次不去主题乐园。哈利波特园区留给以后单独排一天。",
+      guide: "大阪环球影城是关西最强的主题乐园。这次行程偏城市和古都，不去乐园，DAY 02 改去奈良。",
       xhs: ["大阪环球影城", "USJ哈利波特"],
       photo: "环球影城",
       img: "img/spots/usj-1.jpg",
@@ -541,152 +687,190 @@ window.TRIP = {
   days: [
     {
       id: 1,
-      title: "浅草 · 秋叶原",
-      date: "10/07 周三",
-      stay: "新宿",
-      from: "新宿酒店",
-      where: "雷门、浅草寺、晴空塔、秋叶原夜景",
-      path: "新宿 → 浅草雷门 / 仲见世 / 浅草寺 → 晴空塔 → 秋叶原夜景 → 回新宿",
+      title: "大阪城 · 道顿堀",
+      date: "10/06 周二",
+      stay: "大阪难波",
+      from: "难波酒店",
+      where: "大阪城公园、心斋桥、道顿堀夜景",
+      path: "难波 → 大阪城公园 → 心斋桥 / 道顿堀夜景 → 回难波",
       prep: [
-        { item: "西瓜卡先充 3000–5000 日元", need: "必须提前", xhs: "iPhone西瓜卡" },
-        { item: "晴空塔天望甲板指定时段票", need: "建议官网提前买", xhs: "东京晴空塔门票" },
-        { item: "雷门、浅草寺、仲见世、秋叶原街道", need: "免费，不用预约" }
+        { item: "西瓜卡或 ICOCA", need: "必须。iPhone 用钱包 Suica；安卓落地买卡。关西也能刷", xhs: "iPhone西瓜卡" },
+        { item: "大阪城、道顿堀", need: "免费逛；天守阁上塔才买票，第一次拍外观即可" }
       ],
       beats: [
-        { id: "d1a", time: "09:00", type: "commute", mode: "JR / 地铁", name: "新宿 → 浅草 · 约 30 分钟", lat: 35.7111, lng: 139.7964, cost: 200, detail: "打开 Google 地图搜「浅草」。常见：山手线到上野，换银座线到浅草。拍西瓜卡。" },
-        { id: "d1b", time: "09:40", type: "spot", name: "雷门", spotId: "kaminarimon", cost: 0 },
-        { id: "d1c", time: "10:00", type: "spot", name: "仲见世商店街", spotId: "nakamise", cost: 600 },
-        { id: "d1d", time: "10:40", type: "spot", name: "浅草寺", spotId: "sensoji", cost: 0 },
-        { id: "d1e", time: "12:00", type: "meal", name: "午饭 · 浅草天妇罗", lat: 35.7116, lng: 139.7952, xhs: "浅草天妇罗", cost: 1800, img: "img/spots/nakamise-1.jpg", photo: "浅草寺", detail: "寺附近天丼很多。不想排队就走侧巷。人均大约 1500–2000 日元。" },
-        { id: "d1f", time: "13:40", type: "commute", mode: "步行 / 地铁", name: "浅草 → 晴空塔 · 约 20 分钟", lat: 35.7101, lng: 139.8107, cost: 180, detail: "沿隅田川走能拍到塔。腿累就坐地铁到押上。" },
-        { id: "d1g", time: "14:10", type: "spot", name: "东京晴空塔", spotId: "skytree", cost: 2100 },
-        { id: "d1h", time: "17:20", type: "commute", mode: "JR", name: "押上 → 秋叶原 · 约 15 分钟", lat: 35.6984, lng: 139.7731, cost: 180, detail: "半藏门线或 JR 到秋叶原。天黑前后到，灯更亮。" },
-        { id: "d1i", time: "17:40", type: "spot", name: "秋叶原", spotId: "akihabara", cost: 0 },
-        { id: "d1j", time: "19:20", type: "meal", name: "晚饭 · 秋叶原 / 回新宿", lat: 35.6986, lng: 139.7738, xhs: "秋叶原晚饭", cost: 1600, img: "img/spots/akihabara-1.jpg", photo: "秋叶原", detail: "拉面或定食即可。也可以坐山手线回新宿再吃。" },
-        { id: "d1k", time: "20:40", type: "hotel", name: "新宿酒店", lat: 35.6909, lng: 139.6995, detail: "今晚住新宿标间。两人一间双床，护照都给前台。房费按一晚约 2 万日元估进当天花销。" }
+        { id: "d1a", time: "09:40", type: "commute", mode: "地铁", name: "难波 → 大阪城 · 约 20 分钟", lat: 34.6873, lng: 135.5262, cost: 200, detail: "Google 地图搜「大阪城」。谷町线或中央线。拍西瓜卡。" },
+        { id: "d1b", time: "10:10", type: "spot", name: "大阪城公园", spotId: "osaka-castle", cost: 0 },
+        { id: "d1c", time: "12:20", type: "meal", name: "午饭 · 大阪城 / 难波", lat: 34.6685, lng: 135.5015, xhs: "难波午饭", cost: 1600, img: "img/spots/osaka-castle-1.jpg", photo: "大阪", detail: "城附近或回难波吃都可以。人均大约 1500 日元。" },
+        { id: "d1d", time: "14:00", type: "spot", name: "心斋桥 · 道顿堀（白天）", spotId: "dotonbori", cost: 400 },
+        { id: "d1e", time: "18:30", type: "meal", name: "晚饭 · 道顿堀", lat: 34.6687, lng: 135.5013, xhs: "道顿堀晚饭", cost: 2200, img: "img/spots/dotonbori-1.jpg", photo: "道顿堀", detail: "章鱼烧当小吃，正餐找定食或连锁店。人均大约 2000 日元。" },
+        { id: "d1f", time: "19:30", type: "spot", name: "道顿堀夜景", spotId: "dotonbori", cost: 0, detail: "灯亮后再走一遍固力果跑人和运河。人最多的时候，侧拍、等空隙。" },
+        { id: "d1g", time: "21:00", type: "hotel", name: "难波酒店", lat: 34.6670, lng: 135.5023, cost: 18000, detail: "今晚住大阪难波标间。两人护照给前台。房费按一晚约 1.8 万日元估。" }
       ]
     },
     {
       id: 2,
-      title: "涩谷 · 东京塔",
-      date: "10/08 周四",
-      stay: "新宿",
-      from: "新宿酒店",
-      where: "明治神宫、竹下通、涩谷路口、东京塔夜景",
-      path: "新宿 → 原宿明治神宫 → 竹下通 / 表参道 → 涩谷路口 → 东京塔亮灯",
+      title: "奈良公园 · 东大寺",
+      date: "10/07 周三",
+      stay: "大阪难波",
+      from: "难波酒店",
+      where: "奈良公园、东大寺",
+      path: "难波 → 近铁奈良 → 东大寺 / 奈良公园 → 回难波",
       prep: [
-        { item: "明治神宫、竹下通、表参道、涩谷路口", need: "免费，不用预约" },
-        { item: "东京塔外观", need: "芝公园、增上寺免费拍；上塔再买票" },
-        { item: "薄外套", need: "晚上拍塔会凉" }
+        { item: "近铁难波 → 奈良", need: "ICOCA / 西瓜卡可刷。约 40 分钟到近铁奈良站", xhs: "难波去奈良近铁" },
+        { item: "东大寺大佛殿门票", need: "现场买即可，约 800 日元；公园和鹿免费" },
+        { item: "明天机票和行李", need: "确认晚上伊丹 → 羽田航班（建议 19:00 以后）；护照、充电宝今晚装随身包" }
       ],
       beats: [
-        { id: "d2a", time: "09:20", type: "commute", mode: "JR", name: "新宿 → 原宿 · 约 6 分钟", lat: 35.6702, lng: 139.7027, cost: 160, detail: "山手线一站到原宿，出明治神宫口。" },
-        { id: "d2b", time: "09:30", type: "spot", name: "明治神宫", spotId: "meiji", cost: 0 },
-        { id: "d2c", time: "11:00", type: "spot", name: "竹下通", spotId: "takeshita", cost: 800 },
-        { id: "d2d", time: "12:00", type: "meal", name: "午饭 · 原宿 / 表参道", lat: 35.6688, lng: 139.7068, xhs: "原宿午饭", cost: 1600, img: "img/spots/omotesando-1.jpg", photo: "表参道", detail: "可丽饼当垫饥的话，正餐去表参道点定食。人均大约 1500 日元。" },
-        { id: "d2e", time: "13:20", type: "spot", name: "表参道", spotId: "omotesando", cost: 0 },
-        { id: "d2f", time: "14:20", type: "commute", mode: "地铁", name: "表参道 → 涩谷 · 约 10 分钟", lat: 35.6595, lng: 139.7004, cost: 170, detail: "银座线一站到涩谷。" },
-        { id: "d2g", time: "14:40", type: "spot", name: "涩谷十字路口 · 中心街", spotId: "shibuya", cost: 0 },
-        { id: "d2h", time: "16:20", type: "commute", mode: "地铁", name: "涩谷 → 赤羽桥 / 神谷町 · 约 20 分钟", lat: 35.6586, lng: 139.7454, cost: 220, detail: "去东京塔。Google 地图搜 Tokyo Tower。尽量 16:40 前到增上寺机位等亮灯。" },
-        { id: "d2i", time: "16:50", type: "spot", name: "东京塔", spotId: "tokyo-tower", cost: 0, detail: "先在增上寺山门框东京塔，再去芝公园拍全塔。上展望台另计，第一次拍外观通常就够。" },
-        { id: "d2j", time: "19:00", type: "meal", name: "晚饭 · 芝 / 新宿", lat: 35.6580, lng: 139.7450, xhs: "东京塔附近晚饭", cost: 2200, img: "img/spots/tokyo-tower-2.jpg", photo: "东京塔", detail: "塔下或回新宿吃都可以。人均大约 2000 日元。" },
-        { id: "d2k", time: "20:30", type: "hotel", name: "新宿酒店", lat: 35.6909, lng: 139.6995, detail: "还住新宿标间。明天迪士尼海洋要早起。" }
+        { id: "d2a", time: "08:20", type: "commute", mode: "近铁", name: "难波 → 近铁奈良 · 约 40 分钟", lat: 34.6845, lng: 135.8276, cost: 680, detail: "近铁奈良线急行。出站往东走就是奈良公园。纸袋和零食收进包里，鹿会抢。" },
+        { id: "d2b", time: "09:20", type: "spot", name: "奈良公园 · 东大寺", spotId: "nara", cost: 800 },
+        { id: "d2c", time: "12:20", type: "meal", name: "午饭 · 奈良公园 / 奈良町", lat: 34.6830, lng: 135.8305, xhs: "奈良午饭", cost: 1600, img: "img/spots/nara-1.jpg", photo: "奈良", detail: "公园边或奈良町定食。人均大约 1500 日元。不要边走边吃被鹿围住。" },
+        { id: "d2d", time: "13:40", type: "spot", name: "奈良公园再走一圈 / 奈良町", spotId: "nara", cost: 200, detail: "春日大社参道、奈良町巷子都可以。鹿仙贝买完再喂。不必再进东大寺。" },
+        { id: "d2e", time: "16:40", type: "commute", mode: "近铁", name: "近铁奈良 → 难波 · 约 40 分钟", lat: 34.6670, lng: 135.5023, cost: 680, detail: "不用卡末班。回酒店收拾行李。明天白天京都，箱子放京都站寄物柜。" },
+        { id: "d2f", time: "18:40", type: "meal", name: "晚饭 · 难波", lat: 34.6687, lng: 135.5013, xhs: "难波晚饭", cost: 2000, img: "img/spots/dotonbori-1.jpg", photo: "道顿堀", detail: "道顿堀再吃一顿也可以。人均大约 2000 日元。" },
+        { id: "d2g", time: "21:20", type: "hotel", name: "难波酒店", lat: 34.6670, lng: 135.5023, cost: 18000, detail: "最后一晚大阪。明天早退，白天京都，晚上从伊丹飞羽田。" }
       ]
     },
     {
       id: 3,
-      title: "迪士尼海洋",
-      date: "10/09 周五",
-      stay: "新宿",
-      from: "新宿酒店",
-      where: "东京迪士尼海洋（一整天）",
-      path: "新宿 → 东京站 → 京叶线舞浜 → 海洋一整天 → 回新宿",
+      title: "京都白天 · 晚上飞东京",
+      date: "10/08 周四",
+      stay: "东京新宿",
+      from: "难波酒店退房",
+      where: "伏见稻荷、清水寺，晚上伊丹飞羽田",
+      path: "早退 → 京都站寄行李 → 伏见稻荷 → 清水寺 / 二年坂 → 京都站巴士去伊丹 → 晚班机飞羽田 → 新宿",
       prep: [
-        { item: "东京迪士尼海洋指定日门票", need: "必须提前买，现场不售票；和乐园门票不能混用", xhs: "东京迪士尼海洋门票" },
-        { item: "官方 App", need: "出发前下载" },
-        { item: "园区午饭晚饭", need: "不用订" }
+        { item: "大阪伊丹 → 东京羽田晚班机", need: "必须提前买。优先 ANA / JAL，起飞 19:00 以后。不要订下午航班，也不要订关西机场出发", xhs: "伊丹飞羽田" },
+        { item: "伏见稻荷、二年坂", need: "神社免费；清水寺本堂现场买票。当天不登稻荷山顶" },
+        { item: "行李", need: "大件放京都站寄物柜，不要背去伏见和清水。取回后再坐机场巴士" },
+        { item: "护照、晚到酒店", need: "国内航班也要护照。提前告诉新宿酒店大约 22:30 到" }
       ],
       beats: [
-        { id: "d3a", time: "07:40", type: "commute", mode: "JR", name: "新宿 → 东京 → 舞浜 · 约 50 分钟", lat: 35.6267, lng: 139.8851, cost: 420, detail: "中央线快速到东京站，换京叶线到舞浜，再坐度假区线到海洋。开园前到先拍港湾。" },
-        { id: "d3b", time: "08:50", type: "spot", name: "东京迪士尼海洋", spotId: "disneysea", cost: 9900 },
-        { id: "d3c", time: "12:30", type: "meal", name: "午饭 · 园内", lat: 35.6269, lng: 139.8846, xhs: "迪士尼海洋午饭", cost: 1800, img: "img/spots/disneysea-2.jpg", photo: "东京迪士尼海洋", detail: "地中海港湾附近餐厅多。人均大约 1500–2000 日元。" },
-        { id: "d3d", time: "18:00", type: "meal", name: "晚饭 · 园内", lat: 35.6264, lng: 139.8856, xhs: "迪士尼海洋晚餐", cost: 2200, img: "img/spots/disneysea-1.jpg", photo: "东京迪士尼海洋", detail: "尽量留到晚上看港湾灯和水上表演再走。" },
-        { id: "d3e", time: "20:40", type: "commute", mode: "JR", name: "舞浜 → 新宿 · 约 55 分钟", lat: 35.6909, lng: 139.6995, cost: 420, detail: "原路返回。不要卡末班车。" },
-        { id: "d3f", time: "21:40", type: "hotel", name: "新宿酒店", lat: 35.6909, lng: 139.6995, detail: "还住新宿标间。" }
+        { id: "d3a", time: "07:50", type: "hotel", name: "难波酒店退房", lat: 34.6670, lng: 135.5023, checkout: true, detail: "带着行李去京都站。不要直接去伊丹。" },
+        { id: "d3b", time: "08:10", type: "commute", mode: "JR", name: "难波 → 京都站 · 约 45 分钟", lat: 34.9858, lng: 135.7588, cost: 580, detail: "地铁或 JR 到大阪站，换新干线旁的在来线到京都。大件放京都站寄物柜，约 700 日元 / 个。" },
+        { id: "d3c", time: "09:05", type: "commute", mode: "JR", name: "京都站 → 稻荷 · 约 5 分钟", lat: 34.9671, lng: 135.7727, cost: 150, detail: "奈良线一站。出站就是伏见稻荷。只背小包。" },
+        { id: "d3d", time: "09:15", type: "spot", name: "伏见稻荷大社", spotId: "fushimi", cost: 0, detail: "千本鸟居走一段就够，11:10 前下山。不要登顶，晚上要赶飞机。" },
+        { id: "d3e", time: "11:20", type: "commute", mode: "巴士 / 地铁", name: "伏见 → 清水寺 · 约 40 分钟", lat: 34.9948, lng: 135.7850, cost: 240, detail: "Google 地图搜清水寺。巴士可能挤，预留量。" },
+        { id: "d3f", time: "12:10", type: "meal", name: "午饭 · 清水 / 二年坂", lat: 34.9950, lng: 135.7838, xhs: "二年坂午饭", cost: 1600, img: "img/spots/kiyomizu-1.jpg", photo: "清水寺", detail: "坡道上小吃多。这顿当正餐。人均大约 1500 日元。不要拖到下午。" },
+        { id: "d3g", time: "13:00", type: "spot", name: "清水寺 · 二年坂", spotId: "kiyomizu", cost: 400, detail: "舞台和坡道各留一会儿。15:10 必须离开去京都站。" },
+        { id: "d3h", time: "15:20", type: "commute", mode: "巴士", name: "清水 → 京都站 · 约 25 分钟", lat: 34.9858, lng: 135.7588, cost: 230, detail: "取寄物柜行李。去八条口坐大阪机场巴士。" },
+        { id: "d3i", time: "16:20", type: "commute", mode: "机场巴士", name: "京都站 → 伊丹机场 · 约 55 分钟", lat: 34.7855, lng: 135.4382, cost: 1550, detail: "八条口「大阪机场巴士」。行李放车下。不要去关西机场。" },
+        { id: "d3j", time: "17:30", type: "meal", name: "晚饭 · 伊丹机场", lat: 34.7855, lng: 135.4382, xhs: "伊丹机场晚饭", cost: 1200, img: "img/spots/gyoen-2.jpg", photo: "大阪", detail: "值机托运后再吃。人均大约 1200 日元。国内线提前约 1 小时到闸口。" },
+        { id: "d3k", time: "19:25", type: "commute", mode: "飞机", name: "伊丹 → 羽田 · 约 70 分钟", lat: 35.5494, lng: 139.7798, cost: 14000, detail: "订 19:00–20:00 起飞的 ANA / JAL。机上可看富士，看天气。落地走国内到达，取托运行李。" },
+        { id: "d3l", time: "21:20", type: "commute", mode: "利木津", name: "羽田 → 新宿 · 约 50–70 分钟", lat: 35.6909, lng: 139.6995, cost: 1300, detail: "末班利木津看时刻表；没有就京急 + 山手。行李多优先的士。" },
+        { id: "d3m", time: "22:30", type: "hotel", name: "新宿酒店入住", lat: 35.6909, lng: 139.6995, cost: 20000, detail: "今晚起住新宿标间 4 晚。提前说晚到。两人护照给前台。便利店可买宵夜。" }
       ]
     },
     {
       id: 4,
-      title: "都心 · 东京站",
-      date: "10/10 周六",
-      stay: "新宿",
+      title: "浅草 · 秋叶原",
+      date: "10/09 周五",
+      stay: "东京新宿",
       from: "新宿酒店",
-      where: "筑地、银座、皇居、东京站、新干线车头",
-      path: "新宿 → 筑地早饭 → 银座 → 皇居二重桥 → 东京站 / 新干线 → 回新宿",
+      where: "雷门、浅草寺、晴空塔、秋叶原夜景",
+      path: "新宿 → 浅草雷门 / 仲见世 / 浅草寺 → 晴空塔 → 秋叶原夜景 → 回新宿",
       prep: [
-        { item: "筑地、银座、皇居外苑、东京站外观", need: "免费逛" },
-        { item: "新干线站台", need: "进站台通常要票或站台票；只拍车站外观则不用" },
-        { item: "银座周日才有步行者天国", need: "今天周六，正常有车" }
+        { item: "晴空塔天望甲板指定时段票", need: "建议官网提前买", xhs: "东京晴空塔门票" },
+        { item: "雷门、浅草寺、仲见世、秋叶原街道", need: "免费，不用预约" }
       ],
       beats: [
-        { id: "d4a", time: "08:10", type: "commute", mode: "地铁", name: "新宿 → 筑地 · 约 30 分钟", lat: 35.6654, lng: 139.7707, cost: 220, detail: "去场外市场，不要去丰洲。" },
-        { id: "d4b", time: "08:40", type: "spot", name: "筑地场外市场", spotId: "tsukiji", cost: 0 },
-        { id: "d4c", time: "08:50", type: "meal", name: "早饭 · 筑地寿司 / 海鲜丼", lat: 35.6652, lng: 139.7704, xhs: "筑地早饭 寿司", cost: 2800, img: "img/spots/tsukiji-1.jpg", photo: "筑地市场", detail: "这顿当早午饭。人均 2500–4000 日元。先问能不能拍照。" },
-        { id: "d4d", time: "10:40", type: "commute", mode: "步行", name: "筑地 → 银座 · 约 15 分钟", lat: 35.6712, lng: 139.7649, cost: 0, detail: "沿晴海通往西走。" },
-        { id: "d4e", time: "11:00", type: "spot", name: "银座", spotId: "ginza", cost: 0 },
-        { id: "d4f", time: "13:00", type: "commute", mode: "地铁", name: "银座 → 二重桥前 · 约 10 分钟", lat: 35.6802, lng: 139.7544, cost: 170, detail: "去皇居外苑。" },
-        { id: "d4g", time: "13:20", type: "spot", name: "皇居外苑 · 二重桥", spotId: "imperial", cost: 0 },
-        { id: "d4h", time: "14:20", type: "commute", mode: "步行", name: "二重桥 → 东京站 · 约 12 分钟", lat: 35.6812, lng: 139.7671, cost: 0, detail: "沿行幸通对着红砖车站走。" },
-        { id: "d4i", time: "14:40", type: "spot", name: "东京站丸之内", spotId: "tokyo-station", cost: 0 },
-        { id: "d4j", time: "15:30", type: "spot", name: "新干线（东京站拍车头）", spotId: "shinkansen", cost: 140, detail: "想拍车头：买站台票或用已有 JR 票进新干线口，拍完出站。这次不坐去大阪。" },
-        { id: "d4k", time: "17:20", type: "commute", mode: "JR", name: "东京 → 新宿 · 约 15 分钟", lat: 35.6909, lng: 139.6995, cost: 200, detail: "中央线快速，方向高尾 / 立川。" },
-        { id: "d4l", time: "19:00", type: "meal", name: "晚饭 · 新宿", lat: 35.6902, lng: 139.7028, xhs: "新宿晚饭", cost: 2500, img: "img/spots/ginza-1.jpg", photo: "新宿", detail: "歌舞伎町可以拍红门，吃饭选连锁店。不要跟拉客。" },
-        { id: "d4m", time: "20:40", type: "hotel", name: "新宿酒店", lat: 35.6909, lng: 139.6995, detail: "还住新宿标间。明天河口湖要早起坐高速巴士。" }
+        { id: "d4a", time: "09:00", type: "commute", mode: "JR / 地铁", name: "新宿 → 浅草 · 约 30 分钟", lat: 35.7111, lng: 139.7964, cost: 200, detail: "打开 Google 地图搜「浅草」。常见：山手线到上野，换银座线到浅草。拍西瓜卡。" },
+        { id: "d4b", time: "09:40", type: "spot", name: "雷门", spotId: "kaminarimon", cost: 0 },
+        { id: "d4c", time: "10:00", type: "spot", name: "仲见世商店街", spotId: "nakamise", cost: 600 },
+        { id: "d4d", time: "10:40", type: "spot", name: "浅草寺", spotId: "sensoji", cost: 0 },
+        { id: "d4e", time: "12:00", type: "meal", name: "午饭 · 浅草天妇罗", lat: 35.7116, lng: 139.7952, xhs: "浅草天妇罗", cost: 1800, img: "img/spots/nakamise-1.jpg", photo: "浅草寺", detail: "寺附近天丼很多。不想排队就走侧巷。人均大约 1500–2000 日元。" },
+        { id: "d4f", time: "13:40", type: "commute", mode: "步行 / 地铁", name: "浅草 → 晴空塔 · 约 20 分钟", lat: 35.7101, lng: 139.8107, cost: 180, detail: "沿隅田川走能拍到塔。腿累就坐地铁到押上。" },
+        { id: "d4g", time: "14:10", type: "spot", name: "东京晴空塔", spotId: "skytree", cost: 2100 },
+        { id: "d4h", time: "17:20", type: "commute", mode: "JR", name: "押上 → 秋叶原 · 约 15 分钟", lat: 35.6984, lng: 139.7731, cost: 180, detail: "半藏门线或 JR 到秋叶原。天黑前后到，灯更亮。" },
+        { id: "d4i", time: "17:40", type: "spot", name: "秋叶原", spotId: "akihabara", cost: 0 },
+        { id: "d4j", time: "19:20", type: "meal", name: "晚饭 · 秋叶原 / 回新宿", lat: 35.6986, lng: 139.7738, xhs: "秋叶原晚饭", cost: 1600, img: "img/spots/akihabara-1.jpg", photo: "秋叶原", detail: "拉面或定食即可。也可以坐山手线回新宿再吃。" },
+        { id: "d4k", time: "20:40", type: "hotel", name: "新宿酒店", lat: 35.6909, lng: 139.6995, cost: 20000, detail: "还住新宿。" }
       ]
     },
     {
       id: 5,
-      title: "河口湖 · 富士山",
-      date: "10/11 周日",
-      stay: "新宿",
-      from: "バスタ新宿",
-      where: "河口湖、富士山观景",
-      path: "新宿高速巴士 → 河口湖 → 湖畔 / 观景 → 巴士回新宿",
+      title: "涩谷 · SKY 夜景",
+      date: "10/10 周六",
+      stay: "东京新宿",
+      from: "新宿酒店",
+      where: "明治神宫、原宿、涩谷路口、东京塔亮灯、SHIBUYA SKY 夜景",
+      path: "新宿 → 原宿明治神宫 → 竹下通 / 表参道 → 涩谷路口 → 东京塔亮灯 → 回涩谷上 SKY",
       prep: [
-        { item: "新宿 → 河口湖高速巴士往返", need: "建议提前在 Highway Bus 或 Klook 买，周日容易满", xhs: "新宿河口湖巴士" },
-        { item: "看富士山能见度预报", need: "出发前一晚看天气，云很多就改拍湖和红叶，别空跑" },
-        { item: "薄羽绒或外套、舒适鞋", need: "湖边比东京凉" }
+        { item: "SHIBUYA SKY 指定时段票", need: "必须官网提前买 10/10 晚间入场，周六夜几乎买不到当日票", xhs: "SHIBUYA SKY门票" },
+        { item: "明治神宫、竹下通、表参道、涩谷路口", need: "免费，不用预约" },
+        { item: "东京塔外观", need: "芝公园、增上寺免费拍亮灯；今晚不上塔，要赶回涩谷" },
+        { item: "薄外套", need: "SKY 屋顶风大，塔下也会凉" }
       ],
       beats: [
-        { id: "d5a", time: "07:10", type: "commute", mode: "高速巴士", name: "バスタ新宿 → 河口湖 · 约 1 小时 45 分", lat: 35.4980, lng: 138.7686, cost: 2200, detail: "新宿站南口巴士总站。对号入座。行李放车厢下。单程大约 2000–2300 日元。" },
-        { id: "d5b", time: "09:10", type: "spot", name: "富士山观景", spotId: "fuji", cost: 0, detail: "若去新仓山浅间公园，要从河口湖站再坐巴士或出租，并爬台阶。天气不好就不要硬爬。" },
-        { id: "d5c", time: "11:30", type: "spot", name: "河口湖", spotId: "kawaguchiko", cost: 0 },
-        { id: "d5d", time: "12:30", type: "meal", name: "午饭 · 河口湖", lat: 35.5175, lng: 138.7550, xhs: "河口湖午饭", cost: 1600, img: "img/spots/kawaguchiko-2.jpg", photo: "河口湖", detail: "湖边餐厅或便利店都可以。人均大约 1500 日元。" },
-        { id: "d5e", time: "15:30", type: "commute", mode: "高速巴士", name: "河口湖 → 新宿 · 约 2 小时", lat: 35.6909, lng: 139.6995, cost: 2200, detail: "回程也提前订。周日晚高峰可能堵车，预留量。" },
-        { id: "d5f", time: "18:00", type: "meal", name: "晚饭 · 新宿", lat: 35.6906, lng: 139.7005, xhs: "新宿拉面", cost: 1400, img: "img/spots/gyoen-2.jpg", photo: "新宿", detail: "回酒店附近随便吃。明天可能返程，不要喝太晚。" },
-        { id: "d5g", time: "20:00", type: "hotel", name: "新宿酒店 · 收拾行李", lat: 35.6909, lng: 139.6995, detail: "今晚仍计一晚标间。明天 10/12 周一退房。护照、充电宝放随身包。" }
+        { id: "d5a", time: "09:20", type: "commute", mode: "JR", name: "新宿 → 原宿 · 约 6 分钟", lat: 35.6702, lng: 139.7027, cost: 160, detail: "山手线一站到原宿，出明治神宫口。" },
+        { id: "d5b", time: "09:30", type: "spot", name: "明治神宫", spotId: "meiji", cost: 0 },
+        { id: "d5c", time: "11:00", type: "spot", name: "竹下通", spotId: "takeshita", cost: 800 },
+        { id: "d5d", time: "12:00", type: "meal", name: "午饭 · 原宿 / 表参道", lat: 35.6688, lng: 139.7068, xhs: "原宿午饭", cost: 1600, img: "img/spots/omotesando-1.jpg", photo: "表参道", detail: "可丽饼当垫饥的话，正餐去表参道点定食。人均大约 1500 日元。" },
+        { id: "d5e", time: "13:20", type: "spot", name: "表参道", spotId: "omotesando", cost: 0 },
+        { id: "d5f", time: "14:20", type: "commute", mode: "地铁", name: "表参道 → 涩谷 · 约 10 分钟", lat: 35.6595, lng: 139.7004, cost: 170, detail: "银座线一站到涩谷。" },
+        { id: "d5g", time: "14:40", type: "spot", name: "涩谷十字路口 · 中心街", spotId: "shibuya", cost: 0, detail: "先在地面拍路口和八公。晚上还要再回来上 SKY，这里不要耗太久。拍得慢就丢掉竹下通。" },
+        { id: "d5h", time: "16:00", type: "commute", mode: "地铁", name: "涩谷 → 赤羽桥 / 神谷町 · 约 20 分钟", lat: 35.6586, lng: 139.7454, cost: 220, detail: "去东京塔拍亮灯。Google 地图搜 Tokyo Tower。尽量 16:20 前到增上寺。" },
+        { id: "d5i", time: "16:30", type: "spot", name: "东京塔亮灯", spotId: "tokyo-tower", cost: 0, detail: "增上寺山门框东京塔，再去芝公园拍全塔。不上展望台。17:40 前离开，赶回涩谷。" },
+        { id: "d5j", time: "17:50", type: "commute", mode: "地铁", name: "东京塔 → 涩谷 · 约 20 分钟", lat: 35.6584, lng: 139.7022, cost: 220, detail: "回 Scramble Square。对一下 SKY 入场时段，迟到可能作废。" },
+        { id: "d5k", time: "18:20", type: "meal", name: "晚饭 · 涩谷", lat: 35.6590, lng: 139.7015, xhs: "涩谷晚饭", cost: 2200, img: "img/spots/shibuya-2.jpg", photo: "涩谷", detail: "在涩谷吃，不要跑远。人均大约 2000 日元。吃完去 SKY。" },
+        { id: "d5l", time: "19:40", type: "spot", name: "SHIBUYA SKY 夜景", spotId: "shibuya-sky", cost: 2500 },
+        { id: "d5m", time: "21:30", type: "commute", mode: "JR", name: "涩谷 → 新宿 · 约 8 分钟", lat: 35.6909, lng: 139.6995, cost: 160, detail: "山手线一站。屋顶风大，回酒店就休息。" },
+        { id: "d5n", time: "21:50", type: "hotel", name: "新宿酒店", lat: 35.6909, lng: 139.6995, cost: 20000, detail: "还住新宿。明天都心，周日银座常有步行者天国。" }
       ]
     },
     {
       id: 6,
-      title: "新宿收尾 · 返程",
+      title: "筑地 · 银座 · 皇居",
+      date: "10/11 周日",
+      stay: "东京新宿",
+      from: "新宿酒店",
+      where: "筑地、银座步行者天国、皇居、东京站",
+      path: "新宿 → 筑地早饭 → 银座 → 皇居二重桥 → 东京站 → 回新宿",
+      prep: [
+        { item: "筑地、银座、皇居外苑、东京站外观", need: "免费逛" },
+        { item: "银座周日步行者天国", need: "今天周日，中央通白天常封路，适合慢慢拍" }
+      ],
+      beats: [
+        { id: "d6a", time: "08:10", type: "commute", mode: "地铁", name: "新宿 → 筑地 · 约 30 分钟", lat: 35.6654, lng: 139.7707, cost: 220, detail: "去场外市场，不要去丰洲。" },
+        { id: "d6b", time: "08:40", type: "spot", name: "筑地场外市场", spotId: "tsukiji", cost: 0 },
+        { id: "d6c", time: "08:50", type: "meal", name: "早饭 · 筑地寿司 / 海鲜丼", lat: 35.6652, lng: 139.7704, xhs: "筑地早饭 寿司", cost: 2800, img: "img/spots/tsukiji-1.jpg", photo: "筑地市场", detail: "这顿当早午饭。人均 2500–4000 日元。先问能不能拍照。" },
+        { id: "d6d", time: "10:40", type: "commute", mode: "步行", name: "筑地 → 银座 · 约 15 分钟", lat: 35.6712, lng: 139.7649, cost: 0, detail: "沿晴海通往西走。" },
+        { id: "d6e", time: "11:00", type: "spot", name: "银座", spotId: "ginza", cost: 0 },
+        { id: "d6f", time: "13:00", type: "commute", mode: "地铁", name: "银座 → 二重桥前 · 约 10 分钟", lat: 35.6802, lng: 139.7544, cost: 170, detail: "去皇居外苑。" },
+        { id: "d6g", time: "13:20", type: "spot", name: "皇居外苑 · 二重桥", spotId: "imperial", cost: 0 },
+        { id: "d6h", time: "14:20", type: "commute", mode: "步行", name: "二重桥 → 东京站 · 约 12 分钟", lat: 35.6812, lng: 139.7671, cost: 0, detail: "沿行幸通对着红砖车站走。" },
+        { id: "d6i", time: "14:40", type: "spot", name: "东京站丸之内", spotId: "tokyo-station", cost: 0 },
+        { id: "d6j", time: "17:20", type: "commute", mode: "JR", name: "东京 → 新宿 · 约 15 分钟", lat: 35.6909, lng: 139.6995, cost: 200, detail: "中央线快速，方向高尾 / 立川。" },
+        { id: "d6k", time: "19:00", type: "meal", name: "晚饭 · 新宿", lat: 35.6902, lng: 139.7028, xhs: "新宿晚饭", cost: 2500, img: "img/spots/ginza-1.jpg", photo: "新宿", detail: "歌舞伎町可以拍红门，吃饭选连锁店。不要跟拉客。" },
+        { id: "d6l", time: "20:40", type: "hotel", name: "新宿酒店 · 收拾行李", lat: 35.6909, lng: 139.6995, cost: 20000, detail: "明天 10/12 周一 15:05 成田起飞。今晚买好手信。护照、充电宝放随身包。" }
+      ]
+    },
+    {
+      id: 7,
+      title: "成田返程",
       date: "10/12 周一",
       stay: "回北京",
       from: "新宿酒店",
-      where: "都厅或药妆，再去机场",
-      path: "退房 → 都厅 / 买手信 → 利木津或 JR 去羽田 / 成田",
+      where: "早饭后去成田，15:05 起飞",
+      path: "早退 → 成田特快或利木津去成田国际机场 → 15:05 回国",
       prep: [
-        { item: "新宿御苑周一休园", need: "今天不要去御苑；想去请提前换到其他天" },
-        { item: "回程机票 + 机场交通", need: "羽田留 3 小时，成田留 4 小时" },
-        { item: "液体、充电宝", need: "按登机规定装好" }
+        { item: "回程机票 15:05 成田（NRT）", need: "已订。国际航班提前 4 小时到场，最晚 11:00 前到航站楼", xhs: "新宿去成田机场" },
+        { item: "新宿御苑周一休园", need: "今天不要去御苑，也来不及上都厅" },
+        { item: "液体、充电宝", need: "按登机规定装好。药妆昨天买完，今天不要再大采购" }
       ],
       beats: [
-        { id: "d6a", time: "09:00", type: "hotel", name: "新宿酒店退房", lat: 35.6909, lng: 139.6995, checkout: true, detail: "今天退房，不再计房费。行李自己带；下午飞机可以先寄存在酒店或车站，中午前再取。" },
-        { id: "d6b", time: "09:20", type: "spot", name: "都厅展望室", spotId: "tmg", cost: 0, detail: "白天也能看。时间紧就改去药妆。" },
-        { id: "d6c", time: "10:30", type: "spot", name: "药妆 / 唐吉诃德", lat: 35.6912, lng: 139.7026, xhs: "新宿唐吉诃德 退税", cost: 0, img: "img/spots/shibuya-1.jpg", photo: "新宿", detail: "护照退税。不要买到来不及托运。" },
-        { id: "d6d", time: "12:00", type: "meal", name: "午饭 · 新宿", lat: 35.6900, lng: 139.7020, xhs: "新宿午饭", cost: 1200, img: "img/spots/tmg-2.jpg", photo: "新宿", detail: "吃完就去机场。不要订太晚的饭。" },
-        { id: "d6e", time: "13:00", type: "commute", mode: "利木津 / JR", name: "新宿 → 羽田或成田", lat: 35.5494, lng: 139.7798, cost: 1500, detail: "优先利木津巴士，行李放车下。的士贵，赶时间再打。" }
+        { id: "d7a", time: "08:00", type: "hotel", name: "新宿酒店退房", lat: 35.6909, lng: 139.6995, checkout: true, detail: "今天退房，不再计房费。行李自己带去成田。护照、登机牌、充电宝放随身包。" },
+        { id: "d7b", time: "08:20", type: "meal", name: "早饭 · 便利店 / 酒店", lat: 35.6900, lng: 139.7000, xhs: "新宿早饭", cost: 800, img: "img/spots/tmg-2.jpg", photo: "新宿", detail: "便利店饭团即可。不要坐下来慢慢吃。" },
+        { id: "d7c", time: "09:10", type: "commute", mode: "成田特快", name: "新宿 → 成田机场 · 约 80–90 分钟", lat: 35.7720, lng: 140.3929, cost: 3270, detail: "优先 JR 成田特快（N'EX）新宿直达。行李放指定车厢。没有票就改利木津巴士。15:05 起飞，11:00 前必须到航站楼。" }
       ]
+    }
+  ],
+  extraDays: [
+    {
+      title: "多玩 1 天 · 镰仓",
+      when: "把返程改到 10/13，或压缩东京市内一天",
+      where: "鹤冈八幡宫、小町通、江之电看海",
+      why: "从新宿 JR 约 1 小时。寺庙、海岸和江之电是关东和都心完全不同的一层。这次不去乐园，多出来的整天更适合海边古都。",
+      cost: "交通约 1800 日元 / 人；若延后返程再加一晚酒店约 960 元 / 间"
     }
   ]
 };

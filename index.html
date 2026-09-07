@@ -17,7 +17,7 @@
         <strong>日本之行</strong>
       </div>
       <nav class="side-nav">
-        <a href="#plan" data-panel="plan"><span class="idx">01</span><span class="nav-label">六日行程</span></a>
+        <a href="#plan" data-panel="plan"><span class="idx">01</span><span class="nav-label">七日行程</span></a>
         <a href="#spots" data-panel="spots"><span class="idx">02</span><span class="nav-label">打卡点</span></a>
         <a href="#atlas" data-panel="atlas"><span class="idx">03</span><span class="nav-label">地图</span></a>
         <a href="#notes" data-panel="notes"><span class="idx">04</span><span class="nav-label">注意事项</span></a>
@@ -32,18 +32,20 @@
         <div class="wrap">
           <div class="section-head plan-head">
             <div>
-              <h2>六日行程</h2>
+              <h2>七日行程</h2>
               <div class="trip-budget" id="trip-budget"></div>
             </div>
             <div class="filters" id="day-tabs"></div>
           </div>
           <div class="trip-dates">
-            <span>10/06 出发入住</span>
-            <span>10/07–12 六天</span>
-            <span>10/12 上午收尾、返程</span>
-            <span>新宿住 6 晚</span>
+            <span>大阪进 · 东京出</span>
+            <span>10/05 周一 19:20 关西抵达</span>
+            <span>10/05–12 七日</span>
+            <span>10/12 周一 15:05 成田返程</span>
+            <span>难波 3 晚 + 新宿 4 晚</span>
             <span>2 人</span>
           </div>
+          <div class="extra-days" id="extra-days"></div>
           <div class="day-overview" id="day-overview"></div>
           <div class="beat-detail" id="beat-detail"></div>
           <div class="plan-board">
@@ -60,7 +62,7 @@
           <div class="section-head solo">
             <div>
               <h2>打卡点</h2>
-              <p>按第几天分组。卡片上直接出图，点开还能看说明和小红书。最后一组是备选，不要硬塞进同一周。</p>
+              <p>按第几天分组。大阪、奈良、京都、东京的主线在前，灰色组是备选和附加天，不要硬塞进同一周。</p>
             </div>
           </div>
           <div class="spot-board" id="spot-board"></div>
@@ -72,19 +74,20 @@
           <div class="section-head solo">
             <div>
               <h2>打卡点地图</h2>
-              <p>东京、舞浜、河口湖、伊豆都在这一张图上。图钉按第几天上色，角上标了 DAY；灰色是备选。大阪环球影城太远不标在这张图上。点右侧名单可以放大。</p>
+              <p>大阪、奈良、京都、东京都在这一张图上。图钉按第几天上色；灰色是备选。这次不去富士山和河口湖。点右侧名单可以放大。</p>
             </div>
           </div>
           <div class="atlas-panel">
             <div class="atlas-map" id="leaflet-map" role="img" aria-label="景点位置地图"></div>
             <div class="atlas-side">
               <div class="atlas-legend">
-                <span><i class="pin-key day-d1"></i>DAY 01</span>
-                <span><i class="pin-key day-d2"></i>DAY 02</span>
-                <span><i class="pin-key day-d3"></i>DAY 03</span>
-                <span><i class="pin-key day-d4"></i>DAY 04</span>
-                <span><i class="pin-key day-d5"></i>DAY 05</span>
-                <span><i class="pin-key day-d6"></i>DAY 06</span>
+                <span><i class="pin-key day-d1"></i>DAY 01 · 10/06</span>
+                <span><i class="pin-key day-d2"></i>DAY 02 · 10/07</span>
+                <span><i class="pin-key day-d3"></i>DAY 03 · 10/08</span>
+                <span><i class="pin-key day-d4"></i>DAY 04 · 10/09</span>
+                <span><i class="pin-key day-d5"></i>DAY 05 · 10/10</span>
+                <span><i class="pin-key day-d6"></i>DAY 06 · 10/11</span>
+                <span><i class="pin-key day-d7"></i>DAY 07 · 10/12</span>
                 <span><i class="pin-key day-opt"></i>备选</span>
               </div>
               <div class="atlas-list" id="atlas-list"></div>
@@ -118,33 +121,33 @@
           <div class="guide">
             <article class="guide-card" id="note-when">
               <h3>这次怎么排</h3>
-              <p class="prep-lead"><strong>先定这三件事：</strong>两个人、玩六天、10 月 6–12 日前后出门。6 号入住、12 号返程。完整的游玩日是 10/07–11，第 6 天（12 号）只能上午轻逛再去机场。</p>
+              <p class="prep-lead"><strong>先定这三件事：</strong>两个人、机票已订、大阪进东京出。<strong>10/05 周一 19:20</strong> 到关西国际机场（KIX），住难波；<strong>10/12 周一 15:05</strong> 从成田国际机场（NRT）回国。完整游玩日是 10/06–11，返程那天只能早饭后去机场。这次不去富士山、河口湖。</p>
               <ul>
-                <li><strong>10/06 周二：</strong>北京飞东京。当天只做入境、去新宿酒店、便利店吃饭睡觉。不要排景点。</li>
-                <li><strong>10/07 周三 · DAY 01：</strong>浅草寺、仲见世、晴空塔、秋叶原夜景。熟悉地铁和西瓜卡。</li>
-                <li><strong>10/08 周四 · DAY 02：</strong>明治神宫、原宿、涩谷十字路口、东京塔亮灯。这一天点很多，拍得慢就丢掉竹下通。</li>
-                <li><strong>10/09 周五 · DAY 03：</strong>东京迪士尼海洋一整天。放在平日，比周末好排；地中海港湾比乐园更好拍。</li>
-                <li><strong>10/10 周六 · DAY 04：</strong>筑地早饭、银座、皇居、东京站，顺路拍新干线车头。</li>
-                <li><strong>10/11 周日 · DAY 05：</strong>新宿高速巴士去河口湖拍富士。看预报，云挡住就改拍湖，不要空等。</li>
-                <li><strong>10/12 周一 · DAY 06：</strong>退房、都厅或药妆，再去机场。新宿御苑周一休园，这天别去。伊豆更去不成。</li>
+                <li><strong>10/05 周一：</strong>19:20 抵达关西机场。出关、取行李、南海电车或机场巴士去难波，大约 22:00 到酒店。便利店吃饭睡觉，不要排景点。</li>
+                <li><strong>DAY 01 · 10/06 周二：</strong>大阪城公园、心斋桥、道顿堀夜景。熟悉关西地铁和西瓜卡 / ICOCA。</li>
+                <li><strong>DAY 02 · 10/07 周三：</strong>近铁去奈良：奈良公园、东大寺。晚上回难波收拾行李。</li>
+                <li><strong>DAY 03 · 10/08 周四：</strong>早退，白天伏见稻荷、清水寺；大件放京都站寄物柜。傍晚从京都站坐巴士去伊丹，晚上飞羽田，晚到新宿。</li>
+                <li><strong>DAY 04 · 10/09 周五：</strong>浅草寺、仲见世、晴空塔、秋叶原夜景。</li>
+                <li><strong>DAY 05 · 10/10 周六：</strong>明治神宫、原宿、涩谷十字路口、东京塔亮灯，晚上回涩谷上 SHIBUYA SKY。点很多，拍得慢就丢掉竹下通，不要丢掉 SKY。</li>
+                <li><strong>DAY 06 · 10/11 周日：</strong>筑地早饭、银座（周日常有步行者天国）、皇居、东京站。晚上买手信、收拾行李。</li>
+                <li><strong>DAY 07 · 10/12 周一：</strong>早退，约 09:10 从新宿坐成田特快去成田。15:05 起飞。新宿御苑周一休园，都厅也来不及。</li>
               </ul>
-              <h4>为什么没全部塞进这 6 天</h4>
+              <h4>为什么这样排、什么没塞进来</h4>
               <ul>
-                <li><strong>大阪环球影城</strong>在大阪，去了就要砍掉河口湖或海洋，留到下次跑关西。</li>
-                <li><strong>乐园和海洋</strong>各要一整天，票不能混用。主线留海洋；想逛城堡就对调，不要两天都去。</li>
-                <li><strong>河口湖和伊豆</strong>方向相反，各要一整天。主线去河口湖。想看海或坐新干线，把第 5 天改成伊豆（东京→热海→伊豆急行）。</li>
-                <li>兵库的<strong>城崎温泉</strong>要过夜。海边拍照对应的是伊豆<strong>城ヶ崎海岸</strong>，和大室山同一天。</li>
-                <li>住新宿 6 晚，不换酒店。主线不去大阪，新干线只在东京站拍车头。</li>
+                <li>关西先玩大阪、奈良，第三天<strong>白天京都、晚上伊丹飞羽田</strong>。东京三条摄影轴：浅草、涩谷、都心。</li>
+                <li><strong>富士山 / 河口湖</strong>从东京出发要一整天，和大阪进这条线方向相反，这次删掉。</li>
+                <li><strong>大阪环球影城、东京迪士尼</strong>这次不去。主题乐园各要一整天，留给以后单独排。</li>
+                <li>住两家酒店：<strong>大阪难波 3 晚</strong>（10/05–08）+ <strong>东京新宿 4 晚</strong>（10/08–12）。DAY 03 箱子放京都站寄物柜，晚上在伊丹托运。</li>
               </ul>
               <h4>出发前按周倒推</h4>
               <ol class="prep-timeline">
-                <li><strong>出发前 6–8 周</strong><span>准备签证材料、订往返机票、订新宿酒店。没有酒店和机票预订单，签证很难递。</span></li>
-                <li><strong>出发前 4–6 周</strong><span>把签证交到指定旅行社。单次旅游签常要 5–10 个工作日，旺季更慢，不要卡着出发日。</span></li>
-                <li><strong>出发前 2 个月当天</strong><span>迪士尼门票开售，设闹钟买 10/09 东京迪士尼海洋票。晴空塔也可开始盯。</span></li>
-                <li><strong>出发前 1–2 周</strong><span>买新宿 ↔ 河口湖高速巴士（周日容易满）；买 eSIM 或开通漫游；换一部分日元现金；确认信用卡能在境外刷。</span></li>
+                <li><strong>出发前 6–8 周</strong><span>准备签证材料、订「去程关西、回程东京」机票、订难波 3 晚 + 新宿 4 晚。没有酒店和机票预订单，签证很难递。</span></li>
+                <li><strong>出发前 4–6 周</strong><span>把签证交到指定旅行社。单次旅游签常要 5–10 个工作日，旺季更慢。</span></li>
+                <li><strong>出发前 2 个月当天</strong><span>晴空塔、SHIBUYA SKY 指定时段票开售就盯。SKY 买 10/10 晚间；这次不买乐园票。</span></li>
+                <li><strong>出发前 1–2 周</strong><span>买伊丹→羽田<strong>晚班机</strong>（建议 19:00 以后起飞的 ANA / JAL）；买 eSIM 或开通漫游；换一部分日元现金；确认信用卡能在境外刷。</span></li>
                 <li><strong>出发前 7 天</strong><span>按下面的 App 清单装好并登录；护照、签证页拍照备份到网盘。</span></li>
-                <li><strong>出发前 1 天</strong><span>填 Visit Japan Web；查航班值机；充电宝、转换头、药品装进随身包。看一眼富士山能见度趋势。</span></li>
-                <li><strong>出发当天</strong><span>护照、签证、身份证、手机、耳机、外套手拿。托运前再看一遍液体和充电宝。</span></li>
+                <li><strong>出发前 1 天</strong><span>填 Visit Japan Web（第一晚填大阪酒店地址）；查航班值机；充电宝、转换头、药品装进随身包。</span></li>
+                <li><strong>出发当天</strong><span>护照、签证、身份证、手机、耳机、外套手拿。托运前再看一遍液体和充电宝。航班 19:20 到关西，按航司值机时间出门。</span></li>
               </ol>
             </article>
 
@@ -174,7 +177,7 @@
                   <tr><td>身份证</td><td>正反面复印在一张 A4 上</td></tr>
                   <tr><td>户口本</td><td>整本复印，含空白页；集体户提供首页 + 本人页</td></tr>
                   <tr><td>机票预订单</td><td>往返姓名与护照英文一致；可先占位不出票，问代办要不要已出票</td></tr>
-                  <tr><td>酒店预订单</td><td>覆盖在日每一晚；两人同住一间即可，姓名都要写上</td></tr>
+                  <tr><td>酒店预订单</td><td>覆盖在日每一晚：大阪难波 10/05–08、东京新宿 10/08–12；两人姓名都要写上</td></tr>
                   <tr><td>在职证明</td><td>公司抬头纸、公章，写姓名、职位、入职时间、年收入、出行时间、准假及保证回国</td></tr>
                   <tr><td>营业执照复印件</td><td>公司加盖公章</td></tr>
                   <tr><td>银行流水</td><td>近 6 个月工资卡流水，银行盖章；能看出稳定工资最好</td></tr>
@@ -220,24 +223,24 @@
                   <tr><td>翻译（Google 翻译或系统翻译）</td><td>菜单、路牌、店员说话。对着菜单拍照翻译即可</td></tr>
                   <tr><td>钱包（iPhone）</td><td>添加交通卡 Suica，当西瓜卡用。安卓国行多数加不了，落地买实体卡</td></tr>
                   <tr><td>支付宝 / 微信</td><td>便利店、药妆、连锁店扫码。小店可能只收现金，别当唯一付款方式</td></tr>
-                  <tr><td>东京迪士尼度假区官方 App</td><td>海洋当天看排队、园内地图、演出时间。门票在官网买，App 里绑定</td></tr>
                   <tr><td>航司 App</td><td>值机、登机牌、航班变动</td></tr>
                 </tbody>
               </table>
               <ul>
-                <li>河口湖巴士在 Highway Bus 或 Klook 网页买即可，不必再装一个 App。</li>
-                <li>不用下东京地铁专用 App，Google 地图够用。<strong>不要买全国 JR Pass。</strong></li>
+                <li>国内机票在航司 App 值机。伊丹、羽田都按国内航班走，仍要带护照。</li>
+                <li>不用下东京地铁专用 App，Google 地图够用。<strong>不要买全国 JR Pass</strong>（这次城际是飞机，Pass 用不上）。</li>
               </ul>
             </article>
 
             <article class="guide-card" id="note-travel">
               <h3>市内出行</h3>
-              <p class="prep-lead"><strong>东京主要靠 JR 和地铁，对你们来说都是拍西瓜卡坐车。</strong>流程就这一套：打开 Google 地图搜目的地 → 选「地铁」（里面会含 JR）→ 看线路颜色和几号出口 → 进闸拍卡，出闸再拍一次。</p>
+              <p class="prep-lead"><strong>关西拍 ICOCA 或西瓜卡都能坐；东京同样刷这张卡。</strong>流程：打开 Google 地图搜目的地 → 选「地铁」→ 看线路颜色和几号出口 → 进闸拍卡，出闸再拍一次。</p>
               <ul>
-                <li><strong>JR</strong>是铁路公司（这次常见山手线、中央线、京叶线），多半在地面或高架，连新宿、涩谷、东京站、舞浜。</li>
-                <li><strong>地铁</strong>是东京地铁和都营地下铁（银座线、日比谷线等），多半在地下，去浅草、筑地、赤羽桥常用。</li>
-                <li>大站里 JR 和地铁有时要换闸机，跟着地图和色条走。走错车下一站回头即可。</li>
-                <li>机场往返新宿：出关后坐<strong>利木津巴士</strong>最省心，行李放车下。不要跟大厅搭讪的人叫车。</li>
+                <li>关西机场到难波：出关后优先<strong>南海电车</strong>或机场巴士，行李放车下 / 行李架。10/05 19:20 抵达，出关后大约还要 1 小时，别指望当天再逛。不要跟大厅搭讪的人叫车。</li>
+                <li>大阪市内常见御堂筋线（红）、JR 环状线。去奈良坐近铁。京都一天用 JR + 巴士。</li>
+                <li><strong>大阪 → 东京</strong>：DAY 03 白天先去京都，傍晚从<strong>京都站八条口</strong>坐大阪机场巴士到伊丹（ITM），晚上飞羽田（HND）。机票订 19:00 以后。不要订关西机场出发，也不要订下午航班。</li>
+                <li>东京主要靠 JR 和地铁。JR 多半地面高架（山手、中央）；地铁多半地下（银座线等）。大站里有时要换闸机。</li>
+                <li>返程：<strong>10/12 15:05 成田国际机场（NRT）</strong>起飞。新宿坐 JR 成田特快（N'EX）约 80–90 分钟，或利木津巴士。国际航班提前 4 小时到场，约 09:10 从酒店出发。</li>
                 <li>电车里手机静音，背包转到身前。不要买全国 JR Pass。</li>
               </ul>
               <h4>怎么办理西瓜卡（Suica）</h4>
@@ -246,6 +249,7 @@
                   <a class="xhs-inline" href="https://www.xiaohongshu.com/search_result?keyword=iPhone%E8%A5%BF%E7%93%9C%E5%8D%A1" target="_blank" rel="noreferrer">小红书</a>
                 </li>
                 <li><strong>安卓：</strong>国行手机大多加不了官方西瓜卡。落地在机场或 JR 售票机买 Welcome Suica / 普通西瓜卡，现金买、便利店现金充。</li>
+                <li>关西也能刷西瓜卡。落地关西机场也可以买 ICOCA，和 Suica 在这次行程里通用。</li>
                 <li>两人各办一张，先充 <strong>3000–5000 日元 / 人</strong>。进闸拍一下，出闸再拍一下；没拍出不去，找补票机或站员。</li>
                 <li>过闸用手机顶部或卡片贴近感应区。Welcome Suica 通常不退余额，花完即可；有押金的实体卡回机场可以退。</li>
               </ul>
@@ -257,18 +261,18 @@
               <ul>
                 <li>内地银行先换 <strong>4–6 万日元</strong>应急。带 1–2 张能境外刷的 Visa / Mastercard，出发前打开境外交易。</li>
                 <li>便利店、药妆能扫支付宝 / 微信；小店、部分拉面只收<strong>现金</strong>。地铁拍西瓜卡。</li>
-                <li>两人玩乐吃饭交通大约 <strong>4100 元</strong>，新宿标间 6 晚大约 <strong>5760 元 / 间</strong>，两人全程大约 <strong>9900 元</strong>（不含机票）。页面按人民币估算，「/ 间」是整间房价。</li>
+                <li>两人玩乐吃饭交通大约 <strong>含一程伊丹→羽田机票</strong>，页面按人民币估算；住宿是难波 3 晚 + 新宿 4 晚标间。</li>
               </ul>
             </article>
 
             <article class="guide-card" id="note-stay">
               <h3>住宿</h3>
-              <p class="prep-lead"><strong>出发前要准备：</strong>订新宿 10/06 入住、10/12 退房，共 6 晚；订单姓名和护照一致；带能转日本两脚扁插的转换头。</p>
+              <p class="prep-lead"><strong>出发前要准备：</strong>订大阪难波 10/05 入住、10/08 退房（3 晚）+ 东京新宿 10/08 入住、10/12 退房（4 晚）；订单姓名和护照一致；带能转日本两脚扁插的转换头。</p>
               <ul>
-                <li>住<strong>新宿</strong> 6 晚，站步行 8 分钟内。西口安静，东口热闹。</li>
-                <li>标间按商务酒店<strong>双床</strong>估：一晚大约 2 万日元（约 <strong>960 元 / 间</strong>），6 晚大约 <strong>5760 元 / 间</strong>，两人分摊人均约 2880 元。含税常见这个区间，含早或更近车站会更高。</li>
-                <li>入住约 15:00，退房约 11:00。前台要两本护照。插座是 <strong>A 型两扁脚、100V</strong>，带转换头。</li>
-                <li>10/12 退房后行李自己带去机场。不要把汤倒进马桶。</li>
+                <li>关西住<strong>难波 / 心斋桥</strong>步行 8 分钟内，方便道顿堀，去奈良也近。东京住<strong>新宿</strong>，西口安静，东口热闹。</li>
+                <li>标间按商务酒店<strong>双床</strong>估：大阪一晚大约 1.8 万日元，东京一晚大约 2 万日元。7 晚两人一间，页面花销已计入。</li>
+                <li>DAY 03 早退，大件放京都站寄物柜，晚上伊丹托运、羽田取。提前告诉新宿酒店大约 22:30 到。入住约 15:00，退房约 11:00。前台要两本护照。插座是 <strong>A 型两扁脚、100V</strong>。</li>
+                <li>10/12 早退，行李自己带去成田。不要把汤倒进马桶。</li>
               </ul>
             </article>
 
@@ -277,7 +281,7 @@
               <p class="prep-lead"><strong>出发前要准备：</strong>落地立刻能上网；转换头、充电宝、运动鞋、薄外套、常用药。</p>
               <ul>
                 <li>落地立刻要有网：运营商日包、eSIM 或 WiFi 蛋，选一种。主卡关掉数据漫游。</li>
-                <li>10 月白天大约 18–24°C，早晚凉。短袖 + 薄外套；湖边和海洋再加一件。可能下雨，带伞。</li>
+                <li>10 月白天大约 18–24°C，早晚凉。短袖 + 薄外套；奈良和京都再加一件。可能下雨，带伞。</li>
                 <li>日均 1.5–2 万步，穿已经穿过的运动鞋。带充电宝、转换头、常用药。</li>
               </ul>
             </article>
@@ -288,7 +292,7 @@
               <ul>
                 <li>电车保持安静。不边走边吃。垃圾自己拿着，不给小费。</li>
                 <li>寺庙走侧面，参拜学旁边的人。歌舞伎町不要跟拉客。</li>
-                <li>走散了约「新宿东口阿尔塔前」或酒店大堂。报警 110，急救 119。</li>
+                <li>走散了：大阪约「难波站东出口」或酒店大堂；东京约「新宿东口阿尔塔前」。报警 110，急救 119。</li>
               </ul>
               <table class="guide-table phrase-table">
                 <thead>
