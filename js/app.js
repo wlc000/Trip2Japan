@@ -628,33 +628,6 @@ function renderTripBudget() {
   `;
 }
 
-function renderExtraDays() {
-  const el = document.getElementById("extra-days");
-  if (!el) return;
-  const list = TRIP.extraDays || [];
-  if (!list.length) {
-    el.innerHTML = "";
-    return;
-  }
-  el.innerHTML = `
-    <h3>如果能多玩 1 天</h3>
-    <p>主线是 10/05 启程、10/12 返程。下面是机票或酒店能再改时的加一天选项，不要塞进现有七天。</p>
-    <div class="extra-grid">
-      ${list
-        .map(
-          (item) => `
-        <article class="extra-card">
-          <h4>${item.title}</h4>
-          <p class="extra-when">${item.when}</p>
-          <p>${item.why}</p>
-          <small>${item.where} · ${item.cost}</small>
-        </article>`
-        )
-        .join("")}
-    </div>
-  `;
-}
-
 function renderDays() {
   const day = currentDay();
   if (!activeBeatId || !day.beats.some((b) => b.id === activeBeatId)) {
@@ -662,7 +635,6 @@ function renderDays() {
   }
   renderDayTabs();
   renderTripBudget();
-  renderExtraDays();
   renderDayOverview();
   renderBeatDetail();
   renderPlanTable();
