@@ -29,29 +29,34 @@
 
     <main class="stage">
       <section class="panel is-on" id="plan">
-        <div class="wrap">
-          <div class="section-head plan-head">
-            <div>
-              <h2>七日行程</h2>
-              <div class="trip-budget" id="trip-budget"></div>
+        <div class="wrap plan-wrap">
+          <div class="plan-layout">
+            <div class="plan-main">
+              <div class="day-overview" id="day-overview"></div>
+              <div class="plan-board">
+                <div class="plan-table-wrap">
+                  <table class="plan-table" id="plan-table"></table>
+                </div>
+                <div class="plan-map-stack">
+                  <div class="plan-map" id="plan-map" role="img" aria-label="当日路线地图"></div>
+                  <div class="beat-detail" id="beat-detail"></div>
+                </div>
+              </div>
+              <div class="plan-notes">
+                <div id="day-notes"></div>
+              </div>
             </div>
-            <div class="filters" id="day-tabs"></div>
-          </div>
-          <div class="trip-dates">
-            <span>大阪进 · 东京出</span>
-            <span>10/05 周一 19:20 关西抵达</span>
-            <span>10/05–12 七日</span>
-            <span>10/12 周一 15:05 成田返程</span>
-            <span>本町彩鸿 4 晚 + MW Hotel 3 晚</span>
-            <span>2 人</span>
-          </div>
-          <div class="day-overview" id="day-overview"></div>
-          <div class="beat-detail" id="beat-detail"></div>
-          <div class="plan-board">
-            <div class="plan-table-wrap">
-              <table class="plan-table" id="plan-table"></table>
-            </div>
-            <div class="plan-map" id="plan-map" role="img" aria-label="当日路线地图"></div>
+            <aside class="plan-side">
+              <div class="plan-side-head">
+                <p class="plan-kicker">
+                  <span>大阪进 · 东京出</span>
+                  <span>10/05 19:20 关西抵达</span>
+                  <span>10/09 07:45 关西飞成田</span>
+                  <span>10/12 15:05 成田返程</span>
+                </p>
+              </div>
+              <nav class="day-tabs" id="day-tabs" aria-label="按天切换行程"></nav>
+            </aside>
           </div>
         </div>
       </section>
@@ -109,6 +114,7 @@
               <button class="chip" type="button" data-scroll="note-apps">App</button>
               <button class="chip" type="button" data-scroll="note-travel">出行</button>
               <button class="chip" type="button" data-scroll="note-pay">支付</button>
+              <button class="chip" type="button" data-scroll="trip-budget">花销</button>
               <button class="chip" type="button" data-scroll="note-stay">住宿</button>
               <button class="chip" type="button" data-scroll="note-kit">装备</button>
               <button class="chip" type="button" data-scroll="note-manner">礼仪</button>
@@ -120,20 +126,20 @@
           <div class="guide">
             <article class="guide-card" id="note-when">
               <h3>这次怎么排</h3>
-              <p class="prep-lead"><strong>先定这三件事：</strong>两个人、机票已订、大阪进东京出。<strong>10/05 周一 19:20</strong> 到关西国际机场（KIX），住大阪本町彩鸿酒店；<strong>10/12 周一 15:05</strong> 从成田国际机场（NRT）回国。完整游玩日是 10/06–11，返程那天只能早饭后去机场。这次不去富士山、河口湖。</p>
+              <p class="prep-lead"><strong>先定这三件事：</strong>两个人、机票已订、大阪进东京出。<strong>10/05 周一 19:20</strong> 到关西国际机场（KIX），住大阪本町彩鸿酒店；<strong>10/09 周五 07:45</strong> 关西飞成田，<strong>09:15</strong> 到；<strong>10/12 周一 15:05</strong> 从成田国际机场（NRT）回国。完整游玩日是 10/06–11，返程那天只能早饭后去机场。这次不去富士山、河口湖。</p>
               <ul>
                 <li><strong>10/05 周一：</strong>19:20 抵达关西机场。出关、取行李、南海电车到难波，换御堂筋线到本町，大约 22:30 到大阪本町彩鸿酒店。不困就下楼去心斋桥、道顿堀拍固力果、逛还开着的药妆；困了便利店吃饭睡觉。固力果以 DAY 01 晚上那一次为准，不要两晚占同一个机位。</li>
                 <li><strong>DAY 01 · 10/06 周二：</strong>大阪市区 citywalk：大阪城公园（不上天守）→ 四天王寺 → 通天阁 / 新世界午饭 → 难波八阪狮子头 → 黑门市场 → 心斋桥药妆 → 道顿堀夜景。熟悉关西地铁和西瓜卡 / ICOCA。</li>
-                <li><strong>DAY 02 · 10/07 周三：</strong>近铁去奈良：上午东大寺、奈良公园喂鹿，下午奈良町。晚上回本町吃饭，不去道顿堀。</li>
-                <li><strong>DAY 03 · 10/08 周四：</strong>京都整天：伏见稻荷、清水寺、二年坂。行李留大阪酒店，晚上回本町。</li>
-                <li><strong>DAY 04 · 10/09 周五：</strong>本町退房，中午前后伊丹飞羽田。入住南千住 MW Hotel 后去浅草、晴空塔、秋叶原夜景。</li>
+                <li><strong>DAY 02 · 10/07 周三：</strong>主线近铁去奈良：上午东大寺、奈良公园喂鹿，下午奈良町。晚上回本町吃饭，不去道顿堀。<strong>备选神户</strong>在右侧栏 DAY 02 下面：JR 神户线去舞子（靠左看海）→ 明石海峡大桥 → 须磨海岸 → 生田神社 → 三宫唐吉诃德 / CoCo 一番屋。同一天不要再加港塔、铁人、面包超人馆。</li>
+                <li><strong>DAY 03 · 10/08 周四：</strong>京都整天：伏见稻荷、清水寺、二年坂。行李留大阪酒店，晚上回本町。早睡，第二天 04:50 退房去关西。</li>
+                <li><strong>DAY 04 · 10/09 周五：</strong>清早本町退房，打车去南海难波，05:15 空港急行到关西。<strong>07:45 关西飞成田，09:15 到</strong>。Skyliner 到南千住先寄行李，白天浅草，傍晚晴空塔，晚上秋叶原再办入住。</li>
                 <li><strong>DAY 05 · 10/10 周六：</strong>明治神宫、原宿、涩谷十字路口、东京塔亮灯，晚上回涩谷上 SHIBUYA SKY。点很多，拍得慢就丢掉竹下通，不要丢掉 SKY。</li>
                 <li><strong>DAY 06 · 10/11 周日：</strong>筑地早饭、银座（周日常有步行者天国）、皇居、东京站。晚上买手信、收拾行李。</li>
                 <li><strong>DAY 07 · 10/12 周一：</strong>早退，约 09:40 从南千住去日暮里坐 Skyliner 到成田。15:05 起飞。不要绕去新宿御苑。</li>
               </ul>
               <h4>为什么这样排、什么没塞进来</h4>
               <ul>
-                <li>关西先玩大阪、奈良，第三天<strong>京都整天再回大阪</strong>，第四天<strong>中午前后伊丹飞羽田</strong>。东京三条摄影轴：浅草、涩谷、都心。</li>
+                <li>关西先玩大阪、奈良，第三天<strong>京都整天再回大阪</strong>，第四天<strong>07:45 关西飞成田</strong>。DAY 02 不想去奈良可改<strong>神户备选</strong>（舞子、须磨、生田神社、三宫），二选一，不要一天全跑。东京三条摄影轴：浅草、涩谷、都心。</li>
                 <li><strong>富士山 / 河口湖</strong>从东京出发要一整天，和大阪进这条线方向相反，这次删掉。</li>
                 <li><strong>大阪环球影城、东京迪士尼</strong>这次不去。主题乐园各要一整天，留给以后单独排。</li>
                 <li>住两家酒店：<strong>大阪本町彩鸿 4 晚</strong>（10/05–09）+ <strong>东京 MW Hotel（南千住）3 晚</strong>（10/09–12）。京都当天不带大件。南千住到浅草是筑波快线一站。</li>
@@ -143,7 +149,7 @@
                 <li><strong>出发前 6–8 周</strong><span>准备签证材料、订「去程关西、回程东京」机票、订本町彩鸿 4 晚 + 南千住 MW Hotel 3 晚。没有酒店和机票预订单，签证很难递。</span></li>
                 <li><strong>出发前 4–6 周</strong><span>把签证交到指定旅行社。单次旅游签常要 5–10 个工作日，旺季更慢。</span></li>
                 <li><strong>出发前 2 个月当天</strong><span>晴空塔、SHIBUYA SKY 指定时段票开售就盯。SKY 买 10/10 晚间；晴空塔买 10/09 傍晚；这次不买乐园票。</span></li>
-                <li><strong>出发前 1–2 周</strong><span>买伊丹→羽田<strong>中午前后的班机</strong>（建议 12:00–13:30 起飞的 ANA / JAL）；买 eSIM 或开通漫游；换一部分日元现金；确认信用卡能在境外刷。</span></li>
+                <li><strong>出发前 1–2 周</strong><span>大阪→东京机票已订：<strong>10/09 07:45–09:15 关西（KIX）→成田（NRT）</strong>。买 eSIM 或开通漫游；换一部分日元现金；确认信用卡能在境外刷；航司 App 提前值机。</span></li>
                 <li><strong>出发前 7 天</strong><span>按下面的 App 清单装好并登录；护照、签证页拍照备份到网盘。</span></li>
                 <li><strong>出发前 1 天</strong><span>填 Visit Japan Web（第一晚填大阪本町彩鸿酒店地址）；查航班值机；充电宝、转换头、药品装进随身包。</span></li>
                 <li><strong>出发当天</strong><span>护照、签证、身份证、手机、耳机、外套手拿。托运前再看一遍液体和充电宝。航班 19:20 到关西，按航司值机时间出门。</span></li>
@@ -226,7 +232,7 @@
                 </tbody>
               </table>
               <ul>
-                <li>国内机票在航司 App 值机。伊丹、羽田都按国内航班走，仍要带护照。</li>
+                <li>国内机票在航司 App 值机。关西飞成田按国内航班走，仍要带护照。</li>
                 <li>不用下东京地铁专用 App，Google 地图够用。<strong>不要买全国 JR Pass</strong>（这次城际是飞机，Pass 用不上）。</li>
               </ul>
             </article>
@@ -237,7 +243,7 @@
               <ul>
                 <li>关西机场到本町：出关后优先<strong>南海电车到难波</strong>，换御堂筋线到本町，步行到大阪本町彩鸿酒店。行李放车下 / 行李架。10/05 19:20 抵达，出关后大约还要 1.5 小时。到酒店后若不困，可下楼去心斋桥；困了就睡。不要跟大厅搭讪的人叫车。</li>
                 <li>大阪市内常见御堂筋线（红）、中央线、谷町线。DAY 01 citywalk：中央线去大阪城，谷町线去四天王寺，再步行到通天阁、难波。去奈良：本町先到难波再坐近铁。京都一天用 JR + 巴士，大件留酒店。</li>
-                <li><strong>大阪 → 东京</strong>：DAY 04 从<strong>梅田</strong>坐大阪机场巴士到伊丹（ITM），中午前后飞羽田（HND）。机票订 12:00–13:30。不要订关西机场出发，也不要订晚上航班（浅草会来不及）。</li>
+                <li><strong>大阪 → 东京</strong>：DAY 04 机票已订，<strong>07:45 关西（KIX）→ 09:15 成田（NRT）</strong>。本町 04:50 退房，打车去南海难波赶 05:15 空港急行（地铁首班赶不上）。成田坐 Skyliner 到日暮里，换常磐线到南千住，大约 11:00 先寄行李再去浅草。</li>
                 <li>东京主要靠 JR 和地铁。JR 多半地面高架（山手、中央）；地铁多半地下（日比谷线等）。南千住可坐 JR 常磐线、日比谷线、筑波快线。大站里有时要换闸机。</li>
                 <li>返程：<strong>10/12 15:05 成田国际机场（NRT）</strong>起飞。南千住坐 JR 常磐线到日暮里，换京成 Skyliner，约 50–60 分钟；或上野换成田特快。国际航班提前 4 小时到场，约 09:40 从酒店出发。</li>
                 <li>电车里手机静音，背包转到身前。不要买全国 JR Pass。</li>
@@ -260,8 +266,9 @@
               <ul>
                 <li>内地银行先换 <strong>4–6 万日元</strong>应急。带 1–2 张能境外刷的 Visa / Mastercard，出发前打开境外交易。</li>
                 <li>便利店、药妆能扫支付宝 / 微信；小店、部分拉面只收<strong>现金</strong>。地铁拍西瓜卡。</li>
-                <li>两人玩乐吃饭交通大约 <strong>含一程伊丹→羽田机票</strong>，页面按人民币估算；住宿是本町彩鸿 4 晚 + 南千住 MW Hotel 3 晚标间。</li>
+                <li>下面是这次行程按人民币估算的人均花销，含住宿、往返机票和签证。关西→成田国内机票算在玩乐交通里。</li>
               </ul>
+              <div class="trip-budget" id="trip-budget"></div>
             </article>
 
             <article class="guide-card" id="note-stay">
@@ -270,8 +277,8 @@
               <ul>
                 <li>关西住<strong>大阪本町彩鸿酒店</strong>（Travelodge Honmachi Osaka，中央区安土町 3-2-6）。本町 / 堺筋本町步行几分钟，御堂筋线去心斋桥、道顿堀，中央线去大阪城，谷町线去四天王寺。</li>
                 <li>东京住<strong>MW Hotel</strong>（荒川区南千住 5-31-11）。JR / 日比谷线 / 筑波快线「南千住」西口步行约 5 分钟。到浅草一站，日比谷线可直达秋叶原、筑地、银座。</li>
-                <li>标间按商务酒店<strong>双床</strong>估：大阪一晚大约 1.8 万日元，东京一晚大约 2 万日元。7 晚两人一间，页面花销已计入。</li>
-                <li>DAY 04 10:00 前退房去伊丹，箱子随身托运。提前告诉 MW Hotel 大约 15:30 到。入住约 15:00，退房约 10:00–11:00。前台要两本护照。插座是 <strong>A 型两扁脚、100V</strong>。</li>
+                <li>已订住宿按两人一间计：大阪日均大约 <strong>500 元</strong>，东京日均大约 <strong>600 元</strong>。7 晚已计入页面花销。</li>
+                <li>DAY 04 约 04:50 退房去关西，箱子随身托运。提前告诉 MW Hotel 大约 11:00 到、先寄行李，晚上再办入住。入住约 15:00，退房约 10:00–11:00。前台要两本护照。插座是 <strong>A 型两扁脚、100V</strong>。</li>
                 <li>Visit Japan Web 第一晚填：Travelodge Honmachi Osaka, 3-2-6 Azuchimachi, Chuo-ku, Osaka。东京酒店：MW Hotel, 5-31-11 Minamisenju, Arakawa-ku, Tokyo。</li>
                 <li>10/12 早退，行李自己带去成田。不要把汤倒进马桶。</li>
               </ul>

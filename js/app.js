@@ -138,13 +138,15 @@ function bindGallery(root) {
 function dayHeading(day) {
   const n = String(day.id).padStart(2, "0");
   const date = day.date ? ` · ${day.date}` : "";
-  return `DAY ${n}${date} · ${day.title}`;
+  const alt = day.altId ? " · 备选" : "";
+  return `DAY ${n}${date}${alt} · ${day.title}`;
 }
 
 function spotWhenLabel(spot) {
   if (spot.optional || !spot.day) return "备选";
   const meta = (TRIP.days || []).find((d) => d.id === spot.day);
   const n = String(spot.day).padStart(2, "0");
+  if (spot.alt) return `DAY ${n} 备选`;
   return meta && meta.date ? `DAY ${n} · ${meta.date}` : `DAY ${n}`;
 }
 
@@ -153,10 +155,18 @@ function groupedSpots() {
   const buckets = new Map();
   TRIP.spots.forEach((spot) => {
     const optional = !!spot.optional || !spot.day;
-    const key = optional ? "optional" : String(spot.day);
+    const key = optional ? "optional" : spot.alt ? `${spot.day}-${spot.alt}` : String(spot.day);
     if (!buckets.has(key)) {
       if (optional) {
         buckets.set(key, { title: "备选", day: 99, optional: true, spots: [] });
+      } else if (spot.alt) {
+        const n = String(spot.day).padStart(2, "0");
+        buckets.set(key, {
+          title: `DAY ${n} 备选 · ${spot.altLabel || "神户"}`,
+          day: spot.day + 0.5,
+          optional: false,
+          spots: []
+        });
       } else {
         const meta = dayMeta.get(spot.day);
         const n = String(spot.day).padStart(2, "0");
@@ -226,9 +236,33 @@ let planLayer = null;
 let planLine = null;
 let planHighlight = null;
 let planMarkers = {};
+let dayAlts = {};
+try {
+  dayAlts = JSON.parse(localStorage.getItem("plan-day-alts") || "{}");
+} catch (err) {
+  dayAlts = {};
+}
+
+function resolvedDay(day) {
+  if (!day) return day;
+  const altId = dayAlts[day.id] || dayAlts[String(day.id)] || "";
+  if (altId && Array.isArray(day.alts)) {
+    const alt = day.alts.find((a) => a.id === altId);
+    if (alt) {
+      return Object.assign({}, day, alt, {
+        id: day.id,
+        date: day.date,
+        stay: alt.stay || day.stay,
+        from: alt.from || day.from,
+        altId
+      });
+    }
+  }
+  return Object.assign({}, day, { altId: "" });
+}
 
 function currentDay() {
-  return TRIP.days.find((d) => d.id === planDay) || TRIP.days[0];
+  return resolvedDay(TRIP.days.find((d) => d.id === planDay) || TRIP.days[0]);
 }
 
 function beatLatLng(beat) {
@@ -263,7 +297,7 @@ function samePoint(a, b) {
 function previousDayEnd(day) {
   const i = TRIP.days.findIndex((d) => d.id === day.id);
   for (let d = i - 1; d >= 0; d--) {
-    const mapped = mappedBeats(TRIP.days[d]);
+    const mapped = mappedBeats(resolvedDay(TRIP.days[d]));
     if (mapped.length) return mapped[mapped.length - 1].ll;
   }
   return null;
@@ -294,10 +328,29 @@ function commuteSegment(day, beat) {
 
 function renderDayTabs() {
   dayTabsEl.innerHTML = TRIP.days
-    .map(
-      (day) =>
-        `<button class="chip${day.id === planDay ? " is-on" : ""}" data-plan-day="${day.id}">${dayHeading(day)}</button>`
-    )
+    .flatMap((day) => {
+      const shown = resolvedDay(day);
+      const n = String(day.id).padStart(2, "0");
+      const mainOn = day.id === planDay && !shown.altId;
+      const tabs = [
+        `<button class="chip day-tab${mainOn ? " is-on" : ""}" type="button" data-plan-day="${day.id}" data-day-alt="main" aria-pressed="${mainOn ? "true" : "false"}">
+        <span class="day-tab-id">DAY ${n}</span>
+        <span class="day-tab-date">${day.date || ""}</span>
+        <span class="day-tab-title">${day.title}</span>
+      </button>`
+      ];
+      (day.alts || []).forEach((alt) => {
+        const on = day.id === planDay && shown.altId === alt.id;
+        tabs.push(
+          `<button class="chip day-tab day-tab-alt${on ? " is-on" : ""}" type="button" data-plan-day="${day.id}" data-day-alt="${alt.id}" aria-pressed="${on ? "true" : "false"}">
+        <span class="day-tab-id">DAY ${n}</span>
+        <span class="day-tab-date">${day.date || ""} · 备选</span>
+        <span class="day-tab-title">${alt.title}</span>
+      </button>`
+        );
+      });
+      return tabs;
+    })
     .join("");
 }
 
@@ -305,11 +358,13 @@ function budget() {
   const b = TRIP.budget || {};
   const stays = b.stays && b.stays.length
     ? b.stays
-    : [{ city: "酒店", nights: b.hotelNights || 6, roomJpy: b.hotelRoomJpy || 20000 }];
+    : [{ city: "酒店", nights: b.hotelNights || 6, roomJpy: b.hotelRoomJpy || 600 / 0.048 }];
   const nights = stays.reduce((sum, x) => sum + (x.nights || 0), 0);
   const hotelYen = stays.reduce((sum, x) => sum + (x.nights || 0) * (x.roomJpy || 0), 0);
   return {
     jpyToCny: b.jpyToCny || 0.048,
+    roundTripCny: Number(b.roundTripCny) || 0,
+    visaCny: Number(b.visaCny) || 0,
     stays,
     nights,
     hotelYen
@@ -324,7 +379,7 @@ function hotelRoomYen(beat) {
   if (!beat || beat.type !== "hotel" || beat.checkout) return 0;
   if (beat.cost != null) return beat.cost;
   const stays = budget().stays;
-  return (stays[stays.length - 1] && stays[stays.length - 1].roomJpy) || 20000;
+  return (stays[stays.length - 1] && stays[stays.length - 1].roomJpy) || 600 / 0.048;
 }
 
 function beatCostEach(beat) {
@@ -343,7 +398,9 @@ function formatRmb(yen, suffix) {
 function formatCost(beat) {
   if (beat.type === "hotel") {
     const room = hotelRoomYen(beat);
-    return room ? formatRmb(room, " / 间") : "退房";
+    if (room) return formatRmb(room, " / 间");
+    if (beat.checkout) return "退房";
+    return "—";
   }
   if (beat.cost == null) return "—";
   if (beat.cost === 0) return "免费";
@@ -364,7 +421,7 @@ function dayCost(day) {
 function tripCost() {
   const cfg = budget();
   const playYen = TRIP.days.reduce((sum, day) => {
-    return sum + day.beats.reduce((s, b) => s + (b.type === "hotel" ? 0 : beatCostEach(b)), 0);
+    return sum + resolvedDay(day).beats.reduce((s, b) => s + (b.type === "hotel" ? 0 : beatCostEach(b)), 0);
   }, 0);
   return {
     playPer: toRmb(playYen),
@@ -372,8 +429,12 @@ function tripCost() {
     hotel: toRmb(cfg.hotelYen),
     nights: cfg.nights,
     stays: cfg.stays,
-    per: toRmb(playYen + cfg.hotelYen / 2),
-    two: toRmb(playYen * 2 + cfg.hotelYen),
+    flight: cfg.roundTripCny,
+    flightTwo: cfg.roundTripCny * 2,
+    visa: cfg.visaCny,
+    visaTwo: cfg.visaCny * 2,
+    per: toRmb(playYen + cfg.hotelYen / 2) + cfg.roundTripCny + cfg.visaCny,
+    two: toRmb(playYen * 2 + cfg.hotelYen) + cfg.roundTripCny * 2 + cfg.visaCny * 2,
     rate: cfg.jpyToCny
   };
 }
@@ -423,20 +484,23 @@ function renderBeatDetail() {
 }
 
 function renderDayOverview() {
-  const el = document.getElementById("day-overview");
-  if (!el) return;
+  const overview = document.getElementById("day-overview");
+  const notes = document.getElementById("day-notes");
+  if (!overview) return;
   const day = currentDay();
   const prep = day.prep || [];
   const cost = dayCost(day);
-  el.innerHTML = `
+  overview.innerHTML = `
     <div class="day-nodes">
       <div class="day-node"><span class="k">日期</span><strong>${day.date || "—"}</strong></div>
       <div class="day-node"><span class="k">从哪出发</span><strong>${day.from || "—"}</strong></div>
-      <div class="day-node"><span class="k">当天去哪</span><strong>${day.where || "—"}</strong></div>
+      <div class="day-node day-node-where"><span class="k">当天去哪</span><strong>${day.where || "—"}</strong></div>
       <div class="day-node"><span class="k">晚上住哪</span><strong>${day.stay || "—"}</strong></div>
-      <div class="day-node day-node-cost"><span class="k">当日花销预估</span><strong>人均约 ${cost.per} 元</strong><small>两人约 ${cost.two} 元${cost.hasHotel ? "，含今晚标间" : "，不含酒店"}</small></div>
-    </div>
-    <p class="day-path">${day.path || ""}</p>
+      <div class="day-node day-node-cost"><span class="k">当日花销</span><strong>人均 ${cost.per} 元</strong><small>两人 ${cost.two} 元${cost.hasHotel ? " · 含今晚标间" : " · 不含酒店"}</small></div>
+    </div>`;
+  if (!notes) return;
+  notes.innerHTML = `
+    ${day.path ? `<p class="day-path">${day.path}</p>` : ""}
     ${
       prep.length
         ? `<div class="day-prep">
@@ -462,7 +526,21 @@ function renderDayOverview() {
 function renderPrepDays() {
   const el = document.getElementById("prep-days");
   if (!el) return;
-  el.innerHTML = TRIP.days
+  const rows = TRIP.days.flatMap((day) => {
+    const list = [day];
+    (day.alts || []).forEach((alt) => {
+      list.push(
+        Object.assign({}, day, alt, {
+          id: day.id,
+          date: day.date,
+          title: `${alt.title}（备选）`,
+          altId: alt.id
+        })
+      );
+    });
+    return list;
+  });
+  el.innerHTML = rows
     .map((day) => {
       const prep = day.prep || [];
       return `
@@ -598,7 +676,9 @@ function renderPlanMap(mode) {
   } else if (pts.length) {
     planMap.fitBounds(L.latLngBounds(pts), { padding: [36, 36], maxZoom: 14 });
   }
-  requestAnimationFrame(() => planMap.invalidateSize());
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => planMap.invalidateSize());
+  });
 }
 
 function focusBeat(id, scroll) {
@@ -616,19 +696,32 @@ function renderTripBudget() {
   const el = document.getElementById("trip-budget");
   if (!el) return;
   const cost = tripCost();
-  const rateText = (cost.rate * 100).toFixed(1).replace(/\.0$/, "");
-  const stayText = cost.stays.map((s) => `${s.city} ${s.nights} 晚`).join(" + ");
   el.innerHTML = `
-    <div class="trip-budget-main">
-      <span class="k">全程花销预估</span>
-      <strong>人均约 ${cost.per} 元</strong>
-      <small>两人约 ${cost.two} 元 · 不含机票</small>
+    <div class="budget-stat">
+      <span class="k">全程人均</span>
+      <strong>${cost.per}<em>元</em></strong>
+      <small>两人 ${cost.two} · 含往返 · 签证</small>
     </div>
-    <ul>
-      <li>玩乐、吃饭、交通：人均约 <strong>${cost.playPer}</strong> 元（两人约 ${cost.playTwo} 元，含大阪→东京机票）</li>
-      <li>住宿 ${cost.nights} 晚：人均约 <strong>${Math.round(cost.hotel / 2)}</strong> 元（${cost.hotel} 元 / 两城标间，${stayText}）</li>
-    </ul>
-    <p>按 100 日元 ≈ ${rateText} 元估算。大阪本町彩鸿一晚约 1.8 万日元，东京 MW Hotel 一晚约 2 万日元。全程含 10/05 入住当晚，10/12 退房不再计房费。不含往返机票。</p>
+    <div class="budget-stat">
+      <span class="k">玩乐 / 吃饭 / 交通</span>
+      <strong>${cost.playPer}<em>元</em></strong>
+      <small>含大阪→东京机票</small>
+    </div>
+    <div class="budget-stat">
+      <span class="k">住宿 ${cost.nights} 晚</span>
+      <strong>${Math.round(cost.hotel / 2)}<em>元</em></strong>
+      <small>大阪 500 × 4 · 东京 600 × 3</small>
+    </div>
+    <div class="budget-stat">
+      <span class="k">往返机票</span>
+      <strong>${cost.flight}<em>元</em></strong>
+      <small>两人 ${cost.flightTwo}</small>
+    </div>
+    <div class="budget-stat">
+      <span class="k">签证</span>
+      <strong>${cost.visa}<em>元</em></strong>
+      <small>两人 ${cost.visaTwo}</small>
+    </div>
   `;
 }
 
@@ -806,7 +899,8 @@ function spotDayKey(spot) {
 }
 
 function spotDayLabel(spot) {
-  return spot.optional || !spot.day ? "备选" : "D" + spot.day;
+  if (spot.optional || !spot.day) return "备选";
+  return spot.alt ? "D" + spot.day + "备" : "D" + spot.day;
 }
 
 function pinIcon(spot, on) {
@@ -932,6 +1026,10 @@ dayTabsEl.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-plan-day]");
   if (!btn) return;
   planDay = Number(btn.dataset.planDay);
+  const alt = btn.dataset.dayAlt || "main";
+  if (alt && alt !== "main") dayAlts[planDay] = alt;
+  else delete dayAlts[planDay];
+  localStorage.setItem("plan-day-alts", JSON.stringify(dayAlts));
   activeBeatId = "";
   renderDays();
 });
