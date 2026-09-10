@@ -212,9 +212,9 @@ window.TRIP = {
       group: "DAY 02 · 奈良 · 奈良公园",
       name: "奈良公园 · 东大寺",
       en: "Nara Park & Tōdai-ji",
-      enter: "从本町御堂筋线到难波，换乘近铁约 40 分钟到奈良。公园免费。东大寺大佛殿要门票。鹿仙贝现场买。",
-      duration: "一天",
-      note: "鹿会抢纸袋，贵重物品收好。仙贝买完再喂，不要用零食。东大寺大佛殿要门票，公园和鹿免费。",
+      enter: "近铁奈良站出站往东步行约 15 分钟。公园免费。东大寺大佛殿要门票，约 800 日元。鹿仙贝现场买。",
+      duration: "2.5–3 小时",
+      note: "上午只来这一次：喂鹿、看大佛。鹿会抢纸袋，贵重物品收好。仙贝买完再喂。下午改去奈良町，不要再折回公园。",
       guide: "奈良是日本第一个长期都城，东大寺大佛是奈良时代国家工程的遗物。鹿在神社里被当成神使，公园里到处走。它比京都更疏、更慢。这次不去乐园，DAY 02 用这一天补关西古都：大阪是吃和城，奈良是寺和鹿，隔天京都才是鸟居和坡道。",
       xhs: ["奈良公园小鹿", "东大寺大佛"],
       photo: "奈良",
@@ -223,6 +223,26 @@ window.TRIP = {
       map: "Todai-ji Nara",
       lat: 34.6889,
       lng: 135.8398,
+      day: 2
+    },
+    {
+      id: "naramachi",
+      region: "nara",
+      area: "奈良町",
+      group: "DAY 02 · 奈良 · 奈良町",
+      name: "奈良町",
+      en: "Naramachi",
+      enter: "东大寺往西南步行约 15 分钟，或近铁奈良站往南走。巷子免费逛。",
+      duration: "1.5–2 小时",
+      note: "格子门町家、杂货店、咖啡。这是奈良的老街区，不是公园。不必再进东大寺，也不要再喂鹿。",
+      guide: "奈良町是奈良迁都之后留下来的商人街区，町家格子门还在。上午在公园里看国家工程的大佛和鹿，下午走进普通人住过的巷子，奈良才完整。它比东大寺安静，适合午饭后慢慢走，再坐近铁回大阪。",
+      xhs: ["奈良町", "奈良町町家"],
+      photo: "奈良",
+      img: "img/spots/nara-3.jpg",
+      imgs: ["img/spots/nara-3.jpg", "img/spots/nara-2.jpg", "img/spots/nara-1.jpg"],
+      map: "Naramachi Nara",
+      lat: 34.6775,
+      lng: 135.8300,
       day: 2
     },
     {
@@ -799,42 +819,53 @@ window.TRIP = {
         { item: "大阪城、四天王寺、通天阁、难波八阪、黑门、道顿堀", need: "城和街道免费；四天王寺中心伽蓝约 300 日元。通天阁登顶约 900 日元，时间紧就拍外观" }
       ],
       beats: [
-        { id: "d1a", time: "09:20", type: "commute", mode: "地铁", name: "本町 → 大阪城 · 约 15 分钟", lat: 34.6873, lng: 135.5262, cost: 200, detail: "中央线到森ノ宮。拍西瓜卡。今天点多，城只拍外观。" },
+        { id: "d1a", time: "09:20", type: "commute", mode: "中央线", name: "本町 → 大阪城 · 约 15 分钟", lat: 34.6873, lng: 135.5262, cost: 200, detail: "本町坐中央线到森ノ宮。出站往公园走。拍西瓜卡。今天点多，城只拍外观。" },
         { id: "d1b", time: "09:40", type: "spot", name: "大阪城公园", spotId: "osaka-castle", cost: 0 },
-        { id: "d1c", time: "11:00", type: "commute", mode: "谷町线", name: "大阪城 → 四天王寺 · 约 15 分钟", lat: 34.6544, lng: 135.5164, cost: 200, detail: "谷町四丁目坐谷町线到四天王寺前夕陽ヶ丘。不要绕去天王寺站商场。" },
+        { id: "d1c", time: "11:00", type: "commute", mode: "谷町线", name: "大阪城 → 四天王寺 · 约 15 分钟", lat: 34.6544, lng: 135.5164, cost: 200, detail: "公园西边走到谷町四丁目，坐谷町线到四天王寺前夕陽ヶ丘（2 站）。不要绕去天王寺站商场。" },
         { id: "d1d", time: "11:20", type: "spot", name: "四天王寺", spotId: "shitennoji", cost: 300 },
-        { id: "d1e", time: "12:20", type: "commute", mode: "步行", name: "四天王寺 → 通天阁 · 约 15 分钟", lat: 34.6526, lng: 135.5064, cost: 0, detail: "往新世界走。串炸店中午排队，到了先点餐再拍塔。" },
+        { id: "d1e", time: "12:20", type: "commute", mode: "步行", name: "四天王寺 → 新世界 · 约 15 分钟", lat: 34.6526, lng: 135.5064, cost: 0, detail: "往西走到新世界。串炸店中午排队，到了先点餐再拍塔。" },
         { id: "d1f", time: "12:40", type: "meal", name: "午饭 · 新世界串炸", lat: 34.6526, lng: 135.5064, xhs: "新世界串炸", cost: 1800, img: "img/spots/tsutenkaku-1.jpg", photo: "通天阁", detail: "串炸当正餐。人均大约 1500–2000 日元。不要吃到走不动。" },
-        { id: "d1g", time: "13:40", type: "spot", name: "通天阁 · 新世界", spotId: "tsutenkaku", cost: 0 },
-        { id: "d1h", time: "14:30", type: "commute", mode: "步行 / 地铁", name: "通天阁 → 难波八阪 · 约 15 分钟", lat: 34.6614, lng: 135.4966, cost: 180, detail: "堺筋线惠美须町到大国町再走，或 Google 地图步行。只背小包。" },
-        { id: "d1i", time: "14:50", type: "spot", name: "难波八阪神社", spotId: "namba-yasaka", cost: 0 },
-        { id: "d1j", time: "15:30", type: "spot", name: "黑门市场", spotId: "kuromon", cost: 800 },
-        { id: "d1k", time: "16:40", type: "spot", name: "心斋桥（药妆）", lat: 34.6745, lng: 135.5013, xhs: "心斋桥药妆", cost: 400, img: "img/spots/dotonbori-3.jpg", photo: "心斋桥", detail: "唐吉诃德、药妆。只买当天要用的，大件留东京最后一天。不要在白天拍固力果排队。" },
-        { id: "d1l", time: "18:20", type: "meal", name: "晚饭 · 道顿堀", lat: 34.6687, lng: 135.5013, xhs: "道顿堀晚饭", cost: 2200, img: "img/spots/dotonbori-1.jpg", photo: "道顿堀", detail: "章鱼烧当小吃，正餐找定食。人均大约 2000 日元。这是这次唯一一顿道顿堀正餐。" },
-        { id: "d1m", time: "19:30", type: "spot", name: "道顿堀夜景", spotId: "dotonbori", cost: 0, detail: "灯亮后拍固力果和运河。昨晚若已拍过，今晚走侧机位即可。不要再逛第二遍心斋桥。" },
-        { id: "d1n", time: "21:10", type: "hotel", name: "大阪本町彩鸿酒店", lat: 34.68435, lng: 135.50275, cost: 18000, detail: "御堂筋线心斋桥一站回本町。明天奈良，不要再排大阪景点。" }
+        { id: "d1g", time: "13:35", type: "commute", mode: "步行", name: "串炸店 → 通天阁塔下 · 约 5 分钟", lat: 34.6526, lng: 135.5064, cost: 0, detail: "店就在塔旁边。时间紧就拍外观，不上展望台。" },
+        { id: "d1h", time: "13:40", type: "spot", name: "通天阁 · 新世界", spotId: "tsutenkaku", cost: 0 },
+        { id: "d1i", time: "14:30", type: "commute", mode: "步行", name: "通天阁 → 难波八阪 · 约 15 分钟", lat: 34.6614, lng: 135.4966, cost: 0, detail: "往西北走到难波八阪。Google 地图搜「难波八阪神社」。只背小包。" },
+        { id: "d1j", time: "14:50", type: "spot", name: "难波八阪神社", spotId: "namba-yasaka", cost: 0 },
+        { id: "d1k", time: "15:20", type: "commute", mode: "步行", name: "难波八阪 → 黑门市场 · 约 10 分钟", lat: 34.6654, lng: 135.5063, cost: 0, detail: "往东北走，约 800 米。摊位傍晚会陆续收，不要拖。" },
+        { id: "d1l", time: "15:30", type: "spot", name: "黑门市场", spotId: "kuromon", cost: 800 },
+        { id: "d1m", time: "16:30", type: "commute", mode: "步行", name: "黑门市场 → 心斋桥 · 约 10 分钟", lat: 34.6745, lng: 135.5013, cost: 0, detail: "沿堺筋或御堂筋往北走到心斋桥筋。" },
+        { id: "d1n", time: "16:40", type: "spot", name: "心斋桥（药妆）", lat: 34.6745, lng: 135.5013, xhs: "心斋桥药妆", cost: 400, img: "img/spots/dotonbori-3.jpg", photo: "心斋桥", detail: "唐吉诃德、药妆。只买当天要用的，大件留东京最后一天。不要在白天拍固力果排队。" },
+        { id: "d1o", time: "18:10", type: "commute", mode: "步行", name: "心斋桥 → 道顿堀 · 约 8 分钟", lat: 34.6687, lng: 135.5013, cost: 0, detail: "心斋桥筋往南走到运河。晚饭在道顿堀，不要折回药妆街。" },
+        { id: "d1p", time: "18:20", type: "meal", name: "晚饭 · 道顿堀", lat: 34.6687, lng: 135.5013, xhs: "道顿堀晚饭", cost: 2200, img: "img/spots/dotonbori-1.jpg", photo: "道顿堀", detail: "章鱼烧当小吃，正餐找定食。人均大约 2000 日元。这是这次唯一一顿道顿堀正餐。" },
+        { id: "d1q", time: "19:25", type: "commute", mode: "步行", name: "餐厅 → 固力果看板 · 约 5 分钟", lat: 34.6687, lng: 135.5013, cost: 0, detail: "沿运河走到戎桥。灯亮后再拍，不要站在桥中间挡路。" },
+        { id: "d1r", time: "19:30", type: "spot", name: "道顿堀夜景", spotId: "dotonbori", cost: 0, detail: "灯亮后拍固力果和运河。昨晚若已拍过，今晚走侧机位即可。不要再逛第二遍心斋桥。" },
+        { id: "d1s", time: "21:00", type: "commute", mode: "御堂筋线", name: "心斋桥 → 本町 · 约 5 分钟", lat: 34.68435, lng: 135.50275, cost: 180, detail: "心斋桥站坐御堂筋线北上一站到本町。明天奈良。" },
+        { id: "d1t", time: "21:10", type: "hotel", name: "大阪本町彩鸿酒店", lat: 34.68435, lng: 135.50275, cost: 18000, detail: "两人护照给前台。房费按一晚约 1.8 万日元估。不要再排大阪景点。" }
       ]
     },
     {
       id: 2,
-      title: "奈良公园 · 东大寺",
+      title: "奈良公园 · 奈良町",
       date: "10/07 周三",
       stay: "大阪本町彩鸿酒店",
       from: "大阪本町彩鸿酒店",
-      where: "奈良公园、东大寺",
-      path: "本町 → 难波近铁 → 东大寺 / 奈良公园 → 回本町",
+      where: "东大寺、奈良公园、奈良町",
+      path: "本町 → 近铁奈良 → 东大寺 / 奈良公园 → 奈良町午饭 → 奈良町巷子 → 回本町晚饭",
       prep: [
         { item: "本町 → 难波 → 近铁奈良", need: "御堂筋线到难波再换近铁。ICOCA / 西瓜卡可刷。近铁约 40 分钟", xhs: "难波去奈良近铁" },
-        { item: "东大寺大佛殿门票", need: "现场买即可，约 800 日元；公园和鹿免费" }
+        { item: "东大寺大佛殿门票", need: "现场买即可，约 800 日元；公园和鹿免费。奈良町巷子免费" }
       ],
       beats: [
-        { id: "d2a", time: "08:10", type: "commute", mode: "地铁 + 近铁", name: "本町 → 近铁奈良 · 约 50 分钟", lat: 34.6845, lng: 135.8276, cost: 780, detail: "御堂筋线南下到难波，换近铁奈良线急行。出站往东走就是奈良公园。纸袋和零食收进包里，鹿会抢。" },
-        { id: "d2b", time: "09:10", type: "spot", name: "奈良公园 · 东大寺", spotId: "nara", cost: 800 },
-        { id: "d2c", time: "12:20", type: "meal", name: "午饭 · 奈良公园 / 奈良町", lat: 34.6830, lng: 135.8305, xhs: "奈良午饭", cost: 1600, img: "img/spots/nara-1.jpg", photo: "奈良", detail: "公园边或奈良町定食。人均大约 1500 日元。不要边走边吃被鹿围住。" },
-        { id: "d2d", time: "13:40", type: "spot", name: "奈良公园再走一圈 / 奈良町", spotId: "nara", cost: 200, detail: "春日大社参道、奈良町巷子都可以。鹿仙贝买完再喂。不必再进东大寺。" },
-        { id: "d2e", time: "16:40", type: "commute", mode: "近铁 + 地铁", name: "近铁奈良 → 本町 · 约 50 分钟", lat: 34.68435, lng: 135.50275, cost: 780, detail: "近铁回难波，换御堂筋线到本町。不用卡末班。行李留在酒店，明天去京都只背小包。" },
-        { id: "d2f", time: "18:50", type: "meal", name: "晚饭 · 本町附近", lat: 34.68435, lng: 135.50275, xhs: "本町晚饭", cost: 1800, img: "img/spots/osaka-castle-1.jpg", photo: "本町", detail: "道顿堀昨晚已经吃过，今晚在本町附近定食即可。人均大约 1800 日元。不要再去固力果。" },
-        { id: "d2g", time: "21:20", type: "hotel", name: "大阪本町彩鸿酒店", lat: 34.68435, lng: 135.50275, cost: 18000, detail: "还住本町。明天京都整天，晚上回大阪。后天才飞东京。" }
+        { id: "d2a", time: "08:10", type: "commute", mode: "御堂筋线 + 近铁", name: "本町 → 近铁奈良 · 约 50 分钟", lat: 34.6845, lng: 135.8276, cost: 780, detail: "本町坐御堂筋线南下到难波，换近铁奈良线急行到近铁奈良。纸袋和零食收进包里，鹿会抢。" },
+        { id: "d2b", time: "09:05", type: "commute", mode: "步行", name: "近铁奈良站 → 东大寺 · 约 15 分钟", lat: 34.6889, lng: 135.8398, cost: 0, detail: "出站往东进奈良公园。先买鹿仙贝，喂完再进大佛殿。" },
+        { id: "d2c", time: "09:20", type: "spot", name: "奈良公园 · 东大寺", spotId: "nara", cost: 800 },
+        { id: "d2d", time: "12:05", type: "commute", mode: "步行", name: "东大寺 → 奈良町 · 约 15 分钟", lat: 34.6775, lng: 135.8300, cost: 0, detail: "往西南走到奈良町。不要再折回公园喂鹿。" },
+        { id: "d2e", time: "12:20", type: "meal", name: "午饭 · 奈良町", lat: 34.6775, lng: 135.8300, xhs: "奈良町午饭", cost: 1600, img: "img/spots/nara-3.jpg", photo: "奈良", detail: "町家定食或茶屋。人均大约 1500 日元。不要边走边吃。" },
+        { id: "d2f", time: "13:35", type: "commute", mode: "步行", name: "午饭店 → 奈良町巷子 · 约 5 分钟", lat: 34.6775, lng: 135.8300, cost: 0, detail: "午饭就在巷子里，吃完继续往南走格子门。" },
+        { id: "d2g", time: "13:40", type: "spot", name: "奈良町", spotId: "naramachi", cost: 0 },
+        { id: "d2h", time: "16:20", type: "commute", mode: "步行", name: "奈良町 → 近铁奈良站 · 约 10 分钟", lat: 34.6845, lng: 135.8276, cost: 0, detail: "往北走回近铁奈良。不用卡末班。" },
+        { id: "d2i", time: "16:40", type: "commute", mode: "近铁 + 御堂筋线", name: "近铁奈良 → 本町 · 约 50 分钟", lat: 34.68435, lng: 135.50275, cost: 780, detail: "近铁回难波，换御堂筋线到本町。行李留在酒店，明天去京都只背小包。" },
+        { id: "d2j", time: "18:50", type: "meal", name: "晚饭 · 本町附近", lat: 34.68435, lng: 135.50275, xhs: "本町晚饭", cost: 1800, img: "img/spots/osaka-castle-1.jpg", photo: "本町", detail: "道顿堀昨晚已经吃过，今晚在本町附近定食即可。人均大约 1800 日元。不要再去固力果。" },
+        { id: "d2k", time: "21:10", type: "commute", mode: "步行", name: "餐厅 → 酒店 · 约 5 分钟", lat: 34.68435, lng: 135.50275, cost: 0, detail: "本町站周边走回彩鸿酒店。" },
+        { id: "d2l", time: "21:20", type: "hotel", name: "大阪本町彩鸿酒店", lat: 34.68435, lng: 135.50275, cost: 18000, detail: "还住本町。明天京都整天，晚上回大阪。后天才飞东京。" }
       ]
     },
     {
@@ -844,23 +875,25 @@ window.TRIP = {
       stay: "大阪本町彩鸿酒店",
       from: "大阪本町彩鸿酒店",
       where: "伏见稻荷、清水寺、二年坂，晚上回大阪",
-      path: "本町 → 京都站 → 伏见稻荷 → 清水寺 / 二年坂 → 回本町",
+      path: "本町 → 京都站 → 伏见稻荷 → 京阪去清水 → 二年坂午饭 → 清水寺 → 步行到祇园晚饭 → 京都站回本町",
       prep: [
         { item: "伏见稻荷、二年坂", need: "神社免费；清水寺本堂现场买票。今晚回大阪，不必赶飞机", xhs: "伏见稻荷千本鸟居" },
         { item: "行李", need: "大件留本町酒店。只背小包去京都，不用寄物柜" },
         { item: "明天机票", need: "确认 DAY 04 伊丹 → 羽田，订 12:00–13:30 起飞。护照今晚装随身包", xhs: "伊丹飞羽田" }
       ],
       beats: [
-        { id: "d3a", time: "08:00", type: "commute", mode: "地铁 + JR", name: "本町 → 京都站 · 约 45 分钟", lat: 34.9858, lng: 135.7588, cost: 580, detail: "御堂筋线北上到梅田，出站进大阪站，坐新快速到京都。行李留酒店，只背小包。" },
-        { id: "d3b", time: "08:55", type: "commute", mode: "JR", name: "京都站 → 稻荷 · 约 5 分钟", lat: 34.9671, lng: 135.7727, cost: 150, detail: "奈良线一站。出站就是伏见稻荷。" },
+        { id: "d3a", time: "08:00", type: "commute", mode: "御堂筋线 + JR", name: "本町 → 京都站 · 约 45 分钟", lat: 34.9858, lng: 135.7588, cost: 580, detail: "本町坐御堂筋线北上到梅田，出站进大阪站，坐新快速到京都。行李留酒店，只背小包。" },
+        { id: "d3b", time: "08:55", type: "commute", mode: "JR 奈良线", name: "京都站 → 稻荷 · 约 5 分钟", lat: 34.9671, lng: 135.7727, cost: 150, detail: "JR 奈良线一站到稻荷。出站就是伏见稻荷。" },
         { id: "d3c", time: "09:05", type: "spot", name: "伏见稻荷大社", spotId: "fushimi", cost: 0, detail: "千本鸟居可以多走一段。11:30 前下山即可，不必硬登顶。" },
-        { id: "d3d", time: "11:40", type: "commute", mode: "巴士 / 地铁", name: "伏见 → 清水寺 · 约 40 分钟", lat: 34.9948, lng: 135.7850, cost: 240, detail: "Google 地图搜清水寺。巴士可能挤，预留量。" },
-        { id: "d3e", time: "12:30", type: "meal", name: "午饭 · 清水 / 二年坂", lat: 34.9950, lng: 135.7838, xhs: "二年坂午饭", cost: 1600, img: "img/spots/kiyomizu-1.jpg", photo: "清水寺", detail: "坡道上小吃多。这顿当正餐。人均大约 1500 日元。" },
-        { id: "d3f", time: "13:30", type: "spot", name: "清水寺 · 二年坂", spotId: "kiyomizu", cost: 400, detail: "舞台和坡道各留一会儿。不用赶飞机，16:30 前离开即可。" },
-        { id: "d3g", time: "16:40", type: "commute", mode: "步行 / 巴士", name: "二年坂 → 祇园一带", lat: 35.0037, lng: 135.7750, cost: 0, detail: "顺路走到祇园、花见小路看一眼町家。人多就拍照离开，不要进私人小路。" },
-        { id: "d3h", time: "17:50", type: "meal", name: "晚饭 · 祇园 / 京都站", lat: 34.9858, lng: 135.7588, xhs: "京都晚饭", cost: 2200, img: "img/spots/kiyomizu-2.jpg", photo: "清水寺", detail: "祇园或京都站吃。人均大约 2000 日元。吃完坐 JR 回大阪。" },
-        { id: "d3i", time: "19:20", type: "commute", mode: "JR + 地铁", name: "京都站 → 本町 · 约 45 分钟", lat: 34.68435, lng: 135.50275, cost: 580, detail: "新快速到大阪站，换御堂筋线到本町。明天 10:00 前退房去伊丹。" },
-        { id: "d3j", time: "21:00", type: "hotel", name: "大阪本町彩鸿酒店", lat: 34.68435, lng: 135.50275, cost: 18000, detail: "大阪最后一晚。收拾行李，护照、充电宝放随身包。酒店退房约 10:00。" }
+        { id: "d3d", time: "11:40", type: "commute", mode: "京阪 + 步行", name: "伏见稻荷 → 清水寺 · 约 40 分钟", lat: 34.9948, lng: 135.7850, cost: 240, detail: "神社前坐京阪到清水五条，再沿清水道步行上山约 15 分钟。巴士人多就别硬挤。" },
+        { id: "d3e", time: "12:30", type: "meal", name: "午饭 · 二年坂", lat: 34.9950, lng: 135.7838, xhs: "二年坂午饭", cost: 1600, img: "img/spots/kiyomizu-1.jpg", photo: "清水寺", detail: "坡道上小吃多。这顿当正餐。人均大约 1500 日元。" },
+        { id: "d3f", time: "13:25", type: "commute", mode: "步行", name: "二年坂 → 清水寺 · 约 5 分钟", lat: 34.9948, lng: 135.7850, cost: 0, detail: "沿坡道走到山门。午饭已经在坡上，不用再找店。" },
+        { id: "d3g", time: "13:30", type: "spot", name: "清水寺 · 二年坂", spotId: "kiyomizu", cost: 400, detail: "舞台和坡道各留一会儿。不用赶飞机，16:30 前离开即可。" },
+        { id: "d3h", time: "16:40", type: "commute", mode: "步行", name: "二年坂 → 祇园 · 约 20 分钟", lat: 35.0037, lng: 135.7750, cost: 0, detail: "沿二年坂、产宁坂走到祇园、花见小路。人多就拍照离开，不要进私人小路。" },
+        { id: "d3i", time: "17:50", type: "meal", name: "晚饭 · 祇园", lat: 35.0037, lng: 135.7750, xhs: "祇园晚饭", cost: 2200, img: "img/spots/kiyomizu-2.jpg", photo: "清水寺", detail: "祇园定食即可。人均大约 2000 日元。吃完去京都站坐 JR 回大阪。" },
+        { id: "d3j", time: "19:00", type: "commute", mode: "巴士", name: "祇园 → 京都站 · 约 20 分钟", lat: 34.9858, lng: 135.7588, cost: 230, detail: "四条通坐市巴士到京都站。Google 地图搜「京都駅」。" },
+        { id: "d3k", time: "19:20", type: "commute", mode: "JR + 御堂筋线", name: "京都站 → 本町 · 约 45 分钟", lat: 34.68435, lng: 135.50275, cost: 580, detail: "新快速到大阪站，换御堂筋线到本町。明天 10:00 前退房去伊丹。" },
+        { id: "d3l", time: "21:00", type: "hotel", name: "大阪本町彩鸿酒店", lat: 34.68435, lng: 135.50275, cost: 18000, detail: "大阪最后一晚。收拾行李，护照、充电宝放随身包。酒店退房约 10:00。" }
       ]
     },
     {
@@ -877,22 +910,26 @@ window.TRIP = {
         { item: "护照、晚到酒店", need: "国内航班也要护照。MW Hotel 在南千住站西口步行约 5 分钟" }
       ],
       beats: [
-        { id: "d4a", time: "09:40", type: "hotel", name: "大阪本町彩鸿酒店退房", lat: 34.68435, lng: 135.50275, checkout: true, detail: "退房约 10:00。带着行李去梅田坐大阪机场巴士。不要去关西机场。" },
-        { id: "d4b", time: "10:10", type: "commute", mode: "机场巴士", name: "本町 / 梅田 → 伊丹机场 · 约 40–50 分钟", lat: 34.7855, lng: 135.4382, cost: 650, detail: "御堂筋线到梅田，坐「大阪机场巴士」。行李放车下。国内线提前约 1 小时到闸口。" },
-        { id: "d4c", time: "11:10", type: "meal", name: "午饭 · 伊丹机场", lat: 34.7855, lng: 135.4382, xhs: "伊丹机场午饭", cost: 1200, img: "img/spots/osaka-castle-1.jpg", photo: "大阪", detail: "值机托运后再吃。人均大约 1200 日元。" },
-        { id: "d4d", time: "12:25", type: "commute", mode: "飞机", name: "伊丹 → 羽田 · 约 70 分钟", lat: 35.5494, lng: 139.7798, cost: 14000, detail: "订 12:00–13:30 起飞的 ANA / JAL。机上可看富士，看天气。落地走国内到达，取托运行李。" },
-        { id: "d4e", time: "14:10", type: "commute", mode: "京急 + JR", name: "羽田 → 南千住 · 约 60–75 分钟", lat: 35.7336, lng: 139.7938, cost: 900, detail: "京急到品川，山手线上野，换常磐线或日比谷线到南千住。行李多可在上野打的，约 10 分钟到酒店。" },
-        { id: "d4f", time: "15:30", type: "hotel", name: "MW Hotel 入住", lat: 35.7336, lng: 139.7938, cost: 20000, detail: "东京都荒川区南千住5-31-11。JR / 日比谷线 / 筑波快线「南千住」西口步行约 5 分钟。两人护照给前台。放下行李再出门。" },
-        { id: "d4g", time: "16:00", type: "commute", mode: "筑波快线", name: "南千住 → 浅草 · 约 5 分钟", lat: 35.7111, lng: 139.7964, cost: 200, detail: "筑波快线一站到浅草。比从新宿过去近很多。拍西瓜卡。" },
-        { id: "d4h", time: "16:10", type: "spot", name: "雷门", spotId: "kaminarimon", cost: 0 },
-        { id: "d4i", time: "16:25", type: "spot", name: "仲见世商店街", spotId: "nakamise", cost: 600 },
-        { id: "d4j", time: "16:50", type: "spot", name: "浅草寺", spotId: "sensoji", cost: 0 },
-        { id: "d4k", time: "17:40", type: "commute", mode: "步行 / 地铁", name: "浅草 → 晴空塔 · 约 20 分钟", lat: 35.7101, lng: 139.8107, cost: 180, detail: "沿隅田川走能拍到塔。腿累就坐地铁到押上。" },
-        { id: "d4l", time: "18:00", type: "spot", name: "东京晴空塔", spotId: "skytree", cost: 2100, detail: "傍晚灯亮更好看。第一次去天望甲板够用。" },
-        { id: "d4m", time: "19:50", type: "commute", mode: "地铁", name: "押上 → 秋叶原 · 约 15 分钟", lat: 35.6984, lng: 139.7731, cost: 180, detail: "半藏门线或 JR 到秋叶原。晚上灯更亮。" },
-        { id: "d4n", time: "20:10", type: "spot", name: "秋叶原", spotId: "akihabara", cost: 0 },
-        { id: "d4o", time: "20:40", type: "meal", name: "晚饭 · 秋叶原", lat: 35.6986, lng: 139.7738, xhs: "秋叶原晚饭", cost: 1600, img: "img/spots/akihabara-1.jpg", photo: "秋叶原", detail: "拉面或定食即可。人均大约 1500 日元。" },
-        { id: "d4p", time: "21:40", type: "commute", mode: "日比谷线", name: "秋叶原 → 南千住 · 约 12 分钟", lat: 35.7336, lng: 139.7938, cost: 180, detail: "日比谷线直达南千住。西口出站步行回酒店。今晚起住 3 晚。" }
+        { id: "d4a", time: "09:40", type: "hotel", name: "大阪本町彩鸿酒店退房", lat: 34.68435, lng: 135.50275, checkout: true, detail: "退房约 10:00。带着行李去梅田。不要去关西机场。" },
+        { id: "d4b", time: "10:00", type: "commute", mode: "御堂筋线", name: "本町 → 梅田 · 约 8 分钟", lat: 34.7055, lng: 135.4983, cost: 180, detail: "本町坐御堂筋线北上到梅田。行李少就自己背；多就出站再去机场巴士站。" },
+        { id: "d4c", time: "10:15", type: "commute", mode: "机场巴士", name: "梅田 → 伊丹机场 · 约 40 分钟", lat: 34.7855, lng: 135.4382, cost: 650, detail: "坐「大阪机场巴士」。行李放车下。国内线提前约 1 小时到闸口。" },
+        { id: "d4d", time: "11:10", type: "meal", name: "午饭 · 伊丹机场", lat: 34.7855, lng: 135.4382, xhs: "伊丹机场午饭", cost: 1200, img: "img/spots/osaka-castle-1.jpg", photo: "大阪", detail: "值机托运后再吃。人均大约 1200 日元。" },
+        { id: "d4e", time: "12:25", type: "commute", mode: "飞机", name: "伊丹 → 羽田 · 约 70 分钟", lat: 35.5494, lng: 139.7798, cost: 14000, detail: "订 12:00–13:30 起飞的 ANA / JAL。机上可看富士，看天气。落地走国内到达，取托运行李。" },
+        { id: "d4f", time: "14:10", type: "commute", mode: "京急 + JR", name: "羽田 → 南千住 · 约 60–75 分钟", lat: 35.7336, lng: 139.7938, cost: 900, detail: "京急到品川，山手线上野，换常磐线或日比谷线到南千住。行李多可在上野打的，约 10 分钟到酒店。" },
+        { id: "d4g", time: "15:30", type: "hotel", name: "MW Hotel 入住", lat: 35.7336, lng: 139.7938, cost: 20000, detail: "东京都荒川区南千住5-31-11。JR / 日比谷线 / 筑波快线「南千住」西口步行约 5 分钟。两人护照给前台。放下行李再出门。" },
+        { id: "d4h", time: "16:00", type: "commute", mode: "筑波快线", name: "南千住 → 浅草 · 约 5 分钟", lat: 35.7111, lng: 139.7964, cost: 200, detail: "筑波快线一站到浅草。拍西瓜卡。" },
+        { id: "d4i", time: "16:10", type: "spot", name: "雷门", spotId: "kaminarimon", cost: 0 },
+        { id: "d4j", time: "16:25", type: "commute", mode: "步行", name: "雷门 → 仲见世 · 约 2 分钟", lat: 35.7117, lng: 139.7966, cost: 0, detail: "穿过雷门就是仲见世商店街。" },
+        { id: "d4k", time: "16:30", type: "spot", name: "仲见世商店街", spotId: "nakamise", cost: 600 },
+        { id: "d4l", time: "16:55", type: "commute", mode: "步行", name: "仲见世 → 浅草寺 · 约 3 分钟", lat: 35.7148, lng: 139.7967, cost: 0, detail: "走到头就是宝藏门和本堂。" },
+        { id: "d4m", time: "17:00", type: "spot", name: "浅草寺", spotId: "sensoji", cost: 0 },
+        { id: "d4n", time: "17:40", type: "commute", mode: "步行", name: "浅草寺 → 晴空塔 · 约 20 分钟", lat: 35.7101, lng: 139.8107, cost: 0, detail: "过吾妻桥，沿隅田川走到押上。腿累再改坐浅草线或银座线到押上。" },
+        { id: "d4o", time: "18:00", type: "spot", name: "东京晴空塔", spotId: "skytree", cost: 2100, detail: "傍晚灯亮更好看。第一次去天望甲板够用。" },
+        { id: "d4p", time: "19:50", type: "commute", mode: "半藏门线 + 日比谷线", name: "押上 → 秋叶原 · 约 15 分钟", lat: 35.6984, lng: 139.7731, cost: 180, detail: "押上坐半藏门线到水天宫前，换日比谷线到秋叶原。晚上灯更亮。" },
+        { id: "d4q", time: "20:10", type: "spot", name: "秋叶原", spotId: "akihabara", cost: 0 },
+        { id: "d4r", time: "20:35", type: "commute", mode: "步行", name: "电器街 → 晚饭店 · 约 5 分钟", lat: 35.6986, lng: 139.7738, cost: 0, detail: "中央通两侧都有拉面、定食。不要跑去远的商场。" },
+        { id: "d4s", time: "20:40", type: "meal", name: "晚饭 · 秋叶原", lat: 35.6986, lng: 139.7738, xhs: "秋叶原晚饭", cost: 1600, img: "img/spots/akihabara-1.jpg", photo: "秋叶原", detail: "拉面或定食即可。人均大约 1500 日元。" },
+        { id: "d4t", time: "21:40", type: "commute", mode: "日比谷线", name: "秋叶原 → 南千住 · 约 12 分钟", lat: 35.7336, lng: 139.7938, cost: 180, detail: "日比谷线直达南千住。西口出站步行回酒店。今晚起住 3 晚。" }
       ]
     },
     {
@@ -910,20 +947,24 @@ window.TRIP = {
         { item: "薄外套", need: "SKY 屋顶风大，塔下也会凉" }
       ],
       beats: [
-        { id: "d5a", time: "08:50", type: "commute", mode: "日比谷 + JR", name: "南千住 → 原宿 · 约 35 分钟", lat: 35.6702, lng: 139.7027, cost: 280, detail: "日比谷线到上野，换山手线到原宿，出明治神宫口。比住新宿多大约半小时，早一点出门。" },
+        { id: "d5a", time: "08:50", type: "commute", mode: "日比谷线 + 山手线", name: "南千住 → 原宿 · 约 35 分钟", lat: 35.6702, lng: 139.7027, cost: 280, detail: "日比谷线到上野，换山手线到原宿，出明治神宫口。比住新宿多大约半小时，早一点出门。" },
         { id: "d5b", time: "09:30", type: "spot", name: "明治神宫", spotId: "meiji", cost: 0 },
-        { id: "d5c", time: "11:00", type: "spot", name: "竹下通", spotId: "takeshita", cost: 800 },
-        { id: "d5d", time: "12:00", type: "meal", name: "午饭 · 原宿 / 表参道", lat: 35.6688, lng: 139.7068, xhs: "原宿午饭", cost: 1600, img: "img/spots/omotesando-1.jpg", photo: "表参道", detail: "可丽饼当垫饥的话，正餐去表参道点定食。人均大约 1500 日元。" },
-        { id: "d5e", time: "13:20", type: "spot", name: "表参道", spotId: "omotesando", cost: 0 },
-        { id: "d5f", time: "14:20", type: "commute", mode: "地铁", name: "表参道 → 涩谷 · 约 10 分钟", lat: 35.6595, lng: 139.7004, cost: 170, detail: "银座线一站到涩谷。" },
-        { id: "d5g", time: "14:40", type: "spot", name: "涩谷十字路口 · 中心街", spotId: "shibuya", cost: 0, detail: "先在地面拍路口和八公。晚上还要再回来上 SKY，这里不要耗太久。拍得慢就丢掉竹下通。" },
-        { id: "d5h", time: "16:00", type: "commute", mode: "地铁", name: "涩谷 → 赤羽桥 / 神谷町 · 约 20 分钟", lat: 35.6586, lng: 139.7454, cost: 220, detail: "去东京塔拍亮灯。Google 地图搜 Tokyo Tower。尽量 16:20 前到增上寺。" },
-        { id: "d5i", time: "16:30", type: "spot", name: "东京塔亮灯", spotId: "tokyo-tower", cost: 0, detail: "增上寺山门框东京塔，再去芝公园拍全塔。不上展望台。17:40 前离开，赶回涩谷。" },
-        { id: "d5j", time: "17:50", type: "commute", mode: "地铁", name: "东京塔 → 涩谷 · 约 20 分钟", lat: 35.6584, lng: 139.7022, cost: 220, detail: "回 Scramble Square。对一下 SKY 入场时段，迟到可能作废。" },
-        { id: "d5k", time: "18:20", type: "meal", name: "晚饭 · 涩谷", lat: 35.6590, lng: 139.7015, xhs: "涩谷晚饭", cost: 2200, img: "img/spots/shibuya-2.jpg", photo: "涩谷", detail: "在涩谷吃，不要跑远。人均大约 2000 日元。吃完去 SKY。" },
-        { id: "d5l", time: "19:40", type: "spot", name: "SHIBUYA SKY 夜景", spotId: "shibuya-sky", cost: 2500 },
-        { id: "d5m", time: "21:40", type: "commute", mode: "JR + 日比谷", name: "涩谷 → 南千住 · 约 40 分钟", lat: 35.7336, lng: 139.7938, cost: 280, detail: "山手线到上野，换日比谷线到南千住。屋顶风大，回酒店就休息。" },
-        { id: "d5n", time: "22:20", type: "hotel", name: "MW Hotel", lat: 35.7336, lng: 139.7938, cost: 20000, detail: "还住南千住。明天都心，日比谷线可直达筑地、银座。周日银座常有步行者天国。" }
+        { id: "d5c", time: "10:50", type: "commute", mode: "步行", name: "明治神宫 → 竹下通 · 约 10 分钟", lat: 35.6705, lng: 139.7064, cost: 0, detail: "原路走回原宿站，过桥就是竹下通。拍得慢就丢掉竹下通，不要丢掉晚上 SKY。" },
+        { id: "d5d", time: "11:00", type: "spot", name: "竹下通", spotId: "takeshita", cost: 800 },
+        { id: "d5e", time: "11:50", type: "commute", mode: "步行", name: "竹下通 → 原宿午饭 · 约 8 分钟", lat: 35.6688, lng: 139.7068, cost: 0, detail: "走到表参道口找定食。可丽饼只当垫饥。" },
+        { id: "d5f", time: "12:00", type: "meal", name: "午饭 · 原宿 / 表参道", lat: 35.6688, lng: 139.7068, xhs: "原宿午饭", cost: 1600, img: "img/spots/omotesando-1.jpg", photo: "表参道", detail: "可丽饼当垫饥的话，正餐去表参道点定食。人均大约 1500 日元。" },
+        { id: "d5g", time: "13:10", type: "commute", mode: "步行", name: "午饭店 → 表参道 · 约 8 分钟", lat: 35.6652, lng: 139.7124, cost: 0, detail: "沿表参道往青山方向走。" },
+        { id: "d5h", time: "13:20", type: "spot", name: "表参道", spotId: "omotesando", cost: 0 },
+        { id: "d5i", time: "14:20", type: "commute", mode: "银座线", name: "表参道 → 涩谷 · 约 10 分钟", lat: 35.6595, lng: 139.7004, cost: 170, detail: "表参道站坐银座线一站到涩谷。" },
+        { id: "d5j", time: "14:40", type: "spot", name: "涩谷十字路口 · 中心街", spotId: "shibuya", cost: 0, detail: "先在地面拍路口和八公。晚上还要再回来上 SKY，这里不要耗太久。" },
+        { id: "d5k", time: "16:00", type: "commute", mode: "银座线 + 步行", name: "涩谷 → 东京塔 · 约 20 分钟", lat: 35.6586, lng: 139.7454, cost: 220, detail: "涩谷坐银座线到虎ノ門，再步行到增上寺、芝公园。尽量 16:20 前到。" },
+        { id: "d5l", time: "16:30", type: "spot", name: "东京塔亮灯", spotId: "tokyo-tower", cost: 0, detail: "增上寺山门框东京塔，再去芝公园拍全塔。不上展望台。17:40 前离开，赶回涩谷。" },
+        { id: "d5m", time: "17:50", type: "commute", mode: "JR 山手线", name: "浜松町 → 涩谷 · 约 20 分钟", lat: 35.6584, lng: 139.7022, cost: 220, detail: "芝公园走到浜松町，坐山手线到涩谷。对一下 SKY 入场时段，迟到可能作废。" },
+        { id: "d5n", time: "18:20", type: "meal", name: "晚饭 · 涩谷", lat: 35.6590, lng: 139.7015, xhs: "涩谷晚饭", cost: 2200, img: "img/spots/shibuya-2.jpg", photo: "涩谷", detail: "在涩谷吃，不要跑远。人均大约 2000 日元。吃完去 SKY。" },
+        { id: "d5o", time: "19:30", type: "commute", mode: "步行", name: "晚饭店 → SHIBUYA SKY · 约 8 分钟", lat: 35.6584, lng: 139.7022, cost: 0, detail: "去涩谷 Scramble Square 14 楼检票。对一下预约时段。" },
+        { id: "d5p", time: "19:40", type: "spot", name: "SHIBUYA SKY 夜景", spotId: "shibuya-sky", cost: 2500 },
+        { id: "d5q", time: "21:40", type: "commute", mode: "山手线 + 日比谷线", name: "涩谷 → 南千住 · 约 40 分钟", lat: 35.7336, lng: 139.7938, cost: 280, detail: "山手线到上野，换日比谷线到南千住。屋顶风大，回酒店就休息。" },
+        { id: "d5r", time: "22:20", type: "hotel", name: "MW Hotel", lat: 35.7336, lng: 139.7938, cost: 20000, detail: "还住南千住。明天都心，日比谷线可直达筑地、银座。周日银座常有步行者天国。" }
       ]
     },
     {
@@ -933,7 +974,7 @@ window.TRIP = {
       stay: "MW Hotel（南千住）",
       from: "MW Hotel（南千住）",
       where: "筑地、银座步行者天国、皇居、东京站",
-      path: "南千住 → 筑地早饭 → 银座 → 皇居二重桥 → 东京站 → 回南千住",
+      path: "南千住 → 筑地早饭 → 银座 → 皇居二重桥 → 东京站 → 上野晚饭 → 回南千住",
       prep: [
         { item: "筑地、银座、皇居外苑、东京站外观", need: "免费逛" },
         { item: "银座周日步行者天国", need: "今天周日，中央通白天常封路，适合慢慢拍" }
@@ -941,16 +982,18 @@ window.TRIP = {
       beats: [
         { id: "d6a", time: "08:10", type: "commute", mode: "日比谷线", name: "南千住 → 筑地 · 约 25 分钟", lat: 35.6654, lng: 139.7707, cost: 220, detail: "日比谷线直达筑地。去场外市场，不要去丰洲。" },
         { id: "d6b", time: "08:40", type: "spot", name: "筑地场外市场", spotId: "tsukiji", cost: 0 },
-        { id: "d6c", time: "08:50", type: "meal", name: "早饭 · 筑地寿司 / 海鲜丼", lat: 35.6652, lng: 139.7704, xhs: "筑地早饭 寿司", cost: 2800, img: "img/spots/tsukiji-1.jpg", photo: "筑地市场", detail: "这顿当早午饭。人均 2500–4000 日元。先问能不能拍照。" },
-        { id: "d6d", time: "10:40", type: "commute", mode: "步行", name: "筑地 → 银座 · 约 15 分钟", lat: 35.6712, lng: 139.7649, cost: 0, detail: "沿晴海通往西走。" },
-        { id: "d6e", time: "11:00", type: "spot", name: "银座", spotId: "ginza", cost: 0 },
-        { id: "d6f", time: "13:00", type: "commute", mode: "地铁", name: "银座 → 二重桥前 · 约 10 分钟", lat: 35.6802, lng: 139.7544, cost: 170, detail: "去皇居外苑。" },
-        { id: "d6g", time: "13:20", type: "spot", name: "皇居外苑 · 二重桥", spotId: "imperial", cost: 0 },
-        { id: "d6h", time: "14:20", type: "commute", mode: "步行", name: "二重桥 → 东京站 · 约 12 分钟", lat: 35.6812, lng: 139.7671, cost: 0, detail: "沿行幸通对着红砖车站走。" },
-        { id: "d6i", time: "14:40", type: "spot", name: "东京站丸之内", spotId: "tokyo-station", cost: 0 },
-        { id: "d6j", time: "17:20", type: "commute", mode: "JR + 日比谷", name: "东京 → 南千住 · 约 20 分钟", lat: 35.7336, lng: 139.7938, cost: 200, detail: "山手线或京浜东北到上野，换日比谷线或常磐线到南千住。" },
-        { id: "d6k", time: "19:00", type: "meal", name: "晚饭 · 上野 / 浅草", lat: 35.7148, lng: 139.7967, xhs: "浅草晚饭", cost: 2500, img: "img/spots/sensoji-1.jpg", photo: "浅草寺", detail: "酒店附近上野、浅草吃饭即可。不要专门跑去歌舞伎町。连锁店更省事。" },
-        { id: "d6l", time: "20:40", type: "hotel", name: "MW Hotel · 收拾行李", lat: 35.7336, lng: 139.7938, cost: 20000, detail: "明天 10/12 周一 15:05 成田起飞。今晚买好手信。护照、充电宝放随身包。" }
+        { id: "d6c", time: "08:45", type: "commute", mode: "步行", name: "市场 → 寿司店 · 约 3 分钟", lat: 35.6652, lng: 139.7704, cost: 0, detail: "场外巷子里找寿司或海鲜丼。先问能不能拍照。" },
+        { id: "d6d", time: "08:50", type: "meal", name: "早饭 · 筑地寿司 / 海鲜丼", lat: 35.6652, lng: 139.7704, xhs: "筑地早饭 寿司", cost: 2800, img: "img/spots/tsukiji-1.jpg", photo: "筑地市场", detail: "这顿当早午饭。人均 2500–4000 日元。" },
+        { id: "d6e", time: "10:40", type: "commute", mode: "步行", name: "筑地 → 银座 · 约 15 分钟", lat: 35.6712, lng: 139.7649, cost: 0, detail: "沿晴海通往西走。今天周日，中央通常有步行者天国。" },
+        { id: "d6f", time: "11:00", type: "spot", name: "银座", spotId: "ginza", cost: 0 },
+        { id: "d6g", time: "13:00", type: "commute", mode: "有乐町线", name: "银座一丁目 → 樱田门 · 约 10 分钟", lat: 35.6802, lng: 139.7544, cost: 170, detail: "走到银座一丁目，坐有乐町线一站到樱田门。出站就是皇居外苑。人少也可以沿中央通步行约 20 分钟。" },
+        { id: "d6h", time: "13:20", type: "spot", name: "皇居外苑 · 二重桥", spotId: "imperial", cost: 0 },
+        { id: "d6i", time: "14:20", type: "commute", mode: "步行", name: "二重桥 → 东京站 · 约 12 分钟", lat: 35.6812, lng: 139.7671, cost: 0, detail: "沿行幸通对着红砖车站走。" },
+        { id: "d6j", time: "14:40", type: "spot", name: "东京站丸之内", spotId: "tokyo-station", cost: 0 },
+        { id: "d6k", time: "17:20", type: "commute", mode: "山手线", name: "东京站 → 上野 · 约 8 分钟", lat: 35.7138, lng: 139.7773, cost: 170, detail: "山手线或京浜东北到上野。晚饭在上野吃，不要先回酒店。" },
+        { id: "d6l", time: "19:00", type: "meal", name: "晚饭 · 上野", lat: 35.7138, lng: 139.7773, xhs: "上野晚饭", cost: 2500, img: "img/spots/sensoji-1.jpg", photo: "上野", detail: "上野站周边定食即可。不要专门跑去歌舞伎町。连锁店更省事。" },
+        { id: "d6m", time: "20:20", type: "commute", mode: "日比谷线", name: "上野 → 南千住 · 约 10 分钟", lat: 35.7336, lng: 139.7938, cost: 180, detail: "日比谷线或 JR 常磐线到南千住。西口步行回酒店。" },
+        { id: "d6n", time: "20:40", type: "hotel", name: "MW Hotel · 收拾行李", lat: 35.7336, lng: 139.7938, cost: 20000, detail: "明天 10/12 周一 15:05 成田起飞。今晚买好手信。护照、充电宝放随身包。" }
       ]
     },
     {
@@ -968,8 +1011,10 @@ window.TRIP = {
       ],
       beats: [
         { id: "d7a", time: "08:30", type: "hotel", name: "MW Hotel 退房", lat: 35.7336, lng: 139.7938, checkout: true, detail: "今天退房，不再计房费。行李自己带去成田。护照、登机牌、充电宝放随身包。" },
-        { id: "d7b", time: "08:50", type: "meal", name: "早饭 · 便利店 / 酒店", lat: 35.7336, lng: 139.7938, xhs: "南千住早饭", cost: 800, img: "img/spots/tmg-2.jpg", photo: "上野", detail: "便利店饭团即可。不要坐下来慢慢吃。" },
-        { id: "d7c", time: "09:40", type: "commute", mode: "Skyliner", name: "南千住 → 成田机场 · 约 50–60 分钟", lat: 35.7720, lng: 140.3929, cost: 2800, detail: "常磐线到日暮里（约 5 分钟），换京成 Skyliner 到成田。没有票就上野换成田特快。行李放指定车厢。15:05 起飞，11:00 前必须到航站楼。" }
+        { id: "d7b", time: "08:40", type: "commute", mode: "步行", name: "酒店 → 便利店 / 早饭 · 约 3 分钟", lat: 35.7336, lng: 139.7938, cost: 0, detail: "南千住站西口便利店即可。不要坐下来慢慢吃。" },
+        { id: "d7c", time: "08:50", type: "meal", name: "早饭 · 便利店", lat: 35.7336, lng: 139.7938, xhs: "南千住早饭", cost: 800, img: "img/spots/tmg-2.jpg", photo: "上野", detail: "便利店饭团即可。" },
+        { id: "d7d", time: "09:30", type: "commute", mode: "常磐线", name: "南千住 → 日暮里 · 约 5 分钟", lat: 35.7278, lng: 139.7714, cost: 150, detail: "JR 常磐线一站到日暮里。去京成 Skyliner 月台。" },
+        { id: "d7e", time: "09:40", type: "commute", mode: "Skyliner", name: "日暮里 → 成田机场 · 约 45 分钟", lat: 35.7720, lng: 140.3929, cost: 2600, detail: "京成 Skyliner 到成田。没有票就上野换成田特快。行李放指定车厢。15:05 起飞，11:00 前必须到航站楼。" }
       ]
     }
   ]

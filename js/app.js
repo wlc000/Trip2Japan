@@ -214,6 +214,11 @@ function renderSpots() {
 }
 
 const TYPE_LABEL = { spot: "景点", commute: "通勤", meal: "吃饭", hotel: "酒店" };
+
+function beatKindLabel(beat) {
+  if (beat.type === "commute" && beat.mode) return beat.mode;
+  return TYPE_LABEL[beat.type] || "";
+}
 let planDay = 1;
 let activeBeatId = "";
 let planMap = null;
@@ -397,10 +402,9 @@ function renderBeatDetail() {
     return;
   }
   const xhs = beatXhs(beat);
-  const mode = beat.mode ? ` · ${beat.mode}` : "";
   const linked = beat.spotId ? TRIP.spots.find((s) => s.id === beat.spotId) : null;
   el.innerHTML = `
-    <div class="k">${beat.time} · ${TYPE_LABEL[beat.type] || ""}${mode}</div>
+    <div class="k">${beat.time} · ${beatKindLabel(beat)}${beat.type !== "commute" && beat.mode ? ` · ${beat.mode}` : ""}</div>
     <h3>${beat.name}</h3>
     <p class="beat-cost">基础花销：${formatCost(beat)}</p>
     ${spotGuideBlock(linked)}
@@ -491,14 +495,14 @@ function renderPlanTable() {
     <tbody>
       ${day.beats
         .map((b) => {
-          const mode = b.mode ? `<span class="mode">${b.mode}</span>` : "";
+          const mode = b.type !== "commute" && b.mode ? `<span class="mode">${b.mode}</span>` : "";
           const xhs = beatXhs(b)
             ? ` <a class="xhs-inline" href="${xhsUrl(beatXhs(b))}" target="_blank" rel="noreferrer" data-xhs>小红书</a>`
             : "";
           return `
         <tr class="plan-row ${b.type}${b.id === activeBeatId ? " is-on" : ""}" data-beat="${b.id}">
           <td class="plan-time">${b.time}</td>
-          <td><span class="kind kind-${b.type}">${TYPE_LABEL[b.type]}</span></td>
+          <td><span class="kind kind-${b.type}">${beatKindLabel(b)}</span></td>
           <td>${mode}${b.name}${xhs}</td>
           <td class="plan-cost">${formatCost(b)}</td>
         </tr>`;
@@ -734,7 +738,7 @@ function openBeatSheet(beat) {
       ${galleryHtml(beat, beat.name)}
       <div class="sheet-body">
         <button class="close" type="button" data-close>×</button>
-        <div class="en">${TYPE_LABEL[beat.type] || ""} · ${beat.time}${beat.mode ? " · " + beat.mode : ""}</div>
+        <div class="en">${beatKindLabel(beat)} · ${beat.time}</div>
         <h2>${beat.name}</h2>
         <p class="beat-cost">基础花销：${formatCost(beat)}</p>
         <p>${beatDetailText(beat)}</p>

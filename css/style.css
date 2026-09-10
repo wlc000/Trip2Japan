@@ -1251,7 +1251,7 @@ input {
 }
 
 .kind-spot { background: var(--clay); color: #fff; }
-.kind-commute { background: rgba(60, 83, 72, 0.12); color: var(--moss); }
+.kind-commute { background: rgba(60, 83, 72, 0.12); color: var(--moss); white-space: normal; line-height: 1.25; }
 .kind-meal { background: #e09a2a; color: #fff; }
 .kind-hotel { background: rgba(26, 21, 18, 0.08); color: var(--ink-soft); }
 
