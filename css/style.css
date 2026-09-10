@@ -586,6 +586,22 @@ input {
   border: 1px solid var(--line);
 }
 
+.geo-figure.geo-map img {
+  max-width: 100%;
+  cursor: zoom-in;
+}
+
+.geo-figure.geo-map a {
+  display: block;
+}
+
+.geo-figure figcaption {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
 .post-list {
   grid-template-columns: 1fr 1fr;
 }
@@ -613,6 +629,12 @@ input {
 
 .post-card .btn {
   text-decoration: none;
+}
+
+.post-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .tags {

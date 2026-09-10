@@ -624,7 +624,7 @@ function renderTripBudget() {
       <li>玩乐、吃饭、交通：人均约 <strong>${cost.playPer}</strong> 元（两人约 ${cost.playTwo} 元，含大阪→东京机票）</li>
       <li>住宿 ${cost.nights} 晚：人均约 <strong>${Math.round(cost.hotel / 2)}</strong> 元（${cost.hotel} 元 / 两城标间，${stayText}）</li>
     </ul>
-    <p>按 100 日元 ≈ ${rateText} 元估算。大阪难波一晚约 1.8 万日元，东京新宿一晚约 2 万日元。全程含 10/05 入住当晚，10/12 退房不再计房费。不含往返机票。</p>
+    <p>按 100 日元 ≈ ${rateText} 元估算。大阪本町彩鸿一晚约 1.8 万日元，东京 MW Hotel 一晚约 2 万日元。全程含 10/05 入住当晚，10/12 退房不再计房费。不含往返机票。</p>
   `;
 }
 
