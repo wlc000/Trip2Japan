@@ -786,6 +786,11 @@ function openSpot(id) {
           <dt>进入</dt><dd>${spot.enter}</dd>
           <dt>时长</dt><dd>${spot.duration}</dd>
           <dt>注意</dt><dd>${spot.note}</dd>
+          ${
+            spot.booking
+              ? `<dt>🎫 预约/门票</dt><dd>${spot.booking}</dd>`
+              : ""
+          }
         </dl>
         ${
           keywords.length
