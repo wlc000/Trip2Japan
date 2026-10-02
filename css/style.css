@@ -805,6 +805,10 @@ input {
   text-decoration: none;
 }
 
+.post-shot {
+  margin: 0;
+}
+
 .post-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1300,6 +1304,10 @@ input {
 .guide-card li {
   color: var(--ink-soft);
   font-size: 15px;
+}
+
+.guide-card a {
+  overflow-wrap: anywhere;
 }
 
 .guide-card p {

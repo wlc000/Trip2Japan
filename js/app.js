@@ -162,7 +162,7 @@ function groupedSpots() {
       } else if (spot.alt) {
         const n = String(spot.day).padStart(2, "0");
         buckets.set(key, {
-          title: `DAY ${n} 备选 · ${spot.altLabel || "神户"}`,
+          title: `DAY ${n} 备选 · ${spot.altLabel || "备选"}`,
           day: spot.day + 0.5,
           optional: false,
           spots: []
@@ -738,16 +738,23 @@ function renderDays() {
   renderPlanMap("day");
 }
 
+// 到 https://carto.com/basemaps/apikey/ 申请，邮件里的密钥贴到这里。
+const CARTO_KEY = "cb1_479w_1_810b683b5beb3ad73a06616d";
+
+function baseTiles() {
+  const key = CARTO_KEY ? "?key=" + encodeURIComponent(CARTO_KEY) : "";
+  return L.tileLayer("https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" + key, {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attribution/">CARTO</a>',
+    maxZoom: 20
+  });
+}
+
 function initPlanMap() {
   planMap = L.map("plan-map", {
     scrollWheelZoom: false,
     zoomControl: true
   }).setView([35.6812, 139.7671], 12);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-    attribution: "&copy; OpenStreetMap &copy; CARTO",
-    maxZoom: 19,
-    subdomains: "abcd"
-  }).addTo(planMap);
+  baseTiles().addTo(planMap);
   planLayer = L.layerGroup().addTo(planMap);
   planMap.on("click", () => planMap.scrollWheelZoom.enable());
   planMap.on("mouseout", () => planMap.scrollWheelZoom.disable());
@@ -1010,11 +1017,7 @@ function initMap() {
     zoomControl: true
   }).setView([35.6812, 139.7671], 12);
 
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-    attribution: "&copy; OpenStreetMap &copy; CARTO",
-    maxZoom: 19,
-    subdomains: "abcd"
-  }).addTo(leafletMap);
+  baseTiles().addTo(leafletMap);
 
   markerLayer = L.layerGroup().addTo(leafletMap);
   leafletMap.on("click", () => leafletMap.scrollWheelZoom.enable());
