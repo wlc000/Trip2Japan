@@ -303,27 +303,59 @@ function previousDayEnd(day) {
   return null;
 }
 
+function beatVias(beat) {
+  return (beat.via || []).filter((p) => Array.isArray(p) && p.length >= 2);
+}
+
+function pushPoint(pts, ll) {
+  if (!ll) return;
+  if (!pts.length || !samePoint(pts[pts.length - 1], ll)) pts.push(ll);
+}
+
+function lodgingLatLng(day) {
+  const hotel = [...day.beats].reverse().find((b) => b.type === "hotel" && beatLatLng(b));
+  return hotel ? beatLatLng(hotel) : null;
+}
+
+function commuteOrigin(day, beat) {
+  const mapped = mappedBeats(day);
+  const i = mapped.findIndex((x) => x.beat.id === beat.id);
+  if (i < 0) return null;
+  const end = mapped[i].ll;
+  for (let j = i - 1; j >= 0; j--) {
+    if (!samePoint(mapped[j].ll, end)) return mapped[j].ll;
+  }
+  const prev = previousDayEnd(day);
+  if (prev && !samePoint(prev, end)) return prev;
+  const home = lodgingLatLng(day);
+  if (home && !samePoint(home, end)) return home;
+  return null;
+}
+
 function commuteSegment(day, beat) {
   const mapped = mappedBeats(day);
   const i = mapped.findIndex((x) => x.beat.id === beat.id);
   if (i < 0) return null;
   const end = mapped[i].ll;
-  let start = null;
-  for (let j = i - 1; j >= 0; j--) {
-    if (!samePoint(mapped[j].ll, end)) {
-      start = mapped[j].ll;
-      break;
-    }
-  }
-  if (!start) {
-    const prev = previousDayEnd(day);
-    if (prev && !samePoint(prev, end)) start = prev;
-  }
-  if (start) return [start, end];
+  const start = commuteOrigin(day, beat);
+  if (start) return [start, ...beatVias(beat), end];
   for (let j = i + 1; j < mapped.length; j++) {
     if (!samePoint(mapped[j].ll, end)) return [end, mapped[j].ll];
   }
   return null;
+}
+
+function dayRoutePoints(day) {
+  const pts = [];
+  const mapped = mappedBeats(day);
+  if (mapped.length && mapped[0].beat.type === "commute") {
+    pushPoint(pts, commuteOrigin(day, mapped[0].beat));
+  }
+  mapped.forEach(({ beat, ll }) => {
+    beatVias(beat).forEach((p) => pushPoint(pts, p));
+    pushPoint(pts, ll);
+  });
+  return pts;
 }
 
 function renderDayTabs() {
@@ -622,7 +654,7 @@ function renderPlanMap(mode) {
   planHighlight = null;
 
   const mapped = mappedBeats(day);
-  const pts = mapped.map((x) => x.ll);
+  const pts = dayRoutePoints(day);
   if (pts.length > 1) {
     planLine = L.polyline(pts, {
       color: "#6a736c",

@@ -777,7 +777,14 @@ input {
 }
 
 .post-list {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
+  align-items: start;
+}
+
+.post-col {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
 }
 
 .post-card .post-src {
@@ -807,6 +814,12 @@ input {
 
 .post-shot {
   margin: 0;
+}
+
+.post-shot img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .post-actions {
